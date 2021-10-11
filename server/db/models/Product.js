@@ -56,6 +56,7 @@ const Product = db.define("product", {
       min: 0.0,
       max: 5.0,
     },
+  },
   description: {
     // Note: description has limit of 10,000 characters.
     type: STRING(10000),
