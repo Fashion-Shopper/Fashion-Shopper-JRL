@@ -4,6 +4,7 @@ const {
   db,
   models: { User, Product, Brand },
 } = require("../server/db");
+const productSeedData = require("./product-seed-data.json");
 
 /**
  * seed - this function clears the database, updates tables to
@@ -13,7 +14,7 @@ async function seed() {
   await db.sync({ force: true }); // clears db and matches models to tables
   console.log("db synced!");
 
-  // Creating Users
+  // Creating Users...
   const users = await Promise.all([
     User.create({ username: "cody", password: "123" }),
     User.create({ username: "murphy", password: "123" }),
@@ -21,9 +22,45 @@ async function seed() {
 
   console.log(`seeded ${users.length} users`);
 
-  // Creating Products
+  // Creating Products...
+  // Note (Riv): Mapping over data from seed.json file, creating data for db.
+  const products = await Promise.all(
+    productSeedData.map((product) => Product.create(product))
+  );
 
-  // Creating Brands
+  // Creating Brands...
+  const brands = await Promise.all([
+    Brand.create({
+      name: "Comme des Garcons",
+    }),
+    Brand.create({
+      name: "Helmut Lang",
+    }),
+    Brand.create({
+      name: "Issey Miyake",
+    }),
+    Brand.create({
+      name: "Junya Watanabe",
+    }),
+    Brand.create({
+      name: "Kapital",
+    }),
+    Brand.create({
+      name: "Raf Simons",
+    }),
+    Brand.create({
+      name: "Undercover",
+    }),
+    Brand.create({
+      name: "Yohji Yamamoto",
+    }),
+  ]);
+
+  // Creating Product/Brand Associations...
+  // Note (Riv): Mapping over products, connecting each product to respective brand.
+  brands.forEach(brand => 
+    products.forEach(product => product.brand === brand.name ? product.brandId = brand.id)
+  )
 
   console.log(`seeded successfully`);
   return {
