@@ -8,7 +8,7 @@ const Brand = require("./models/Brand");
 ///////////////// ASSOCIATIONS /////////////////
 
 Product.belongsTo(Brand, { as: "product" });
-Brand.hasMany(Student, { as: "product", foreignKey: "brandId" });
+Brand.hasMany(Product, { as: "product", foreignKey: "brandId" });
 
 module.exports = {
   db,
