@@ -72,3 +72,8 @@ const Brand = db.define("brand", {
     },
   },
 });
+
+///////////////// ASSOCIATIONS /////////////////
+
+Product.belongsTo(Brand, { as: "product" });
+Brand.hasMany(Student, { as: "product", foreignKey: "brandId" });
