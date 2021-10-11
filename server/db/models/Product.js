@@ -53,8 +53,6 @@ const Product = db.define("product", {
       notEmpty: true,
     },
   },
-  // *ATTENTION: This is a placeholder, will need to make association to have this column.
-  designerId: {},
 });
 
 ///////////////// EXPORTING /////////////////
