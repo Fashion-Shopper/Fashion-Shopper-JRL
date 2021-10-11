@@ -1,5 +1,5 @@
 const Sequelize = require("sequelize");
-const { STRING, INTEGER } = Sequelize;
+const { STRING, INTEGER, DECIMAL } = Sequelize;
 const db = require("../db");
 
 ///////////////// PRODUCT MODEL /////////////////
@@ -42,9 +42,12 @@ const Product = db.define("product", {
     },
   },
   rating: {
-    type: INTEGER,
-    allowNull: false,
-  },
+    type: DECIMAL,
+    validate: {
+      isNumeric: true,
+      min: 0.0,
+      max: 5.0,
+    },
   description: {
     // Note: description has limit of 10,000 characters.
     type: STRING(10000),
