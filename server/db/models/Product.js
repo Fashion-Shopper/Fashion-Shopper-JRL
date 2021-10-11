@@ -1,9 +1,6 @@
 const Sequelize = require("sequelize");
 const { STRING, INTEGER } = Sequelize;
-// *ATTENTION: Temporary Database for syncing data, replace once team decides on how to store data.
-const db = new Sequelize(
-  process.env.DATABASE_URL || "postgres://localhost/fashion-shopper-JRL-db"
-);
+const db = require("../db");
 
 ///////////////// PRODUCT MODEL /////////////////
 
@@ -62,7 +59,7 @@ const Product = db.define("product", {
 
 ///////////////// BRAND MODEL /////////////////
 
-// *ATTENTION: Migrate Brand model to seperate file, then import into Product.js.
+// *ATTENTION: Migrate Brand model to seperate file, then import into db/index.js.
 const Brand = db.define("brand", {
   name: {
     type: STRING,
@@ -75,5 +72,8 @@ const Brand = db.define("brand", {
 
 ///////////////// ASSOCIATIONS /////////////////
 
+// *ATTENTION: Migrate associations to db/index.js.
 Product.belongsTo(Brand, { as: "product" });
 Brand.hasMany(Student, { as: "product", foreignKey: "brandId" });
+
+module.exports = Product;
