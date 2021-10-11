@@ -57,23 +57,6 @@ const Product = db.define("product", {
   designerId: {},
 });
 
-///////////////// BRAND MODEL /////////////////
-
-// *ATTENTION: Migrate Brand model to seperate file, then import into db/index.js.
-const Brand = db.define("brand", {
-  name: {
-    type: STRING,
-    allowNull: false,
-    validate: {
-      notEmpty: true,
-    },
-  },
-});
-
-///////////////// ASSOCIATIONS /////////////////
-
-// *ATTENTION: Migrate associations to db/index.js.
-Product.belongsTo(Brand, { as: "product" });
-Brand.hasMany(Student, { as: "product", foreignKey: "brandId" });
+///////////////// EXPORTING /////////////////
 
 module.exports = Product;
