@@ -1,13 +1,25 @@
 [
   {
-    "name": "placeholder",
-    "imageURL": "placeholder",
-    "price": "placeholder",
-    "category": "placeholder",
-    "gender": "placeholder",
-    "size": "placeholder",
-    "rating": "placeholder",
-    "description": "placeholder"
+    "name": "SS2000 Patchwork Suit",
+    "imageURL": "https://images.squarespace-cdn.com/content/v1/5aaf41dd3c3a53cc58416c61/1571450168771-6FH64TRL2YLWAMSQ0YOS/commedesgarconsss2000patchworksuitfull.jpg?format=1500w",
+    "price": "2,750.00",
+    "category": "jacket",
+    "gender": "men",
+    "size": "L",
+    "rating": "4",
+    "description": "Rei Kawakubo’s spring 2000 collection for Comme des Garçons featured a wide range of patchwork garments, including pants, shirts, and as featured here, suits. Each of the suits was one of a kind, as they were produced in small quantities as special orders for customers before the collection hit the shelves. The eclectic fabric was sourced from the Gobelins Manufactory, a legendary tapestry factory in Paris. Extreme proficiency and attention to detail went into the construction of this piece. Shown here in a rare size large in both the pants and jacket, brand new with the original tag still attached.",
+    "source": "https://www.middlemanstore.com/archive/comme-des-garons-homme-plus-ss2000-patchwork-suit"
+  },
+  {
+    "name": "SS1996 Vinyl Reflector Jacket",
+    "imageURL": "https://images.squarespace-cdn.com/content/v1/5aaf41dd3c3a53cc58416c61/1571974293405-GA1OZBM41UL06VH8958D/commedesgarconshommeplusss1996reflectorjacketfront.jpg?format=1500w",
+    "price": "525.00",
+    "category": "jacket",
+    "gender": "men",
+    "size": "m",
+    "rating": "4.5",
+    "description": "placeholder",
+    "source": "placeholder"
   },
   {
     "name": "placeholder",
@@ -17,6 +29,73 @@
     "gender": "placeholder",
     "size": "placeholder",
     "rating": "placeholder",
-    "description": "placeholder"
+    "description": "placeholder",
+    "source": "placeholder"
+  },
+  {
+    "name": "placeholder",
+    "imageURL": "placeholder",
+    "price": "placeholder",
+    "category": "placeholder",
+    "gender": "placeholder",
+    "size": "placeholder",
+    "rating": "placeholder",
+    "description": "placeholder",
+    "source": "placeholder"
+  },
+  {
+    "name": "placeholder",
+    "imageURL": "placeholder",
+    "price": "placeholder",
+    "category": "placeholder",
+    "gender": "placeholder",
+    "size": "placeholder",
+    "rating": "placeholder",
+    "description": "placeholder",
+    "source": "placeholder"
+  },
+  {
+    "name": "placeholder",
+    "imageURL": "placeholder",
+    "price": "placeholder",
+    "category": "placeholder",
+    "gender": "placeholder",
+    "size": "placeholder",
+    "rating": "placeholder",
+    "description": "placeholder",
+    "source": "placeholder"
+  },
+  {
+    "name": "placeholder",
+    "imageURL": "placeholder",
+    "price": "placeholder",
+    "category": "placeholder",
+    "gender": "placeholder",
+    "size": "placeholder",
+    "rating": "placeholder",
+    "description": "placeholder",
+    "source": "placeholder"
+  },
+  {
+    "name": "placeholder",
+    "imageURL": "placeholder",
+    "price": "placeholder",
+    "category": "placeholder",
+    "gender": "placeholder",
+    "size": "placeholder",
+    "rating": "placeholder",
+    "description": "placeholder",
+    "source": "placeholder"
+  },
+  {
+    "name": "placeholder",
+    "imageURL": "placeholder",
+    "price": "placeholder",
+    "category": "placeholder",
+    "gender": "placeholder",
+    "size": "placeholder",
+    "rating": "placeholder",
+    "description": "placeholder",
+    "source": "placeholder"
   }
 ]
