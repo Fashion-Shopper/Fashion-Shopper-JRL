@@ -12,6 +12,14 @@ const Product = db.define("product", {
       notEmpty: true,
     },
   },
+  // Note: the brand column will be used to pair Product with Brand via script/seed.js.
+  brand: {
+    type: STRING,
+    allowNull: false,
+    validate: {
+      notEmpty: true,
+    },
+  },
   imageURL: {
     type: STRING,
     allowNull: false,
