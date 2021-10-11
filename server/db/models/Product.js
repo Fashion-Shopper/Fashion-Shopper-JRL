@@ -1,9 +1,11 @@
 const Sequelize = require("sequelize");
 const { STRING, INTEGER } = Sequelize;
-// ATTENTION: Temporary Database for syncing data, replace once team decides on how to store data.
+// *ATTENTION: Temporary Database for syncing data, replace once team decides on how to store data.
 const db = new Sequelize(
   process.env.DATABASE_URL || "postgres://localhost/fashion-shopper-JRL-db"
 );
+
+///////////////// PRODUCT MODEL /////////////////
 
 const Product = db.define("product", {
   name: {
@@ -54,6 +56,19 @@ const Product = db.define("product", {
       notEmpty: true,
     },
   },
-  // ATTENTION: This is a placeholder, will need to make association to have this column.
+  // *ATTENTION: This is a placeholder, will need to make association to have this column.
   designerId: {},
+});
+
+///////////////// BRAND MODEL /////////////////
+
+// *ATTENTION: Migrate Brand model to seperate file, then import into Product.js.
+const Brand = db.define("brand", {
+  name: {
+    type: STRING,
+    allowNull: false,
+    validate: {
+      notEmpty: true,
+    },
+  },
 });
