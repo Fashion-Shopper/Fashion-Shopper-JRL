@@ -1,5 +1,5 @@
 import React from 'react'
-import { connect, useDispatch, useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { logout } from '../store'
 
@@ -41,13 +41,5 @@ const Navbar = () => {
 /**
  * CONTAINER
  */
-
-// const mapDispatch = dispatch => {
-//   return {
-//     handleClick() {
-//       dispatch(logout())
-//     }
-//   }
-// }
 
 export default Navbar
