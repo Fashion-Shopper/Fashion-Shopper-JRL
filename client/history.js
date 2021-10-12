@@ -1,4 +1,6 @@
-import {createMemoryHistory, createBrowserHistory} from 'history'
+//This is not in use!
+
+import { createMemoryHistory, createBrowserHistory } from 'history'
 
 const history =
   process.env.NODE_ENV === 'test'

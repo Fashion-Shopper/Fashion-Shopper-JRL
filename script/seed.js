@@ -1,10 +1,10 @@
 "use strict";
+const productSeedData = require("./product-seed-data.json");
 
 const {
   db,
   models: { User, Product, Brand },
 } = require("../server/db");
-const productSeedData = require("./product-seed-data.json");
 
 /**
  * seed - this function clears the database, updates tables to
@@ -60,7 +60,7 @@ async function seed() {
   // Note (Riv): Mapping over products, connecting each product to respective brand.
   brands.forEach((brand) =>
     products.forEach((product) => {
-      if (product.brand === brand.name) product.brandId = brand.id;
+      if (product.brandName === brand.name) product.brandId = brand.id;
     })
   );
 
