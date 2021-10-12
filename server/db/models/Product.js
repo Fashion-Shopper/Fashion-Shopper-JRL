@@ -13,13 +13,14 @@ const Product = db.define("product", {
     },
   },
   // Note: the brand column will be used to pair Product with Brand via script/seed.js.
-  brand: {
-    type: STRING,
-    allowNull: false,
-    validate: {
-      notEmpty: true,
-    },
-  },
+  // john - I comment this out because this is automatically create by the association in the indexjs
+  // brand: {
+  //   type: STRING,
+  //   allowNull: false,
+  //   validate: {
+  //     notEmpty: true,
+  //   },
+  // },
   imageURL: {
     type: STRING,
     allowNull: false,
