@@ -58,13 +58,15 @@ async function seed() {
 
   // Creating Product/Brand Associations...
   // Note (Riv): Mapping over products, connecting each product to respective brand.
-  brands.forEach(brand => 
-    products.forEach(product => product.brand === brand.name ? product.brandId = brand.id)
-  )
+  brands.forEach((brand) =>
+    products.forEach((product) => {
+      if (product.brand === brand.name) product.brandId = brand.id;
+    })
+  );
 
-  // Saving Product and Brand data..  
-  products.forEach(product => product.save());
-  brands.forEach(brand => brand.save());
+  // Saving Product and Brand data..
+  products.forEach((product) => product.save());
+  brands.forEach((brand) => brand.save());
 
   console.log(`seeded successfully`);
   return {
