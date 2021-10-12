@@ -1,3 +1,4 @@
+const { TEXT } = require("sequelize");
 const Sequelize = require("sequelize");
 const { STRING, INTEGER, DECIMAL } = Sequelize;
 const db = require("../db");
@@ -14,13 +15,13 @@ const Product = db.define("product", {
   },
   // Note: the brand column will be used to pair Product with Brand via script/seed.js.
   // john - I comment this out because this is automatically create by the association in the indexjs
-  // brand: {
-  //   type: STRING,
-  //   allowNull: false,
-  //   validate: {
-  //     notEmpty: true,
-  //   },
-  // },
+  brandName: {
+    type: STRING,
+    allowNull: false,
+    validate: {
+      notEmpty: true,
+    },
+  },
   imageURL: {
     type: STRING,
     allowNull: false,
@@ -60,7 +61,8 @@ const Product = db.define("product", {
   },
   description: {
     // Note: description has limit of 10,000 characters.
-    type: STRING(10000),
+    // john - I changed STRING to TEXT which has a higher limit
+    type: TEXT,
     allowNull: false,
     validate: {
       notEmpty: true,
