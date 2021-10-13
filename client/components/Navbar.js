@@ -38,8 +38,4 @@ const Navbar = () => {
   )
 }
 
-/**
- * CONTAINER
- */
-
 export default Navbar
