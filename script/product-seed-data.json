@@ -1,19 +1,19 @@
 [
   {
     "name": "SS2000 Patchwork Suit",
-    "brand": "Comme des Garcons",
+    "brandName": "Comme des Garcons",
     "imageURL": "https://images.squarespace-cdn.com/content/v1/5aaf41dd3c3a53cc58416c61/1571450168771-6FH64TRL2YLWAMSQ0YOS/commedesgarconsss2000patchworksuitfull.jpg?format=1500w",
     "price": "2750",
     "category": "jacket",
     "gender": "men",
     "size": "L",
     "rating": "4",
-    "description": "Rei Kawakubo’s spring 2000 collection for Comme des Garçons featured a wide range of patchwork garments, including pants, shirts, and as featured here, suits. Each of the suits was one of a kind, as they were produced in small quantities as special orders for customers before the collection hit the shelves. The eclectic fabric was sourced from the Gobelins Manufactory, a legendary tapestry factory in Paris. Extreme proficiency and attention to detail went into the construction of this piece. Shown here in a rare size large in both the pants and jacket, brand new with the original tag still attached.",
+    "description": "Rei Kawakubo’s spring 2000 collection for Comme des Garçons featured a wide range of patchwork garments, including pants, shirts, and as featured here, suits. Each of the suits was one of a kind, as they were produced in small quantities as special orders for customers before the collection hit the shelves. The eclectic fabric was sourced from the Gobelins Manufactory, a legendary tapestry factory in Paris. Extreme proficiency and attention to detail went into the construction of this piece. Shown here in a rare size large in both the pants and jacket, brandName new with the original tag still attached.",
     "source": "https://www.middlemanstore.com/archive/comme-des-garons-homme-plus-ss2000-patchwork-suit"
   },
   {
     "name": "SS1996 Vinyl Reflector Jacket",
-    "brand": "Comme des Garcons",
+    "brandName": "Comme des Garcons",
     "imageURL": "https://images.squarespace-cdn.com/content/v1/5aaf41dd3c3a53cc58416c61/1571974293405-GA1OZBM41UL06VH8958D/commedesgarconshommeplusss1996reflectorjacketfront.jpg?format=1500w",
     "price": "525",
     "category": "jacket",
@@ -25,7 +25,7 @@
   },
   {
     "name": "SS1997 Layered Sweater",
-    "brand": "Comme des Garcons",
+    "brandName": "Comme des Garcons",
     "imageURL": "https://images.squarespace-cdn.com/content/v1/5aaf41dd3c3a53cc58416c61/1578042673188-9QGQT8KFG6354TFFN0Q6/commedesgarconshommeplusss1997meshsweaterfront.jpg?format=1500w",
     "price": "475",
     "category": "sweatshirt",
@@ -37,7 +37,7 @@
   },
   {
     "name": "SS2006 Rolling Stones Pants",
-    "brand": "Comme des Garcons",
+    "brandName": "Comme des Garcons",
     "imageURL": "https://images.squarespace-cdn.com/content/v1/5aaf41dd3c3a53cc58416c61/1585874254196-6FNJ03J03V78BG079PYZ/commedesgarconsss2006rollingstonespantsfront.jpg?format=1500w",
     "price": "625",
     "category": "pants",
@@ -49,7 +49,7 @@
   },
   {
     "name": "SS2000 Floral Tapestry Trousers",
-    "brand": "Comme des Garcons",
+    "brandName": "Comme des Garcons",
     "imageURL": "https://images.squarespace-cdn.com/content/v1/5aaf41dd3c3a53cc58416c61/1571460546591-ZI7ERZUKZ57ZA4F16BCJ/commedesgarconshommeplusss2000tapestrypantsfront.jpg?format=1500w",
     "price": "450",
     "category": "pants",
@@ -61,19 +61,19 @@
   },
   {
     "name": "SS2005 Pink Panther Cycling Jersey",
-    "brand": "Comme des Garcons",
+    "brandName": "Comme des Garcons",
     "imageURL": "https://images.squarespace-cdn.com/content/v1/5aaf41dd3c3a53cc58416c61/1571456292102-FW8UO9E2NQDL0CU73BEI/commedesgarconshommeplusss2005pinkpanthertopfront.jpg?format=1500w",
     "price": "500",
     "category": "tee",
     "gender": "men",
     "size": "M",
     "rating": "4",
-    "description": "For her spring 2005 collection, Rei Kawakubo set out to subvert conventional masculinity through the prominent use of the color pink. The boyish models wore a range of shades spanning nearly the entire spectrum of the color, leaving practically none of the garments untouched. Hot pink trousers, fuchsia paneled shirts and blazers, double breasted jackets with pink lining - the list goes on. Rei also placed imagery of the Pink Panther on t-shirts, and more uncommonly found, cycling tops. This shirt is composed of a sporty polyester blend, and features the brand’s namesake displayed alongside a handful of Pink Panther silhouettes.",
+    "description": "For her spring 2005 collection, Rei Kawakubo set out to subvert conventional masculinity through the prominent use of the color pink. The boyish models wore a range of shades spanning nearly the entire spectrum of the color, leaving practically none of the garments untouched. Hot pink trousers, fuchsia paneled shirts and blazers, double breasted jackets with pink lining - the list goes on. Rei also placed imagery of the Pink Panther on t-shirts, and more uncommonly found, cycling tops. This shirt is composed of a sporty polyester blend, and features the brandName’s namesake displayed alongside a handful of Pink Panther silhouettes.",
     "source": "https://www.middlemanstore.com/archive/comme-des-garons-homme-plus-ss2005-pink-panther-cycling-jersey"
   },
   {
     "name": "AW2000 Fur Coat",
-    "brand": "Helmut Lang",
+    "brandName": "Helmut Lang",
     "imageURL": "https://images.squarespace-cdn.com/content/v1/5aaf41dd3c3a53cc58416c61/1571441915589-NH603OAGQ47O69VONO08/helmutlangaw2000furcoatfront.jpg?format=1500w",
     "price": "1200",
     "category": "jacket",
@@ -85,7 +85,7 @@
   },
   {
     "name": "AW1999 Astro Biker Jacket",
-    "brand": "Helmut Lang",
+    "brandName": "Helmut Lang",
     "imageURL": "https://images.squarespace-cdn.com/content/v1/5aaf41dd3c3a53cc58416c61/1571445432707-HKKKPVHSZSBSBAF69F9L/helmutlangaw1999oliveastrofront.jpg?format=1500w",
     "price": "800",
     "category": "jacket",
@@ -97,7 +97,7 @@
   },
   {
     "name": "SS2002 Monster T-Shirt",
-    "brand": "Issey Miyake",
+    "brandName": "Issey Miyake",
     "imageURL": "https://images.squarespace-cdn.com/content/v1/5aaf41dd3c3a53cc58416c61/1571457272354-15I8EBCR058LU52NRKQK/isseymiyakess2002teefront_1.jpg?format=1500w",
     "price": "200",
     "category": "tee",
@@ -109,7 +109,7 @@
   },
   {
     "name": "AW2008 A-POC Skeleton Denim",
-    "brand": "Issey Miyake",
+    "brandName": "Issey Miyake",
     "imageURL": "https://images.squarespace-cdn.com/content/v1/5aaf41dd3c3a53cc58416c61/1578627166364-Z0UZLUYDZWOHLMZA9AEU/isseymiyakeaw2008apocskeletondenimfront.jpg?format=1500w",
     "price": "600",
     "category": "pants",
@@ -121,7 +121,7 @@
   },
   {
     "name": "SS1993 Switzerland Olympics Jacket",
-    "brand": "Issey Miyake",
+    "brandName": "Issey Miyake",
     "imageURL": "https://images.squarespace-cdn.com/content/v1/5aaf41dd3c3a53cc58416c61/1578040566493-A4NT61VXDPY37THHAFC7/isseymiyakess1993switzerlandjacketfront.jpg?format=1500w",
     "price": "2250",
     "category": "jacket",
@@ -133,7 +133,7 @@
   },
   {
     "name": "SS2000 Reversible Coat",
-    "brand": "Issey Miyake",
+    "brandName": "Issey Miyake",
     "imageURL": "https://images.squarespace-cdn.com/content/v1/5aaf41dd3c3a53cc58416c61/1578039843568-EAKHHTJ1VWCZWEUYTS57/isseymiyakess2001murakamicoatback.jpg?format=1500w",
     "price": "2250",
     "category": "jacket",
@@ -145,7 +145,7 @@
   },
   {
     "name": "AW2005 Fur Alien Parka",
-    "brand": "Issey Miyake",
+    "brandName": "Issey Miyake",
     "imageURL": "https://images.squarespace-cdn.com/content/v1/5aaf41dd3c3a53cc58416c61/1585268487150-JOEDFH1BZ9HCV69GWJ8V/isseymiyakeaw2005alienjacketfront.jpg?format=1500w",
     "price": "500",
     "category": "jacket",
@@ -157,7 +157,7 @@
   },
   {
     "name": "AW2008 A-POC Multicolor Pants",
-    "brand": "Issey Miyake",
+    "brandName": "Issey Miyake",
     "imageURL": "https://images.squarespace-cdn.com/content/v1/5aaf41dd3c3a53cc58416c61/1571458394789-JBKV5PD8YPNZL8TYO28X/isseymiyakeaw2008apocpantsfront.jpg?format=1500w",
     "price": "475",
     "category": "pants",
@@ -169,7 +169,7 @@
   },
   {
     "name": "SS2002 Poem Trucker Jacket",
-    "brand": "Junya Watanabe",
+    "brandName": "Junya Watanabe",
     "imageURL": "https://images.squarespace-cdn.com/content/v1/5aaf41dd3c3a53cc58416c61/1571449905516-MBT6RD8GVUYHUGCYV8U2/junyawatanabess2002poemtruckerback_1.jpg?format=1500w",
     "price": "525",
     "category": "jacket",
@@ -181,7 +181,7 @@
   },
   {
     "name": "AW2006 Punk Mohair Sweater",
-    "brand": "Junya Watanabe",
+    "brandName": "Junya Watanabe",
     "imageURL": "https://images.squarespace-cdn.com/content/v1/5aaf41dd3c3a53cc58416c61/1578091695614-TFRI3FYKPJ1S7ZYK4SI9/junyawatanabeaw2006mohairfront_1.jpg?format=1500w",
     "price": "500",
     "category": "sweatshirt",
@@ -193,7 +193,7 @@
   },
   {
     "name": "SS2003 Jeweled Denim",
-    "brand": "Junya Watanabe",
+    "brandName": "Junya Watanabe",
     "imageURL": "https://www.middlemanstore.com/archive/junya-watanabe-ss2003-jeweled-denim",
     "price": "550",
     "category": "pants",
@@ -205,7 +205,7 @@
   },
   {
     "name": "Skeleton Denim Rider Jacket",
-    "brand": "Kapital",
+    "brandName": "Kapital",
     "imageURL": "https://images.squarespace-cdn.com/content/v1/5aaf41dd3c3a53cc58416c61/1585269952303-J08WWGV9196CFZGLIWOO/kapitalkountryskeletonriderjacket1.jpg?format=1500w",
     "price": "1500",
     "category": "jacket",
@@ -217,19 +217,19 @@
   },
   {
     "name": "AW2012 Trail Sneakers",
-    "brand": "Raf Simons",
+    "brandName": "Raf Simons",
     "imageURL": "https://images.squarespace-cdn.com/content/v1/5aaf41dd3c3a53cc58416c61/1585872349890-AOMASN9PUG62PZEMJZ3M/rafsimonsaw2012greentrailsneakers1.jpg?format=1500w",
     "price": "550",
     "category": "shoes",
     "gender": "men",
     "size": "S",
     "rating": "3",
-    "description": "The collection acted as a mediator between his early and present bodies of work, channeled through the pairing of slim, schoolboy-esque shorts with intricately proportioned overcoats and blazers. The sneakers were a key standout of the show as well. Predating his Adidas collaborations and today’s emergent trend of running sneakers, Raf produced these shoes years before which include a layered, low-top silhouette, colorblocked detailing, and Raf Simons branding on the backside.",
+    "description": "The collection acted as a mediator between his early and present bodies of work, channeled through the pairing of slim, schoolboy-esque shorts with intricately proportioned overcoats and blazers. The sneakers were a key standout of the show as well. Predating his Adidas collaborations and today’s emergent trend of running sneakers, Raf produced these shoes years before which include a layered, low-top silhouette, colorblocked detailing, and Raf Simons brandNameing on the backside.",
     "source": "https://www.middlemanstore.com/archive/raf-simons-aw2012-trail-sneakers"
   },
   {
     "name": "AW2001 'Riot Riot Riot' Patched Keffiyeh",
-    "brand": "Raf Simons",
+    "brandName": "Raf Simons",
     "imageURL": "https://images.squarespace-cdn.com/content/v1/5aaf41dd3c3a53cc58416c61/1571461338613-6TFJW3TFMAODQOQILKFO/rafsimonsaw2001scarf1.jpg?format=1500w",
     "price": "1800",
     "category": "accessory",
@@ -241,7 +241,7 @@
   },
   {
     "name": "AW2008 'Phoenix' Duffle Bag",
-    "brand": "Raf Simons",
+    "brandName": "Raf Simons",
     "imageURL": "https://images.squarespace-cdn.com/content/v1/5aaf41dd3c3a53cc58416c61/1585872259723-ETGTU03L7E05G9Z10LFQ/rafsimonsaw2008phoenixbag1.jpg?format=1500w",
     "price": "1200",
     "category": "bag",
@@ -253,7 +253,7 @@
   },
   {
     "name": "AW2002 Balaclava Hat",
-    "brand": "Raf Simons",
+    "brandName": "Raf Simons",
     "imageURL": "https://images.squarespace-cdn.com/content/v1/5aaf41dd3c3a53cc58416c61/1571460977514-D5JWL23KI8UN56EHF3MO/rafsimonsaw2002digicamohat_1.jpg?format=1500w",
     "price": "500",
     "category": "accessory",
@@ -265,7 +265,7 @@
   },
   {
     "name": "AW2001 'D.A.V.F.' Bullet Sash/Belt",
-    "brand": "Undercover",
+    "brandName": "Undercover",
     "imageURL": "https://images.squarespace-cdn.com/content/v1/5aaf41dd3c3a53cc58416c61/1571461466645-2P83DYGHVZOK79YF81QX/undercoveraw2001belt.jpg?format=1500w",
     "price": "850",
     "category": "accessory",
@@ -277,7 +277,7 @@
   },
   {
     "name": "SS2012 'She Brings the Rain' Leather Jacket",
-    "brand": "Undercover",
+    "brandName": "Undercover",
     "imageURL": "https://images.squarespace-cdn.com/content/v1/5aaf41dd3c3a53cc58416c61/1571444250577-77J9UARN3JKYDY6GDP5O/undercoverss2012shebringstherainjacketback_1.jpg?format=1500w",
     "price": "1500",
     "category": "jacket",
@@ -289,31 +289,31 @@
   },
   {
     "name": "AW2004 Cafe Moto Jacket",
-    "brand": "Yohji Yamamoto",
+    "brandName": "Yohji Yamamoto",
     "imageURL": "https://images.squarespace-cdn.com/content/v1/5aaf41dd3c3a53cc58416c61/1571443308178-V4NKZ7RUZNN1AFH2PX92/yohjiyamamotoysdainesemotoleatherfront_1.jpg?format=1500w",
     "price": "900",
     "category": "jacket",
     "gender": "men",
     "size": "XS",
     "rating": "4",
-    "description": "This jacket hails from Yohji’s fruitful collaboration with Italian motorsport wear label Dainese, in which he borrowed traditional iterations of their motorcycle jackets, and did them up with logos and iconography of his own conjuring. This piece reiterates Dainese’s classic 'V' shaped logo, but introduces 'YOHJI' branding on the sleeve, and a cartoon avatar with “MOTO yohji” to pair.",
+    "description": "This jacket hails from Yohji’s fruitful collaboration with Italian motorsport wear label Dainese, in which he borrowed traditional iterations of their motorcycle jackets, and did them up with logos and iconography of his own conjuring. This piece reiterates Dainese’s classic 'V' shaped logo, but introduces 'YOHJI' brandNameing on the sleeve, and a cartoon avatar with “MOTO yohji” to pair.",
     "source": "https://www.middlemanstore.com/archive/yohji-yamamoto-ys-x-dainese-aw2004-cafe-moto-jacket"
   },
   {
     "name": "AW1997 Billiards Sweater",
-    "brand": "Yohji Yamamoto",
+    "brandName": "Yohji Yamamoto",
     "imageURL": "https://images.squarespace-cdn.com/content/v1/5aaf41dd3c3a53cc58416c61/1571453592351-MWL8LAV9EEVC7KSXUZ17/yohjiyamamotopourhommeaw1997billiardsweaterfront.jpg?format=1500w",
     "price": "1000",
     "category": "sweatshirt",
     "gender": "men",
     "size": "L",
     "rating": "4",
-    "description": "To level accolades upon Yohji is like, as Leonard Cohen once said about Bob Dylan, “pinning a metal on Mount Everest”. He claims himself to not be an artist, he says fashion has never been an art, yet to deny the artistic quality of his work would be to deny what our eyes can plainly observe. Like an impressionist painter, he exhumes the depth of relatively simple garments (dirty clothes, the Japanese press branded his early work), taking a form and rendering its function secondary to the emotion he choses to evoke. He refuses to do all the work for you, where a passerby sees a wrinkled coat and oversized, strangely buttoned shirt, a man willing to consider the rorschach presented to him may see anything from romanticism to suffering. This foundational concession — that there is no answer to what precisely you’re looking at — has rendered Yohji a favorite of artists and thinkers across the world. This playful sweater features an intarsia visual of billiard balls bearing Yohji’s name.",
+    "description": "To level accolades upon Yohji is like, as Leonard Cohen once said about Bob Dylan, “pinning a metal on Mount Everest”. He claims himself to not be an artist, he says fashion has never been an art, yet to deny the artistic quality of his work would be to deny what our eyes can plainly observe. Like an impressionist painter, he exhumes the depth of relatively simple garments (dirty clothes, the Japanese press brandNameed his early work), taking a form and rendering its function secondary to the emotion he choses to evoke. He refuses to do all the work for you, where a passerby sees a wrinkled coat and oversized, strangely buttoned shirt, a man willing to consider the rorschach presented to him may see anything from romanticism to suffering. This foundational concession — that there is no answer to what precisely you’re looking at — has rendered Yohji a favorite of artists and thinkers across the world. This playful sweater features an intarsia visual of billiard balls bearing Yohji’s name.",
     "source": "https://www.middlemanstore.com/archive/yohji-yamamoto-pour-homme-aw1997-billiards-sweater"
   },
   {
     "name": "SS2001 Floral Trousers",
-    "brand": "Yohji Yamamoto",
+    "brandName": "Yohji Yamamoto",
     "imageURL": "https://images.squarespace-cdn.com/content/v1/5aaf41dd3c3a53cc58416c61/1571458717927-SN76Y09XRA2E2ALZ0Q2P/yohjiyamamotopourhommess2001floralpantsfront.jpg?format=1500w",
     "price": "425",
     "category": "pants",
@@ -325,7 +325,7 @@
   },
   {
     "name": "AW1991 '6.1 The Men' Frontzip Jacket",
-    "brand": "Yohji Yamamoto",
+    "brandName": "Yohji Yamamoto",
     "imageURL": "https://images.squarespace-cdn.com/content/v1/5aaf41dd3c3a53cc58416c61/1578040172587-8YKVSYU4CO1VY2TA3QY1/yohjiyamamotopourhommeaw1991frontzipjacketfront.jpg?format=1500w",
     "price": "1550",
     "category": "jacket",
