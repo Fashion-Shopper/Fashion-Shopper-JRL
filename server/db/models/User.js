@@ -1,20 +1,23 @@
-const Sequelize = require("sequelize");
 const db = require("../db");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
 const axios = require("axios");
+const { STRING, BOOLEAN } = require("sequelize");
 
 const SALT_ROUNDS = 5;
 
 const User = db.define("user", {
   username: {
-    type: Sequelize.STRING,
+    type: STRING,
     unique: true,
     allowNull: false,
   },
   password: {
-    type: Sequelize.STRING,
+    type: STRING,
   },
+  isAdmin: {
+    type: BOOLEAN
+  }
 });
 
 module.exports = User;
