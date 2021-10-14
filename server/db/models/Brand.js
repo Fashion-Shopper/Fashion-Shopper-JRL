@@ -1,4 +1,6 @@
+
 const { TEXT, STRING } = require("sequelize");
+
 const db = require("../db");
 
 ///////////////// BRAND MODEL /////////////////
