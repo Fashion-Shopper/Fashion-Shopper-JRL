@@ -1,7 +1,5 @@
-const { TEXT } = require("sequelize");
-const Sequelize = require("sequelize");
-const { STRING, INTEGER, DECIMAL } = Sequelize;
 const db = require("../db");
+const { STRING, INTEGER, DECIMAL, TEXT } = require("sequelize");
 
 ///////////////// PRODUCT MODEL /////////////////
 

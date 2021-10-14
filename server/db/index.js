@@ -6,7 +6,6 @@ const Product = require("./models/Product");
 const Brand = require("./models/Brand");
 
 ///////////////// ASSOCIATIONS /////////////////
-
 Product.belongsTo(Brand);
 Brand.hasMany(Product);
 

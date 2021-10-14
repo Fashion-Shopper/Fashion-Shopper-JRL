@@ -9,7 +9,7 @@ import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 
 const Navbar = () => {
   const dispatch = useDispatch()
-  const isLoggedIn = useSelector(state => !!state.auth.id)
+  const { isLoggedIn, products } = useSelector(state => { return { isLoggedIn: !!state.auth.id, products: state.products } })
 
   const handleClick = () => {
     dispatch(logout())
@@ -24,7 +24,7 @@ const Navbar = () => {
         {isLoggedIn ? (
           <>
             <Button component={Link} to="/home" color="inherit">Home</Button>
-            <Button component={Link} to="/products" color="inherit">Products</Button>
+            <Button component={Link} to="/products" color="inherit">Products ({products.length})</Button>
             <Button component={Link} to="/" onClick={handleClick} color="inherit">Logout</Button>
             <IconButton size="large" aria-label="show 4 new mails" color="inherit">
               <Badge badgeContent={4} color="error">
@@ -35,9 +35,9 @@ const Navbar = () => {
           </>
         ) : (
           <>
-            <Button component={Link} to="/products" color="inherit">Products</Button>
             <Button component={Link} to="/login" color="inherit">Login</Button>
             <Button component={Link} to="/signup" color="inherit">Sign Up</Button>
+            <Button component={Link} to="/products" color="inherit">Products ({products.length})</Button>
           </>
         )}
       </Toolbar>

@@ -1,1 +1,9 @@
-//This model needs to be added
+const { BOOLEAN } = require('sequelize');
+const db = require('../db');
+
+const Order = db.define('order', {
+    isCart: {
+        type: BOOLEAN,
+        defaultValue: true,
+    }
+})
