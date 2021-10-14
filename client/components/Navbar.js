@@ -24,10 +24,12 @@ const Navbar = () => {
           {isLoggedIn ? (
             <>
               <Button component={Link} to="/home" color="inherit">Home</Button>
+              <Button component={Link} to="/products" color="inherit">Products</Button>
               <Button component={Link} to="/" onClick={handleClick} color="inherit">Logout</Button>
             </>
           ) : (
             <>
+              <Button component={Link} to="/products" color="inherit">Products</Button>
               <Button component={Link} to="/login" color="inherit">Login</Button>
               <Button component={Link} to="/signup" color="inherit">Sign Up</Button>
             </>

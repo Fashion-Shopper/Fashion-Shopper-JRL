@@ -15,7 +15,7 @@ function ProductCard(props) {
     const { name, brandName, imageURL, price, category, gender, size, rating, description, source } = props.product;
 
     return (
-        <Card sx={{ maxWidth: 300}}>
+        <Card sx={{ maxWidth: 300 }}>
             <IconButton aria-label="add to favorites">
                 <FavoriteIcon />
             </IconButton>
@@ -30,6 +30,9 @@ function ProductCard(props) {
                 </Typography>
                 <Typography variant="body2" color="text.secondary">
                     {brandName}
+                </Typography>
+                <Typography variant="body2" color="text.secondary">
+                    Rating: {rating}
                 </Typography>
             </CardContent>
             <CardActions disableSpacing sx={{ display: 'flex', justifyContent: 'space-around' }}>
