@@ -1,4 +1,8 @@
-Building Specific Product Page
+General Notes:
+
+- client/store/products.js: should we chanage setProducts to \_setProducts? To keep things consistent
+
+Building Specific Product Page:
 
 - [ ] Create specificProduct Component
 - [ ] Sequelize
@@ -7,4 +11,4 @@ Building Specific Product Page
 - [ ]
 - [ ]
 
-Building Brands Pages
+Building Brands Pages:
