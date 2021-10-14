@@ -4,6 +4,8 @@ import { withRouter, Route, Switch, Redirect } from "react-router-dom";
 import { Login, Signup } from "./components/AuthForm";
 import Home from "./components/Home";
 import { me } from "./store";
+import Brands from "./components/Brands/Brands";
+import SingleBrand from "./components/Brands/SingleBrand";
 import Products from "./components/Products/Products";
 import SingleProduct from "./components/Products/SingleProduct";
 
@@ -24,6 +26,8 @@ class Routes extends Component {
           <>
             <Switch>
               <Route path="/home" component={Home} />
+              <Route exact path="/brands" component={Brands} />
+              <Route path="/brands/:brandId" component={SingleBrand} />
               <Route exact path="/products" component={Products} />
               <Route path="/products/:productId" component={SingleProduct} />
               <Redirect to="/home" />
@@ -35,6 +39,8 @@ class Routes extends Component {
               <Route exact path="/" component={Login} />
               <Route path="/login" component={Login} />
               <Route path="/signup" component={Signup} />
+              <Route exact path="/brands" component={Brands} />
+              <Route path="/brands/:brandId" component={SingleBrand} />
               <Route exact path="/products" component={Products} />
               <Route path="/products/:productId" component={SingleProduct} />
             </Switch>

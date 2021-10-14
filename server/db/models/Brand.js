@@ -1,5 +1,5 @@
 const Sequelize = require("sequelize");
-const { STRING } = Sequelize;
+const { STRING, TEXT } = Sequelize;
 const db = require("../db");
 
 ///////////////// BRAND MODEL /////////////////
@@ -13,7 +13,7 @@ const Brand = db.define("brand", {
     },
   },
   description: {
-    type: STRING,
+    type: TEXT,
     allowNull: false,
     validate: {
       notEmpty: true,
