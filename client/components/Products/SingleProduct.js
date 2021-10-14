@@ -1,35 +1,60 @@
-import React from "react";
-import { useSelector } from "react-redux";
+import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import ProductCard from "./ProductCard";
-//import { fetchProducts, updateProduct, createProduct, destroyProduct } from '../../store/products';
-//import CreateProduct from './CreateProduct';
-//import DeleteProduct from './DeleteProduct';
-//import brand from '../store/brand';
+import { connect } from "react-redux";
+// ATTENTION: Make sure the path is correct.
+import { fetchSingleProduct } from "../../store/singleProduct";
 
-//Material UI
-import { Grid } from "@mui/material";
-
-const Products = () => {
-  const products = useSelector((state) => state.products);
-
-  if (!products) {
-    return <h1>...loading</h1>;
+class SingleProduct extends Component {
+  componentDidMount() {
+    try {
+      const productId = this.props.match.params.productId;
+      this.props.loadSingleProduct(productId);
+    } catch (err) {
+      console.error(err);
+    }
   }
 
-  return (
-    <Grid container>
-      <Grid item xs={false} sm={2} />
-      <Grid container item xs={12} sm={8} spacing={4} sx={{ m: 0, mb: 18 }}>
-        {products.map((product) => (
-          <Grid xs={11} sm={6} md={6} lg={4} item key={product.id}>
-            <ProductCard product={product} />
-          </Grid>
-        ))}
-      </Grid>
-      <Grid item xs={false} sm={2} />
-    </Grid>
-  );
+  render() {
+    const singleProduct = this.props.product;
+    console.log(singleProduct);
+    return (
+      <div>
+        <div id="singleProduct">
+          <img src={singleProduct.imageURL} />
+          <h1>
+            {singleProduct.name}
+          </h1>
+          <h4>{singleProduct.email}</h4>
+          <h4>{singleProduct.gpa}</h4>
+        </div>
+        <div id="selectedStudentCampus">
+          <h2>Campus</h2>
+          {!singleProduct.campus ? (
+            <h1>The Selected Student does not attend a campus.</h1>
+          ) : (
+            <Link
+              to={`/campuses/${singleProduct.campus.id}`}
+              key={singleProduct.campus.id}
+            >
+              <h1>{singleProduct.campus.name}</h1>
+            </Link>
+          )}
+        </div>
+      </div>
+    );
+  }
+}
+
+const mapStateToProps = (state) => {
+  return {
+    student: state.singleProduct,
+  };
 };
 
-export default SingleProduct;
+const mapDispatchToProps = (dispatch) => {
+  return {
+    loadSingleProduct: (productId) => dispatch(fetchSingleProduct(productId)),
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(SingleProduct);
