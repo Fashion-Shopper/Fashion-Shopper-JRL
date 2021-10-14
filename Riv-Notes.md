@@ -13,3 +13,6 @@ Building Specific Product Page:
 - [ ]
 
 Building Brands Pages:
+
+PART 1: All Brands Page
+PART 2: Single Brand Page
