@@ -1,21 +1,21 @@
 import axios from "axios";
 
-const SET_SELECTED_PRODUCT = "SET_SELECTED_PRODUCT";
+const SET_SINGLE_PRODUCT = "SET_SINGLE_PRODUCT";
 
 //Action Creator...
-const setSelectedProduct = (product) => {
+const setSingleProduct = (product) => {
   return {
-    type: SET_SELECTED_PRODUCT,
+    type: SET_SINGLE_PRODUCT,
     product,
   };
 };
 
 //Thunk...
-export const fetchSelectedProduct = (productId) => {
+export const fetchSingleProduct = (productId) => {
   return async (dispatch) => {
     try {
       const { data } = await axios.get(`/api/products/${productId}`);
-      dispatch(setSelectedProduct(data));
+      dispatch(setSingleProduct(data));
     } catch (err) {
       console.log(err);
     }
@@ -26,7 +26,7 @@ export const fetchSelectedProduct = (productId) => {
 const initialState = {};
 export default (state = initialState, action) => {
   switch (action.type) {
-    case SET_SELECTED_PRODUCT:
+    case SET_SINGLE_PRODUCT:
       return action.product;
     default:
       return state;
