@@ -2,7 +2,6 @@ const db = require("../db");
 const { STRING, INTEGER, DECIMAL, TEXT } = require("sequelize");
 
 ///////////////// PRODUCT MODEL /////////////////
-
 const Product = db.define("product", {
   name: {
     type: STRING,
@@ -69,5 +68,4 @@ const Product = db.define("product", {
 });
 
 ///////////////// EXPORTING /////////////////
-
 module.exports = Product;
