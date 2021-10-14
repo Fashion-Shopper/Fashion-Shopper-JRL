@@ -4,6 +4,8 @@ import { useDispatch } from 'react-redux'
 
 import Navbar from './components/Navbar'
 import Routes from './Routes'
+import Footer from './components/Footer'
+
 import { fetchProducts } from './store/products'
 
 const App = () => {
@@ -18,6 +20,7 @@ const App = () => {
       <CssBaseline />
       <Navbar />
       <Routes />
+      <Footer />
     </>
   )
 }

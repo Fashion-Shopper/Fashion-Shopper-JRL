@@ -20,9 +20,9 @@ const Products = () => {
   return (
     <Grid container>
       <Grid item xs={false} sm={2} />
-      <Grid container item xs={12} sm={8} spacing={4} justifyContent='center' sx={{ m: 0 }}>
+      <Grid container item xs={12} sm={8} spacing={4} sx={{ m: 0, mb: 18 }}>
         {products.map(product => (
-          <Grid xs={10} sm={6} md={6} lg={4} item key={product.id}>
+          <Grid xs={11} sm={6} md={6} lg={4} item key={product.id}>
             <ProductCard product={product} />
           </Grid>
         ))}
@@ -33,26 +33,3 @@ const Products = () => {
 }
 
 export default Products
-
-// <div>
-{/* <div>
-        {
-          products.map(product => {
-            const productStudents = students.find(student => student.productId === product.id) || [];
-            (
-              <span key={product.id}>
-                <Link to={`/products/${product.id}`} >
-                  <div className='product row'>
-                    <img src={product.imageUrl} />
-                    <p>{product.name}({productStudents ? productStudents.length : 0})</p>
-                  </div>
-                </Link>
-                <Deleteproduct productId={product.id} history={props.history} />
-              </span>
-            )
-          })
-        }
-      </div>
-      <Createproduct match={props.match} history={props.history} key={products.length + 1} />
-      <hr /> */}
-{/* </div> */ }

@@ -15,7 +15,7 @@ function ProductCard(props) {
     const { name, brandName, imageURL, price, category, gender, size, rating, description, source } = props.product;
 
     return (
-        <Card sx={{ maxWidth: 300 }}>
+        <Card sx={{ maxWidth: 350 }}>
             <IconButton aria-label="add to favorites">
                 <FavoriteIcon />
             </IconButton>
