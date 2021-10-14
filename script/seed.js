@@ -85,6 +85,10 @@ async function seed() {
   products.forEach((product) => product.save());
   brands.forEach((brand) => brand.save());
 
+  //Testing orders
+  Order.create({ userId: users[0].id })
+  Order.create({ userId: users[1].id })
+
   console.log(`seeded successfully`);
   return {
     users: {

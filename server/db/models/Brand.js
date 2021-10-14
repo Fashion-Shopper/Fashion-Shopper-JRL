@@ -1,9 +1,7 @@
-const Sequelize = require("sequelize");
-const { STRING } = Sequelize;
+const { TEXT, STRING } = require("sequelize");
 const db = require("../db");
 
 ///////////////// BRAND MODEL /////////////////
-
 const Brand = db.define("brand", {
   name: {
     type: STRING,
@@ -13,7 +11,7 @@ const Brand = db.define("brand", {
     },
   },
   description: {
-    type: STRING,
+    type: TEXT,
     allowNull: false,
     validate: {
       notEmpty: true,
@@ -22,5 +20,4 @@ const Brand = db.define("brand", {
 });
 
 ///////////////// EXPORTING /////////////////
-
 module.exports = Brand;
