@@ -11,7 +11,6 @@ const Products = () => {
 
   return (
     <div>
-      <hr />
       {brands.map((brand) => (
         <div key={brand.id}>
           <Link to={`/brands/${brand.id}`}>
