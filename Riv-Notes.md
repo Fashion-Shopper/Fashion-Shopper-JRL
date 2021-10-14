@@ -3,6 +3,10 @@ General Notes:
 - client/store/products.js: should we chanage setProducts to \_setProducts? To keep things consistent
 - ProductCard.js: Should we keep .99? or just change the json price data and add the .99?
 
+Refactoring:
+
+- Migrating Brands info (name, desc) to seperate seed.json file similar to producat-seed-data.json
+
 Building Specific Product Page:
 
 - [x] Create specificProduct Component
