@@ -5,6 +5,7 @@ const {
   db,
   models: { User, Product, Brand },
 } = require("../server/db");
+const Order = require("../server/db/models/Order");
 
 /**
  * seed - this function clears the database, updates tables to
