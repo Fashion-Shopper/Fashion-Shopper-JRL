@@ -16,7 +16,8 @@ const User = db.define("user", {
     type: STRING,
   },
   isAdmin: {
-    type: BOOLEAN
+    type: BOOLEAN,
+    defaultValue: false
   }
 });
 
