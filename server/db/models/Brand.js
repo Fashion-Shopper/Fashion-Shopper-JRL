@@ -12,6 +12,13 @@ const Brand = db.define("brand", {
       notEmpty: true,
     },
   },
+  description: {
+    type: STRING,
+    allowNull: false,
+    validate: {
+      notEmpty: true,
+    },
+  },
 });
 
 ///////////////// EXPORTING /////////////////
