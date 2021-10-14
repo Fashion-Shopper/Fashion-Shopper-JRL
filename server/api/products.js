@@ -18,13 +18,9 @@ router.get("/", async (req, res, next) => {
 // Retrieving data for specific product...
 router.get("/:id", async (req, res, next) => {
   try {
-    const singleProduct = await Product.findByPk(
-      // Note (Riv): should it be just id or productId?
-      req.params.id,
-      {
-        include: [Brand],
-      }
-    );
+    const singleProduct = await Product.findByPk(req.params.id, {
+      include: [Brand],
+    });
     res.json(singleProduct);
   } catch (err) {
     next(err);
