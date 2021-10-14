@@ -7,6 +7,7 @@ import Routes from "./Routes";
 import Footer from "./components/Footer";
 
 import { fetchProducts } from "./store/products";
+import { fetchBrands } from "./store/brands";
 
 const App = () => {
   const dispatch = useDispatch();
