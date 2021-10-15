@@ -16,9 +16,14 @@ class SingleBrand extends Component {
 
   render() {
     const singleBrand = this.props.brand;
+    if (!singleBrand.products) {
+      return <h1>...loading</h1>;
+    }
+
     const singleBrandProducts = this.props.brand.products;
-    console.log(singleBrand);
-    console.dir(singleBrandProducts);
+    // if (!singleBrandProducts) {
+    //   return (<h1>...loading</h1>)
+    // }
 
     return (
       <div>
@@ -28,6 +33,13 @@ class SingleBrand extends Component {
           {/* ATTENTION: Cannot access properties from products array. The following code was used to test things out. */}
           <h1>{`${JSON.stringify(Array.isArray(singleBrandProducts))}`}</h1>
         </div>
+        {singleBrandProducts.map((product) => (
+          <div key={product.id}>
+            <div className="student row">
+              <p>{product.name}</p>
+            </div>
+          </div>
+        ))}
       </div>
     );
   }
