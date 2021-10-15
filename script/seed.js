@@ -7,6 +7,25 @@ const {
 } = require("../server/db");
 const Order = require("../server/db/models/Order");
 
+//for images/avatar
+const path = require('path');
+const fs = require('fs'); 
+
+//To Work On Later 
+// const loadImage = (imagePath) =>{
+//   return new Promise((res, rej)=> {
+//     fs.readFile(imagePath, 'base64', (err,data)=>{
+//     if(err){
+//       rej(err);
+//     }
+//     else{
+//       res(`data:image/png;base64,${data.toString()}`); //?
+//     }
+//   })
+// })
+// }
+
+
 /**
  * seed - this function clears the database, updates tables to
  *      match the models, and populates the database.
@@ -21,8 +40,13 @@ async function seed() {
     User.create({ username: "murphy", password: "123" }),
   ]);
 
-  console.log(`seeded ${users.length} users`);
+ // const cody = users[0]
 
+  console.log(`seeded ${users.length} users`);
+ //avatar
+ //Later 
+ // cody.avatar = await loadImage(__dirname, 'square.png')
+ 
   // Creating Products...
   // Note (Riv): Mapping over data from seed.json file, creating data for db.
   const products = await Promise.all(

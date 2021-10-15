@@ -13,6 +13,19 @@ const SET_AUTH = 'SET_AUTH'
  */
 const setAuth = auth => ({ type: SET_AUTH, auth })
 
+export const updateAuth=(avatar)=>{
+  return async(dispatch, getState)=>{ //safest way to get the state
+    const user = {...getState().auth, avatar};
+    const token = window.localStorage.getItem(TOKEN)
+    const res = await axios.get('/api/users', user, {
+      headers: {
+        authorization: token
+      }
+    })
+    return dispatch(setAuth(res.data))
+    }
+}
+
 /**
  * THUNK CREATORS
  */
