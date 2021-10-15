@@ -24,5 +24,7 @@ module.exports = {
     User,
     Product,
     Brand,
+    Order,
+    OrderItem
   },
 };

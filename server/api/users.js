@@ -1,14 +1,19 @@
 const router = require('express').Router()
-const { models: { User }} = require('../db')
+const { models: { User } } = require('../db')
+const Order = require('../db/models/Order')
+const OrderItem = require('../db/models/OrderItem')
 module.exports = router
 
 router.get('/', async (req, res, next) => {
   try {
     const users = await User.findAll({
-      // explicitly select only the id and username fields - even though
-      // users' passwords are encrypted, it won't help if we just
-      // send everything to anyone who asks!
-      attributes: ['id', 'username']
+      attributes: ['id', 'username'],
+      include: {
+        model: Order,
+        include: {
+          model: OrderItem
+        }
+      }
     })
     res.json(users)
   } catch (err) {

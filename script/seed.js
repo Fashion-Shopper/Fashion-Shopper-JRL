@@ -5,6 +5,7 @@ const {
   db,
   models: { User, Product, Brand },
 } = require("../server/db");
+const Order = require("../server/db/models/Order");
 
 /**
  * seed - this function clears the database, updates tables to
@@ -83,6 +84,10 @@ async function seed() {
   // Saving Product and Brand data..
   products.forEach((product) => product.save());
   brands.forEach((brand) => brand.save());
+
+  //Testing orders
+  Order.create({ userId: users[0].id })
+  Order.create({ userId: users[1].id })
 
   console.log(`seeded successfully`);
   return {

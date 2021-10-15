@@ -1,4 +1,4 @@
-const { BOOLEAN } = require('sequelize');
+const { BOOLEAN, INTEGER } = require('sequelize');
 const db = require('../db');
 
 ///////////////// ORDER MODEL /////////////////
