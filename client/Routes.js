@@ -8,6 +8,7 @@ import Brands from "./components/Brands/Brands";
 import SingleBrand from "./components/Brands/SingleBrand";
 import Products from "./components/Products/Products";
 import SingleProduct from "./components/Products/SingleProduct";
+import Settings from './components/Settings'
 
 /**
  * COMPONENT
