@@ -16,14 +16,10 @@ class SingleBrand extends Component {
 
   render() {
     const singleBrand = this.props.brand;
-    if (!singleBrand.products) {
+    if (!singleBrand) {
       return <h1>...loading</h1>;
     }
-
     const singleBrandProducts = this.props.brand.products;
-    // if (!singleBrandProducts) {
-    //   return (<h1>...loading</h1>)
-    // }
 
     return (
       <div>
