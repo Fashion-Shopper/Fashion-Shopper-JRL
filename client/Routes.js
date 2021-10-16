@@ -9,6 +9,15 @@ import SingleBrand from "./components/Brands/SingleBrand";
 import Products from "./components/Products/Products";
 import SingleProduct from "./components/Products/SingleProduct";
 import Settings from './components/Settings'
+import auth from "./store/auth";
+import {fetchCart} from './store/cart'
+import {fetchProducts} from './store/products'
+
+const Admin = () =>{
+  return (
+    <div> TODO Add Admin Component </div>
+  )
+}
 
 /**
  * COMPONENT
@@ -31,6 +40,10 @@ class Routes extends Component {
               <Route path="/brands/:brandId" component={SingleBrand} />
               <Route exact path="/products" component={Products} />
               <Route path="/products/:productId" component={SingleProduct} />
+              {
+                !!auth.isAdmin && <Route path='/admin' component = {Admin} />
+              }
+              
               <Redirect to="/home" />
             </Switch>
           </>
@@ -64,13 +77,16 @@ const mapState = (state) => {
     // Being 'logged in' for our purposes will be defined has having a state.auth that has a truthy id.
     // Otherwise, state.auth will be an empty object, and state.auth.id will be falsey
     isLoggedIn: !!state.auth.id,
+    auth: state.auth
   };
 };
 
 const mapDispatch = (dispatch) => {
   return {
-    loadInitialData() {
-      dispatch(me());
+    fetchCart: ()=> dispatch(fetchCart()),
+    loadInitialData: ()=> {
+      //dispatch(me());
+      dispatch(fetchProducts())
     },
   };
 };
