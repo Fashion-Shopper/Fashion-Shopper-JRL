@@ -24,16 +24,20 @@ const Navbar = () => {
         {isLoggedIn ? (
           <>
             <Button component={Link} to="/home" color="inherit">Home</Button>
-            <Button component={Link} to="/products" color="inherit">Products ({products.length})</Button>
             <Button component={Link} to="/" onClick={handleClick} color="inherit">Logout</Button>
             
             <Link to='/settings'>
              Settings
             </Link>  
             {/* {
-            !!auth.avatar && <img src={`data:imagee/png;base64, ${auth.avatar}`} /> 
+            !!auth.avatar && <img src={`${auth.avatar}`} /> 
             } */}
-            
+            {
+             !!auth.isAdmin && <Link to = '/admin'> Admin </Link> 
+            }
+            <Button component={Link} to="/products" color="inherit">Products ({products.length})</Button>
+            <Link to='/cart'>Cart ({cartCount})</Link>
+
             <IconButton size="large" aria-label="show 4 new mails" color="inherit">
               <Badge badgeContent={4} color="error">
                 <ShoppingCartIcon />

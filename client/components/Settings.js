@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux'
 import {updateAuth} from '../store/auth';
 
-
 class Settings extends Component{
     constructor(){
         super()
@@ -14,12 +13,12 @@ class Settings extends Component{
     async save(ev){
         ev.preventDefault();
         await this.props.updateAuth(this.state.avatar);
-        this.setState({avatar: ''});
+        this.setState({avatar:''});
     }
     componentDidMount(){
         this.el.addEventListener('change',(ev)=>{
             const file = ev.target.file[0];
-            const reader = new FileReader();
+            const reader = new FileReader(); //built in the browser 
             reader.addEventListener('load',()=>{
               this.setState({avatar:reader.result()})
             })

@@ -5,7 +5,6 @@ const TOKEN = 'token'
 /////////////// ACTION TYPES /////////////
 const FETCH_USER_ORDERS = 'FETCH_USER_ORDERS'
 
-
 ///////////////// ACTION CREATORS /////////////////
 const setOrders = orders => ({ type: FETCH_USER_ORDERS, orders })
 
@@ -18,7 +17,7 @@ export const fetchOrders = () => async dispatch => {
                 authorization: token
             }
         })
-        return dispatch(setAuth(data))
+        return dispatch(setOrders(data))
     }
 }
 
