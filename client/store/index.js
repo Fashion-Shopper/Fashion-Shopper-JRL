@@ -5,7 +5,6 @@ import { composeWithDevTools } from "redux-devtools-extension";
 import auth from "./auth";
 import productsReducer from "./products";
 import singleProductReducer from "./singleProduct";
-
 import orders from "./orders";
 
 

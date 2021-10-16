@@ -10,6 +10,13 @@ import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 const Navbar = () => {
   const dispatch = useDispatch()
   const { isLoggedIn, products } = useSelector(state => { return { isLoggedIn: !!state.auth.id, products: state.products } })
+  const userCart = useSelector(state => state.userOrders).find(order => order.isCart === true)
+
+  let quantity = 0;
+
+  if (userCart) {
+    quantity = userCart.orderitems.reduce()
+  }
 
   const handleClick = () => {
     dispatch(logout())
@@ -26,16 +33,16 @@ const Navbar = () => {
             <Button component={Link} to="/home" color="inherit">Home</Button>
             <Button component={Link} to="/products" color="inherit">Products ({products.length})</Button>
             <Button component={Link} to="/" onClick={handleClick} color="inherit">Logout</Button>
-            
+
             <Link to='/settings'>
-             Settings
-            </Link>  
+              Settings
+            </Link>
             {/* {
             !!auth.avatar && <img src={`data:imagee/png;base64, ${auth.avatar}`} /> 
             } */}
-            
+
             <IconButton size="large" aria-label="show 4 new mails" color="inherit">
-              <Badge badgeContent={4} color="error">
+              <Badge badgeContent={quantity} color="error">
                 <ShoppingCartIcon />
               </Badge>
             </IconButton>

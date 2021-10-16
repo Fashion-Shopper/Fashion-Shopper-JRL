@@ -1,5 +1,5 @@
 import axios from 'axios'
-
+///////////// CONSTANT //////////////////////
 const TOKEN = 'token'
 
 /////////////// ACTION TYPES /////////////
@@ -18,7 +18,7 @@ export const fetchOrders = () => async dispatch => {
                 authorization: token
             }
         })
-        return dispatch(setAuth(data))
+        return dispatch(setOrders(data))
     }
 }
 

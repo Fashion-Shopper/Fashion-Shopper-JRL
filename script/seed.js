@@ -9,7 +9,8 @@ const Order = require("../server/db/models/Order");
 
 //for images/avatar
 const path = require('path');
-const fs = require('fs'); 
+const fs = require('fs');
+const OrderItem = require("../server/db/models/OrderItem");
 
 //To Work On Later 
 // const loadImage = (imagePath) =>{
@@ -40,13 +41,13 @@ async function seed() {
     User.create({ username: "murphy", password: "123" }),
   ]);
 
- // const cody = users[0]
+  // const cody = users[0]
 
   console.log(`seeded ${users.length} users`);
- //avatar
- //Later 
- // cody.avatar = await loadImage(__dirname, 'square.png')
- 
+  //avatar
+  //Later 
+  // cody.avatar = await loadImage(__dirname, 'square.png')
+
   // Creating Products...
   // Note (Riv): Mapping over data from seed.json file, creating data for db.
   const products = await Promise.all(
@@ -112,6 +113,8 @@ async function seed() {
   //Testing orders
   Order.create({ userId: users[0].id })
   Order.create({ userId: users[1].id })
+
+  OrderItem.create({ orderId: 1, productId: 1, quantity: 3 })
 
   console.log(`seeded successfully`);
   return {

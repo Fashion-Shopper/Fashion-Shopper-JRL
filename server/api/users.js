@@ -8,12 +8,12 @@ router.get('/', async (req, res, next) => {
   try {
     const users = await User.findAll({
       attributes: ['id', 'username'],
-      include: {
-        model: Order,
-        include: {
-          model: OrderItem
-        }
-      }
+      // include: {
+      //   model: Order,
+      //   include: {
+      //     model: OrderItem
+      //   }
+      // }
     })
     res.json(users)
   } catch (err) {

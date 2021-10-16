@@ -18,11 +18,12 @@ const User = db.define("user", {
   },
   isAdmin: {
     type: BOOLEAN,
-    defaultValue: false
+    defaultValue: false,
+    allowNull: false
   },
-  avatar:{
-    type:TEXT,
-    defaultValue:''
+  avatar: {
+    type: TEXT,
+    defaultValue: ''
   }
 });
 
