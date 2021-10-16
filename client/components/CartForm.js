@@ -4,9 +4,10 @@ import { connect } from "react-redux";
 // import { createCampus } from "../store/campuses";
 
 class CartForm extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
+      productId: "",
       quantity: 0,
     };
     this.onChange = this.onChange.bind(this);
@@ -22,16 +23,17 @@ class CartForm extends Component {
     const orderItem = {
       quantity: this.state.quantity,
       // ATTENTION (Riv): This is where we'll have the productId.
-      productId: this.state.productId,
+      productId: this.props.productId,
     };
-    if (Object.values(orderItem).includes(0)) {
-      alert(`Please complete all required fields before submitting.`);
-    } else {
-      // ATTENTION (Riv): Change dispatch name if changes made in mapDiscpatchToProps.
-      this.props.addToOrder(orderItem);
-      this.setState({ quantity: 0 });
-    }
-  }
+    console.log(orderItem);
+  //   if (Object.values(orderItem).includes(0)) {
+  //     alert(`Please complete all required fields before submitting.`);
+  //   } else {
+  //     // ATTENTION (Riv): Change dispatch name if changes made in mapDiscpatchToProps.
+  //     this.props.addToOrder(orderItem);
+  //     this.setState({ quantity: 0 });
+  //   }
+  // }
 
   render() {
     return (
