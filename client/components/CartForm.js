@@ -27,7 +27,8 @@ class CartForm extends Component {
     if (Object.values(orderItem).includes(0)) {
       alert(`Please complete all required fields before submitting.`);
     } else {
-      this.props.create(orderItem);
+      // ATTENTION (Riv): Change dispatch name if changes made in mapDiscpatchToProps.
+      this.props.addToOrder(orderItem);
       this.setState({ quantity: 0 });
     }
   }
@@ -36,11 +37,11 @@ class CartForm extends Component {
     return (
       <form className="cart-form">
         <div>
-          <label>Order Product: </label>
+          <label>Quantity: </label>
           <br />
           <input
             name="quantity"
-            type="text"
+            type="number"
             value={this.state.quantity}
             onChange={this.onChange}
           />
@@ -54,12 +55,13 @@ class CartForm extends Component {
   }
 }
 
+// ATTENTION (Riv): This is where we can dispatch & add orderItem of Order state.
 const mapDispatchToProps = (dispatch) => {
   return {
-    create: (data) => {
-      dispatch(createCampus(data));
+    addToOrder: (data) => {
+      dispatch(fetchOrders(data));
     },
   };
 };
 
-export default connect(null, mapDispatchToProps)(CampusCreateForm);
+export default connect(null, mapDispatchToProps)(CartForm);

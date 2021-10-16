@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { fetchSingleProduct } from "../../store/singleProduct";
+import CartForm from "../CartForm.js";
 
 class SingleProduct extends Component {
   componentDidMount() {
@@ -18,9 +19,13 @@ class SingleProduct extends Component {
       <div>
         <div id="singleProduct">
           <h1>{singleProduct.name}</h1>
-          <img id="singleProductImg" src={singleProduct.imageURL} />
+          {/* ATTENTION (Riv): Commented out Image code to view CartForm in page. */}
+          {/* <img id="singleProductImg" src={singleProduct.imageURL} /> */}
         </div>
         <div id="cartForm"></div>
+        <div>
+          <CartForm />
+        </div>
       </div>
     );
   }
