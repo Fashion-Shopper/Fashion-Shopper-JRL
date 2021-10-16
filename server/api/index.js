@@ -1,16 +1,17 @@
 const router = require("express").Router();
 const usersRoute = require("./users");
 const productsRoute = require("./products");
-
 const ordersRoute = require("./orders");
+const cartRoute = require("./cart");
+const adminRoute = require("./admin");
 
 module.exports = router;
 
 router.use("/users", usersRoute);
+router.use("/admin", adminRoute);
 router.use("/products", productsRoute);
-
 router.use("/orders", ordersRoute);
-
+router.use("/cart", cartRoute);
 
 router.use((req, res, next) => {
   const error = new Error("Not Found");
