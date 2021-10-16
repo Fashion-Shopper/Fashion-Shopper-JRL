@@ -29,9 +29,9 @@ const Navbar = () => {
             <Link to='/settings'>
              Settings
             </Link>  
-            {
+            {/* {
             !!auth.avatar && <img src={`${auth.avatar}`} /> 
-            }
+            } */}
             {
              !!auth.isAdmin && <Link to = '/admin'> Admin </Link> 
             }

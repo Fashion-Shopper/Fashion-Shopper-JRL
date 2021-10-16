@@ -10,8 +10,8 @@ import Products from "./components/Products/Products";
 import SingleProduct from "./components/Products/SingleProduct";
 import Settings from './components/Settings'
 import auth from "./store/auth";
-import fetchCart from './store/cart'
-import fetchProducts from './store/products'
+import {fetchCart} from './store/cart'
+import {fetchProducts} from './store/products'
 
 const Admin = () =>{
   return (
@@ -84,7 +84,7 @@ const mapState = (state) => {
 const mapDispatch = (dispatch) => {
   return {
     fetchCart: ()=> dispatch(fetchCart()),
-    loadInitialData() {
+    loadInitialData: ()=> {
       //dispatch(me());
       dispatch(fetchProducts())
     },
