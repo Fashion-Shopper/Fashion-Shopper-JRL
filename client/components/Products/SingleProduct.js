@@ -18,8 +18,9 @@ class SingleProduct extends Component {
       <div>
         <div id="singleProduct">
           <h1>{singleProduct.name}</h1>
-          <img src={singleProduct.imageURL} />
+          <img id="singleProductImg" src={singleProduct.imageURL} />
         </div>
+        <div id="cartForm"></div>
       </div>
     );
   }
