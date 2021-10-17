@@ -1,21 +1,25 @@
+//////////////// REACT / REDUX //////////////
 import React from 'react'
-import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux'
+
+////////////// STORE ///////////////////
 import { logout } from '../store'
 
-//Material UI Imports
+/////////////////// MATERIAL UI ///////////////////////////
 import { AppBar, Toolbar, Typography, Button, Badge, IconButton } from '@mui/material';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 
 const Navbar = () => {
   const dispatch = useDispatch()
-  const { isLoggedIn, products } = useSelector(state => { return { isLoggedIn: !!state.auth.id, products: state.products } })
-  const userCart = useSelector(state => state.userOrders).find(order => order.isCart === true)
+  const isLoggedIn = useSelector(state => !!state.auth.id)
+  const products = useSelector(state => state.products)
+  const cart = useSelector(state => state.userCart)
+
 
   let quantity = 0;
-
-  if (userCart) {
-    quantity = userCart.orderitems.reduce()
+  if (Array.isArray(cart) && isLoggedIn) {
+    quantity = cart.reduce((acc, item) => acc + item.quantity, quantity)
   }
 
   const handleClick = () => {
@@ -31,17 +35,22 @@ const Navbar = () => {
         {isLoggedIn ? (
           <>
             <Button component={Link} to="/home" color="inherit">Home</Button>
-            <Button component={Link} to="/products" color="inherit">Products ({products.length})</Button>
             <Button component={Link} to="/" onClick={handleClick} color="inherit">Logout</Button>
 
-            <Link to='/settings'>
-              Settings
-            </Link>
-            {/* {
-            !!auth.avatar && <img src={`data:imagee/png;base64, ${auth.avatar}`} /> 
-            } */}
 
-            <IconButton size="large" aria-label="show 4 new mails" color="inherit">
+            {/* <Link to='/settings'>
+              Settings
+            </Link> */}
+            {/* {
+            !!auth.avatar && <img src={`${auth.avatar}`} /> 
+            } */}
+            {
+              //  !!auth.isAdmin && <Link to = '/admin'> Admin </Link>
+            }
+            <Button component={Link} to="/products" color="inherit">Products ({products.length})</Button>
+            {/* <Link to='/cart'>Cart ({1})</Link> */}
+
+            <IconButton size="large" aria-label="show user cart quantity" color="inherit">
               <Badge badgeContent={quantity} color="error">
                 <ShoppingCartIcon />
               </Badge>
@@ -53,6 +62,11 @@ const Navbar = () => {
             <Button component={Link} to="/login" color="inherit">Login</Button>
             <Button component={Link} to="/signup" color="inherit">Sign Up</Button>
             <Button component={Link} to="/products" color="inherit">Products ({products.length})</Button>
+            <IconButton size="large" aria-label="show guess cart quantity" color="inherit">
+              <Badge badgeContent={quantity} color="error">
+                <ShoppingCartIcon />
+              </Badge>
+            </IconButton>
           </>
         )}
       </Toolbar>

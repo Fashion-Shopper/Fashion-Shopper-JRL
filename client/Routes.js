@@ -1,33 +1,36 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Route, Switch, Redirect } from "react-router-dom";
 import { Login, Signup } from "./components/AuthForm";
 import Home from "./components/Home";
 import { me } from "./store";
 
-/////////////////////// IMPORT COMPONENTS  /////////////////////
+/////////////////////// COMPONENTS  /////////////////////
 import Brands from "./components/Brands/Brands";
 import SingleBrand from "./components/Brands/SingleBrand";
 import Products from "./components/Products/Products";
 import SingleProduct from "./components/Products/SingleProduct";
-import { fetchOrders } from "./store/orders";
-// import Settings from './components/Settings'
 
-/////////////////////// HOOK COMPONENT  /////////////////////
+///////////////// STORE ////////////////////////
+import { fetchCart } from './store'
+// import Settings from './components/Settings'
+// import auth from "./store/auth";
+
+// const Admin = () => {
+//   return (
+//     <div> TODO Add Admin Component </div>
+//   )
+// }
+
 const Routes = () => {
   const dispatch = useDispatch();
   const isLoggedIn = useSelector(state => !!state.auth.id)
 
   useEffect(() => {
     dispatch(me())
-    dispatch(fetchOrders())
+    dispatch(fetchCart())
   }, [isLoggedIn])
 
-  const state = useSelector(state => state)
-  console.log(state)
-
-  // Being 'logged in' for our purposes will be defined has having a state.auth that has a truthy id.
-  // Otherwise, state.auth will be an empty object, and state.auth.id will be falsey
 
   return (
     <div>
@@ -40,6 +43,9 @@ const Routes = () => {
             <Route exact path="/products" component={Products} />
             <Route path="/products/:productId" component={SingleProduct} />
             <Redirect to="/home" />
+            {
+              // !!auth.isAdmin && <Route path='/admin' component={Admin} />
+            }
           </Switch>
         </>
       ) : (

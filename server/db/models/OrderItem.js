@@ -3,6 +3,9 @@ const db = require('../db');
 
 ///////////////// ORDERITEM MODEL /////////////////
 const OrderItem = db.define('orderitem', {
+    // itemName: {
+    //     type: STRING,
+    // },
     quantity: {
         type: INTEGER
     }

@@ -7,7 +7,7 @@ const config = {
   logging: false
 };
 
-if (process.env.LOGGING === 'true') {
+if (process.env.LOGGING === 'tr') {
   delete config.logging
 }
 

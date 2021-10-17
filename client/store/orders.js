@@ -5,7 +5,6 @@ const TOKEN = 'token'
 /////////////// ACTION TYPES /////////////
 const FETCH_USER_ORDERS = 'FETCH_USER_ORDERS'
 
-
 ///////////////// ACTION CREATORS /////////////////
 const setOrders = orders => ({ type: FETCH_USER_ORDERS, orders })
 
