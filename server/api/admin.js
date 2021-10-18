@@ -1,34 +1,32 @@
 const router = require("express").Router();
 const {
-  models: { Order, User },
+  models: { Order, OrderItem, User },
 } = require("../db");
-
-/////////////////// MIDDLEWARE ///////////////////
 
 const { isLoggedIn, isAdmin } = require("../middleware");
 const { pluralize } = require("inflection");
 
 /////////////////// ROUTES / SIMPLE ///////////////////
 
-router.get("/orders", async (req, res, next) => {
-  try {
-    const orders = await Order.findAll();
-    res.send(orders);
-  } catch (err) {
-    next(err);
-  }
-});
+// router.get("/orders", async (req, res, next) => {
+//   try {
+//     const orders = await Order.findAll();
+//     res.send(orders);
+//   } catch (err) {
+//     next(err);
+//   }
+// });
 
-router.get("/users", async (req, res, next) => {
-  try {
-    const users = await User.findAll();
-    res.send(users);
-  } catch (err) {
-    next(err);
-  }
-});
+// router.get("/users", async (req, res, next) => {
+//   try {
+//     const users = await User.findAll();
+//     res.send(users);
+//   } catch (err) {
+//     next(err);
+//   }
+// });
 
-/////////////////// ROUTES / DYNAMIC ///////////////////
+/////////////////// ROUTES (DYNAMIC) ///////////////////
 
 // router.get("/orders", isLoggedIn, isAdmin, async (req, res, next) => {
 //     try {
@@ -63,7 +61,7 @@ router.get("/users", async (req, res, next) => {
 //Do three Routes in a more efficient way (dynamic routes)
 const obj = {
   orders: Order,
-  //orderItems: OrderItem,
+  orderItems: OrderItem,
   users: User,
 };
 
@@ -83,7 +81,7 @@ Object.entries(obj).forEach((entry) => {
     isAdmin,
     async (req, res, next) => {
       try {
-        const item = await model.findByPk(res.params.id);
+        const item = await model.findByPk(req.params.id);
         await item.destroy();
         res.sendStatus(201);
       } catch (err) {
