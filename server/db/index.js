@@ -9,14 +9,14 @@ const OrderItem = require("./models/OrderItem");
 Product.belongsTo(Brand);
 Brand.hasMany(Product);
 
-Order.belongsTo(User)
-User.hasMany(Order)
+Order.belongsTo(User);
+User.hasMany(Order);
 
-OrderItem.belongsTo(Order)
-Order.hasMany(OrderItem)
+// OrderItem.belongsTo(Order);
+// Order.hasMany(OrderItem);
 
-OrderItem.belongsTo(Product)
-Product.hasMany(OrderItem)
+OrderItem.belongsTo(Product);
+Product.hasMany(OrderItem);
 
 module.exports = {
   db,
@@ -25,6 +25,6 @@ module.exports = {
     Product,
     Brand,
     Order,
-    OrderItem
+    OrderItem,
   },
 };
