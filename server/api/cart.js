@@ -21,7 +21,10 @@ router.get("/", async (req, res, next) => {
                 include: {
                     model: Product
                 }
-            }
+            },
+            order: [
+                [OrderItem, 'createdAt', 'DESC'],
+            ],
         });
 
         // const cart = await OrderItem.findAll({
@@ -74,6 +77,9 @@ router.post("/", async (req, res, next) => {
             where: {
                 orderId: cart.id
             },
+            order: [
+                ['createdAt', 'DESC'],
+            ],
             include: Product
         })
 
@@ -110,7 +116,49 @@ router.put("/", async (req, res, next) => {
             where: {
                 orderId: cart.id
             },
+            order: [
+                ['createdAt', 'DESC'],
+            ],
             include: Product
+        })
+
+        res.json(updateditems);
+    }
+    catch (err) {
+        next(err);
+    }
+});
+
+router.delete("/:productId", async (req, res, next) => {
+    try {
+        const { productId } = req.params
+        const token = req.headers.authorization;
+        const user = await User.findByToken(token)
+
+        const cart = await Order.findOne({
+            where: {
+                userId: user.id,
+                isCart: true
+            }
+        });
+
+        const productToDelete = await OrderItem.findByPk(productId, {
+            where: {
+                orderId: cart.id,
+            }
+        });
+
+        await productToDelete.destroy()
+
+        const updateditems = await OrderItem.findAll({
+            where: {
+                orderId: cart.id
+            },
+            order: [
+                ['createdAt', 'DESC'],
+            ],
+            include: Product,
+
         })
 
         res.json(updateditems);

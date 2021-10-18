@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { Button, Card, CardActions, CardContent, CardHeader, CardMedia, CircularProgress, Divider, FormControl, Grid, InputLabel, MenuItem, Select, Stack, Typography } from '@mui/material'
 import { Box } from '@mui/system';
 import DeleteIcon from '@mui/icons-material/Delete';
-import { updateCart } from '../../store';
+import { removeFromCart, updateCart } from '../../store';
 
 
 
@@ -45,8 +45,11 @@ const Cart = () => {
 
     const handleChange = (evt, productId) => {
         const updatedProduct = { productId, [evt.target.name]: evt.target.value }
-        ///////// make an update cart thunk to handle the update //////
         dispatch(updateCart(updatedProduct))
+    }
+
+    const handleRemove = (productId) => {
+        dispatch(removeFromCart(productId))
     }
 
     return (
@@ -96,7 +99,7 @@ const Cart = () => {
                                                 <MenuItem value={8}>8</MenuItem>
                                             </Select>
                                         </FormControl>
-                                        <Button variant="outlined" startIcon={<DeleteIcon />}>
+                                        <Button onClick={() => handleRemove(product.id)} variant="outlined" startIcon={<DeleteIcon />}>
                                             Remove
                                         </Button>
                                     </Stack>
