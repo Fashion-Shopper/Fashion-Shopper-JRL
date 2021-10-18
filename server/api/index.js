@@ -9,10 +9,10 @@ const adminRoute = require("./admin");
 
 router.use("/cart", cartRoute);
 router.use("/products", productsRoute);
-// router.use("/users", usersRoute);
-// router.use("/admin", adminRoute);
+router.use("/users", usersRoute);
+router.use("/admin", adminRoute);
 router.use("/brands", brandsRoute);
-// router.use("/orders", ordersRoute);
+router.use("/orders", ordersRoute);
 
 router.use((req, res, next) => {
   const error = new Error("Not Found");

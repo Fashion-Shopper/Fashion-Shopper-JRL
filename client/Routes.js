@@ -10,6 +10,7 @@ import Brands from "./components/Brands/Brands";
 import SingleBrand from "./components/Brands/SingleBrand";
 import Products from "./components/Products/Products";
 import SingleProduct from "./components/Products/SingleProduct";
+import Cart from './components/User/Cart'
 
 ///////////////// STORE ////////////////////////
 import { fetchCart } from './store'
@@ -42,6 +43,8 @@ const Routes = () => {
             <Route path="/brands/:brandId" component={SingleBrand} />
             <Route exact path="/products" component={Products} />
             <Route path="/products/:productId" component={SingleProduct} />
+            <Route exact path="/cart" component={Cart} />
+
             <Redirect to="/home" />
             {
               // !!auth.isAdmin && <Route path='/admin' component={Admin} />

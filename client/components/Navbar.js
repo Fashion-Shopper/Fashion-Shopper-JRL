@@ -47,10 +47,10 @@ const Navbar = () => {
             {
               //  !!auth.isAdmin && <Link to = '/admin'> Admin </Link>
             }
-            <Button component={Link} to="/products" color="inherit">Products ({products.length})</Button>
-            {/* <Link to='/cart'>Cart ({1})</Link> */}
 
-            <IconButton size="large" aria-label="show user cart quantity" color="inherit">
+            <Button component={Link} to="/products" color="inherit">Products ({products.length})</Button>
+
+            <IconButton component={Link} to="/cart" size="large" aria-label="show user cart quantity" color="inherit">
               <Badge badgeContent={quantity} color="error">
                 <ShoppingCartIcon />
               </Badge>

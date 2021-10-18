@@ -1,6 +1,6 @@
 const router = require("express").Router();
 
-const { models: { Order, OrderItem } } = require("../db");
+const { models: { Order, OrderItem, Product } } = require("../db");
 const User = require("../db/models/User");
 
 router.get("/", async (req, res, next) => {
@@ -22,7 +22,8 @@ router.get("/", async (req, res, next) => {
         const cart = await OrderItem.findAll({
             where: {
                 orderId: activeorder.id
-            }
+            },
+            include: Product
         })
 
         res.json(cart);
@@ -66,6 +67,14 @@ router.post("/", async (req, res, next) => {
         else {
             updatedItem = await OrderItem.create({ orderId: usercart.id, ...product })
         }
+
+        updatedItem = await OrderItem.findOne({
+            where: {
+                id: updatedItem.id
+            },
+            include: Product
+        })
+
         res.json(updatedItem);
     }
     catch (err) {
