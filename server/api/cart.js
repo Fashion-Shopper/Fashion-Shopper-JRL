@@ -84,4 +84,40 @@ router.post("/", async (req, res, next) => {
     }
 });
 
+router.put("/", async (req, res, next) => {
+    try {
+        const product = req.body
+        const token = req.headers.authorization;
+        const user = await User.findByToken(token)
+
+        const cart = await Order.findOne({
+            where: {
+                userId: user.id,
+                isCart: true
+            }
+        });
+
+        const productToUpdate = await OrderItem.findOne({
+            where: {
+                orderId: cart.id,
+                productId: product.productId
+            }
+        });
+
+        await productToUpdate.update(product)
+
+        const updateditems = await OrderItem.findAll({
+            where: {
+                orderId: cart.id
+            },
+            include: Product
+        })
+
+        res.json(updateditems);
+    }
+    catch (err) {
+        next(err);
+    }
+});
+
 module.exports = router;

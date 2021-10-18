@@ -4,8 +4,8 @@ const TOKEN = 'token'
 /////////////// ACTION TYPES /////////////
 const FETCH_USER_CART = "FETCH_USER_CART"
 const ADD_TO_CART = 'ADD_TO_CART'
+const UPDATE_CART = 'UPDATE_CART'
 // const REMOVE_FROM_CART = 'REMOVE_FROM_CART'
-// const CHANGE_PRODUCT_QUANTITY = 'CHANGE_PRODUCT_QUANTITY'
 
 ///////////////// ACTION CREATORS /////////////////
 const setCart = cart => {
@@ -14,9 +14,16 @@ const setCart = cart => {
         cart
     }
 }
-const addorupdateCart = addOrupdateProduct => {
+
+const addToUserCart = productToAdd => {
     return {
-        type: ADD_TO_CART, addOrupdateProduct
+        type: ADD_TO_CART, productToAdd
+    }
+}
+
+const updateUserCart = productToUpdate => {
+    return {
+        type: UPDATE_CART, productToUpdate
     }
 }
 // const removeFromOrders = cart =>  ({ type: REMOVE_FROM_CART, cart })
@@ -41,16 +48,27 @@ export const addToCart = (productToAdd) => async dispatch => {
     if (token) {
         const { data } = await axios.post('/api/cart', productToAdd, {
             headers: {
-                authorization: token //to identify the user
+                authorization: token
             }
         })
-        dispatch(addorupdateCart(data))
+        dispatch(addToUserCart(data))
     }
 }
 
-//edit cart
-//remove from Cart
-//change product quantity
+////////////// UPDATE USER CART ////////////////////
+export const updateCart = (productToUpdate) => async dispatch => {
+    const token = window.localStorage.getItem(TOKEN)
+    if (token) {
+        const { data } = await axios.put('/api/cart', productToUpdate, {
+            headers: {
+                authorization: token
+            }
+        })
+        dispatch(updateUserCart(data))
+    }
+}
+
+/////////// REMOVE FROM USER CART ////////////////////
 
 
 
@@ -62,10 +80,10 @@ export default function (state = initialState, action) {
         case FETCH_USER_CART:
             return action.cart
         case ADD_TO_CART:
-            return { ...state, orderitems: action.addOrupdateProduct, }
+            return { ...state, orderitems: action.productToAdd }
+        case UPDATE_CART:
+            return { ...state, orderitems: action.productToUpdate }
         // case REMOVE_FROM_CART:
-        //     return
-        // case CHANGE_PRODUCT_QUANTITY:
         //     return
         default:
             return state

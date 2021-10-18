@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { Button, Card, CardActions, CardContent, CardHeader, CardMedia, CircularProgress, Divider, FormControl, Grid, InputLabel, MenuItem, Select, Stack, Typography } from '@mui/material'
 import { Box } from '@mui/system';
 import DeleteIcon from '@mui/icons-material/Delete';
-import { addToCart } from '../../store';
+import { updateCart } from '../../store';
 
 
 
@@ -45,8 +45,8 @@ const Cart = () => {
 
     const handleChange = (evt, productId) => {
         const updatedProduct = { productId, [evt.target.name]: evt.target.value }
-        ////////// make an update cart thunk to handle the update //////
-        // dispatch(addToCart(updatedProduct))
+        ///////// make an update cart thunk to handle the update //////
+        dispatch(updateCart(updatedProduct))
     }
 
     return (
@@ -59,8 +59,8 @@ const Cart = () => {
             <Grid container sx={{ pb: 12 }}>
                 <Grid container item xs={12} sm={8}>
                     {userCart.orderitems.map(({ product, quantity }) => (
-                        <Grid item sx={{ p: 3 }}>
-                            <Card sx={{ display: 'flex' }} key={product.id}>
+                        <Grid item sx={{ p: 2 }} key={product.id}>
+                            <Card sx={{ display: 'flex' }} >
                                 <CardMedia
                                     component="img"
                                     sx={{ width: 250, p: 3 }}
@@ -97,7 +97,7 @@ const Cart = () => {
                                             </Select>
                                         </FormControl>
                                         <Button variant="outlined" startIcon={<DeleteIcon />}>
-                                            Delete
+                                            Remove
                                         </Button>
                                     </Stack>
                                 </Box>
@@ -105,9 +105,9 @@ const Cart = () => {
                         </Grid>
                     ))}
                 </Grid>
-                <Grid container item xs={12} sm={4}>
-                    <Grid item sx={{ p: 3, textAlign: 'center' }}>
-                        <Card>
+                <Grid item container xs={12} sm={4}>
+                    <Grid item xs={12} sx={{ p: 2 }} >
+                        <Card sx={{ textAlign: 'center', m: 'auto' }}>
                             <CardHeader
                                 title="Order Summary"
                                 sx={{ backgroundColor: '' }}
