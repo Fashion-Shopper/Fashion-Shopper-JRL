@@ -4,8 +4,8 @@ const TOKEN = 'token'
 /////////////// ACTION TYPES /////////////
 const FETCH_USER_CART = "FETCH_USER_CART"
 const ADD_TO_CART = 'ADD_TO_CART'
-// const REMOVE_FROM_CART = 'REMOVE_FROM_CART'
-// const CHANGE_PRODUCT_QUANTITY = 'CHANGE_PRODUCT_QUANTITY'
+const UPDATE_CART = 'UPDATE_CART'
+const REMOVE_FROM_CART = 'REMOVE_FROM_CART'
 
 ///////////////// ACTION CREATORS /////////////////
 const setCart = cart => {
@@ -14,12 +14,24 @@ const setCart = cart => {
         cart
     }
 }
-const addorupdateCart = addOrupdateProduct => {
+
+const addToUserCart = productToAdd => {
     return {
-        type: ADD_TO_CART, addOrupdateProduct
+        type: ADD_TO_CART, productToAdd
     }
 }
-// const removeFromOrders = cart =>  ({ type: REMOVE_FROM_CART, cart })
+
+const updateUserCart = productToUpdate => {
+    return {
+        type: UPDATE_CART, productToUpdate
+    }
+}
+const removeFromUserCart = productRemove => {
+    return {
+        type: REMOVE_FROM_CART, productRemove
+    }
+}
+
 // const changeProductQuantity = cart =>  ({ type: CHANGE_PRODUCT_QUANTITY, cart })
 
 ///////////////////// THUNK CREATORS //////////////////
@@ -41,18 +53,38 @@ export const addToCart = (productToAdd) => async dispatch => {
     if (token) {
         const { data } = await axios.post('/api/cart', productToAdd, {
             headers: {
-                authorization: token //to identify the user
+                authorization: token
             }
         })
-        // console.log(data)
-        dispatch(addorupdateCart(data))
+        dispatch(addToUserCart(data))
     }
 }
 
-//edit cart
-//remove from Cart
-//change product quantity
+////////////// UPDATE USER CART ////////////////////
+export const updateCart = (productToUpdate) => async dispatch => {
+    const token = window.localStorage.getItem(TOKEN)
+    if (token) {
+        const { data } = await axios.put('/api/cart', productToUpdate, {
+            headers: {
+                authorization: token
+            }
+        })
+        dispatch(updateUserCart(data))
+    }
+}
 
+/////////// REMOVE PRODUCT FROM USER CART ////////////////////
+export const removeFromCart = (productId) => async dispatch => {
+    const token = window.localStorage.getItem(TOKEN)
+    if (token) {
+        const { data } = await axios.delete(`/api/cart/${productId}`, {
+            headers: {
+                authorization: token
+            }
+        })
+        dispatch(removeFromUserCart(data))
+    }
+}
 
 
 ////////////////// REDUCER ////////////////////
@@ -63,11 +95,11 @@ export default function (state = initialState, action) {
         case FETCH_USER_CART:
             return action.cart
         case ADD_TO_CART:
-            return { ...state, orderitems: action.addOrupdateProduct, }
-        // case REMOVE_FROM_CART:
-        //     return
-        // case CHANGE_PRODUCT_QUANTITY:
-        //     return
+            return { ...state, orderitems: action.productToAdd }
+        case UPDATE_CART:
+            return { ...state, orderitems: action.productToUpdate }
+        case REMOVE_FROM_CART:
+            return { ...state, orderitems: action.productRemove }
         default:
             return state
     }

@@ -5,10 +5,12 @@ import { useDispatch, useSelector } from 'react-redux'
 import { Button, Card, CardActions, CardContent, CardHeader, CardMedia, CircularProgress, Divider, FormControl, Grid, InputLabel, MenuItem, Select, Stack, Typography } from '@mui/material'
 import { Box } from '@mui/system';
 import DeleteIcon from '@mui/icons-material/Delete';
+import { removeFromCart, updateCart } from '../../store';
 
 
 
 const Cart = () => {
+    const dispatch = useDispatch()
     const { userCart } = useSelector(state => state)
 
     /////////// THIS DISPLAY THE LOADING SPINNER ///////////////
@@ -27,8 +29,6 @@ const Cart = () => {
         total = userCart.orderitems.reduce((acc, { product, quantity }) => acc + (product.price * quantity), 0)
     }
 
-    console.log(userCart.orderitems)
-
     if (userCart.orderitems && userCart.orderitems.length === 0) {
         return (
             <>
@@ -43,6 +43,15 @@ const Cart = () => {
         )
     }
 
+    const handleChange = (evt, productId) => {
+        const updatedProduct = { productId, [evt.target.name]: evt.target.value }
+        dispatch(updateCart(updatedProduct))
+    }
+
+    const handleRemove = (productId) => {
+        dispatch(removeFromCart(productId))
+    }
+
     return (
         <>
             <Typography variant='h5' gutterBottom>
@@ -53,8 +62,8 @@ const Cart = () => {
             <Grid container sx={{ pb: 12 }}>
                 <Grid container item xs={12} sm={8}>
                     {userCart.orderitems.map(({ product, quantity }) => (
-                        <Grid item sx={{ p: 3 }}>
-                            <Card sx={{ display: 'flex' }} key={product.id}>
+                        <Grid item sx={{ p: 2 }} key={product.id}>
+                            <Card sx={{ display: 'flex' }} >
                                 <CardMedia
                                     component="img"
                                     sx={{ width: 250, p: 3 }}
@@ -78,7 +87,7 @@ const Cart = () => {
                                                 variant='outlined'
                                                 name="quantity"
                                                 value={quantity}
-                                            // onChange={handleChange}
+                                                onChange={(evt) => handleChange(evt, product.id)}
                                             >
                                                 <MenuItem value={1}>1</MenuItem>
                                                 <MenuItem value={2}>2</MenuItem>
@@ -90,8 +99,8 @@ const Cart = () => {
                                                 <MenuItem value={8}>8</MenuItem>
                                             </Select>
                                         </FormControl>
-                                        <Button variant="outlined" startIcon={<DeleteIcon />}>
-                                            Delete
+                                        <Button onClick={() => handleRemove(product.id)} variant="outlined" startIcon={<DeleteIcon />}>
+                                            Remove
                                         </Button>
                                     </Stack>
                                 </Box>
@@ -99,9 +108,9 @@ const Cart = () => {
                         </Grid>
                     ))}
                 </Grid>
-                <Grid container item xs={12} sm={4}>
-                    <Grid item sx={{ p: 3, textAlign: 'center' }}>
-                        <Card>
+                <Grid item container xs={12} sm={4}>
+                    <Grid item xs={12} sx={{ p: 2 }} >
+                        <Card sx={{ textAlign: 'center', m: 'auto' }}>
                             <CardHeader
                                 title="Order Summary"
                                 sx={{ backgroundColor: '' }}
