@@ -4,16 +4,18 @@ import thunkMiddleware from "redux-thunk";
 import { composeWithDevTools } from "redux-devtools-extension";
 import auth from "./auth";
 import productsReducer from "./products";
-import singleProductReducer from "./singleProduct";
+// import singleProductReducer from "./singleProduct"; // This is not needed. Just filter from all products
+import ordersReducer from "./orders";
+import cartReducer from './cart'
 
-import orders from "./orders";
 
 
 const reducer = combineReducers({
   auth,
   products: productsReducer,
-  singleProduct: singleProductReducer,
-  userOrders: orders
+  // singleProduct: singleProductReducer, // this is not needed. Just filter from all products
+  userOrders: ordersReducer,
+  userCart: cartReducer
 
 });
 const middleware = composeWithDevTools(
@@ -23,3 +25,7 @@ const store = createStore(reducer, middleware);
 
 export default store;
 export * from "./auth";
+export * from './products'
+export * from './orders'
+export * from './cart'
+

@@ -1,6 +1,8 @@
 const router = require("express").Router();
 
 const { models: { Order } } = require("../db");
+const OrderItem = require("../db/models/OrderItem");
+const Product = require("../db/models/Product");
 const User = require("../db/models/User");
 
 router.get("/", async (req, res, next) => {
@@ -9,6 +11,12 @@ router.get("/", async (req, res, next) => {
         const user = await User.findByToken(token)
 
         const orders = await Order.findAll({
+            include: {
+                model: OrderItem,
+                include: {
+                    model: Product
+                }
+            },
             where: {
                 userId: user.id
             }

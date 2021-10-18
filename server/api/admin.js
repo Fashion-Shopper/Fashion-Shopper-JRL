@@ -1,18 +1,18 @@
 const router = require("express").Router();
-const { models: { Order, User} } = require("../db");
+const { models: { Order, User } } = require("../db");
 
 //Middlewares
-const {isLoggedIn, isAdmin} = require('../middleware');
-const {pluralize} = require('inflection');
+const { isLoggedIn, isAdmin } = require('../middleware');
+const { pluralize } = require('inflection');
 
 //Do three Routes in a more efficient way (dynamic routes)
-const obj  = {
+const obj = {
     orders: Order,
     //orderItems: OrderItem,
     users: User
 }
 
-Object.entries(obj).forEach(entry =>{
+Object.entries(obj).forEach(entry => {
     const _path = pluralize(entry[0]);
     const model = entry[1];
     router.get(`/${_path}`, isLoggedIn, isAdmin, async (req, res, next) => {

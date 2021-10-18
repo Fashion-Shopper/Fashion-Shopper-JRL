@@ -1,29 +1,40 @@
+/////////// REACT REDUX ///////////////////
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { fetchSingleProduct } from "../../store/singleProduct";
+
+
+//////////////// STORE //////////////////////
+// import { fetchSingleProduct } from "../../store/singleProduct";
 // ATTENTION (Riv): Make sure to import thunk for adding orderItem to order state.
-// import { createCampus } from "../store/campuses";
+import { addToCart } from "../../store/cart";
+
+
+//////////////// MATERIAL UI /////////////////////
+import { TextField, Button, } from '@mui/material';
+import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 
 class SingleProduct extends Component {
   // Note (Riv): Local State for Cart Form
   constructor(props) {
     super(props);
+
     this.state = {
-      productId: "",
-      quantity: 0,
+      productId: this.props.match.params.productId * 1,
+      quantity: '1',
     };
     this.onChange = this.onChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
   }
 
-  componentDidMount() {
-    try {
-      const productId = this.props.match.params.productId;
-      this.props.loadSingleProduct(productId);
-    } catch (err) {
-      console.error(err);
-    }
-  }
+  //This is not needed so far
+  // componentDidMount() {
+  //   try {
+  //     const productId = this.props.match.params.productId;
+  //     this.props.loadSingleProduct(productId);
+  //   } catch (err) {
+  //     console.error(err);
+  //   }
+  // }
 
   onChange(evt) {
     this.setState({ [evt.target.name]: evt.target.value });
@@ -31,12 +42,10 @@ class SingleProduct extends Component {
 
   onSubmit(evt) {
     evt.preventDefault();
-    const orderItem = {
-      quantity: this.state.quantity,
-      // ATTENTION (Riv): This is where we'll have the productId.
-      productId: this.props.match.params.productId,
-    };
-    console.log(orderItem);
+    // console.log(this.state)
+    this.props.addToCart(this.state)
+
+
     //   if (Object.values(orderItem).includes(0)) {
     //     alert(`Please complete all required fields before submitting.`);
     //   } else {
@@ -48,6 +57,9 @@ class SingleProduct extends Component {
 
   render() {
     const singleProduct = this.props.product;
+    const { quantity } = this.state
+    const { onChange, onSubmit } = this
+
     return (
       <div>
         <div id="singleProduct">
@@ -56,39 +68,43 @@ class SingleProduct extends Component {
           {/* <img id="singleProductImg" src={singleProduct.imageURL} /> */}
         </div>
         <div id="cartForm">
-          <form className="cart-form">
-            <div>
-              <label>Quantity: </label>
-              <br />
-              <input
-                name="quantity"
-                type="number"
-                value={this.state.quantity}
-                onChange={this.onChange}
-              />
-              <br />
-              <button type="submit" onClick={this.onSubmit}>
-                Add to Cart
-              </button>
-            </div>
+          <form onSubmit={onSubmit} className="cart-form">
+            <TextField
+              label="Quantity"
+              type="number"
+              InputProps={{
+                inputProps: {
+                  max: 20,
+                  min: 1
+                }
+              }}
+              name="quantity"
+              value={quantity}
+              onChange={onChange}
+            />
+            <Button type='submit' variant="outlined" startIcon={<AddShoppingCartIcon />}>
+              Add to Cart
+            </Button>
           </form>
-        </div>
-      </div>
+        </div >
+      </div >
     );
   }
 }
 
-const mapStateToProps = (state) => {
+const mapStateToProps = (state, otherProps) => {
+  const productId = otherProps.match.params.productId * 1
+  const product = state.products.find(product => product.id === productId) || {};
+
   return {
-    product: state.singleProduct,
+    product
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    loadSingleProduct: (productId) => dispatch(fetchSingleProduct(productId)),
-    addToOrder: (data) => {
-      dispatch(fetchOrders(data));
+    addToCart: (productToAdd) => {
+      dispatch(addToCart(productToAdd));
     },
   };
 };

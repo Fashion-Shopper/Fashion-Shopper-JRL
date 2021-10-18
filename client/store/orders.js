@@ -1,18 +1,22 @@
 import axios from 'axios'
-
+///////////// CONSTANT //////////////////////
 const TOKEN = 'token'
 
 /////////////// ACTION TYPES /////////////
 const FETCH_USER_ORDERS = 'FETCH_USER_ORDERS'
 
 ///////////////// ACTION CREATORS /////////////////
-const setOrders = orders => ({ type: FETCH_USER_ORDERS, orders })
+const setOrders = orders => {
+    return {
+        type: FETCH_USER_ORDERS, orders
+    }
+}
 
 ///////////////////// THUNK CREATORS //////////////////
 export const fetchOrders = () => async dispatch => {
     const token = window.localStorage.getItem(TOKEN)
     if (token) {
-        const { data } = await axios.get('api/orders', {
+        const { data } = await axios.get('/api/orders', {
             headers: {
                 authorization: token
             }
