@@ -2,7 +2,7 @@ import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
 ////////////////////////// MATERIAL UI ///////////////////////////////////////
-import { Button, Card, CardContent, CardMedia, CircularProgress, Divider, FormControl, Grid, InputLabel, MenuItem, Select, Stack, Typography } from '@mui/material'
+import { Button, Card, CardActions, CardContent, CardHeader, CardMedia, CircularProgress, Divider, FormControl, Grid, InputLabel, MenuItem, Select, Stack, Typography } from '@mui/material'
 import { Box } from '@mui/system';
 import DeleteIcon from '@mui/icons-material/Delete';
 
@@ -12,7 +12,7 @@ const Cart = () => {
     const { userCart } = useSelector(state => state)
 
     /////////// THIS DISPLAY THE LOADING SPINNER ///////////////
-    if (!userCart) {
+    if (!userCart.orderitems) {
         return (
             <Box sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', height: '80vh' }}>
                 <CircularProgress size={100} />
@@ -22,8 +22,14 @@ const Cart = () => {
             </Box>
         )
     }
+    let total = 0;
+    if (userCart.orderitems) {
+        total = userCart.orderitems.reduce((acc, { product, quantity }) => acc + (product.price * quantity), 0)
+    }
 
-    if (userCart.length === 0 && userCart) {
+    console.log(userCart.orderitems)
+
+    if (userCart.orderitems && userCart.orderitems.length === 0) {
         return (
             <>
                 <Typography variant='h5' gutterBottom>
@@ -44,51 +50,76 @@ const Cart = () => {
             </Typography>
             <Divider />
 
-            <Grid container sx={{ pt: 5, pb: 12, m: 0 }}>
-                {userCart.map(({ product, quantity }) => (
-                    <Card sx={{ display: 'flex' }} key={product.id}>
-                        <CardMedia
-                            component="img"
-                            sx={{ width: 250, p: 3 }}
-                            image={product.imageURL}
-                            alt={product.name}
-                        />
-                        <Box sx={{ display: 'flex', flexDirection: 'column' }}>
-                            <CardContent sx={{ flex: '1 0 auto' }}>
-                                <Typography component="div" variant="h5">
-                                    {product.name}
-                                </Typography>
-                                <Typography variant="subtitle1" color="text.secondary" component="div">
-                                    {product.description}
+            <Grid container sx={{ pb: 12 }}>
+                <Grid container item xs={12} sm={8}>
+                    {userCart.orderitems.map(({ product, quantity }) => (
+                        <Grid item sx={{ p: 3 }}>
+                            <Card sx={{ display: 'flex' }} key={product.id}>
+                                <CardMedia
+                                    component="img"
+                                    sx={{ width: 250, p: 3 }}
+                                    image={product.imageURL}
+                                    alt={product.name}
+                                />
+                                <Box sx={{ display: 'flex', flexDirection: 'column' }}>
+                                    <CardContent sx={{ flex: '1 0 auto' }}>
+                                        <Typography component="div" variant="h5">
+                                            {product.name}
+                                        </Typography>
+                                        <Typography variant="subtitle1" color="text.secondary" component="div">
+                                            {product.description}
+                                        </Typography>
+                                    </CardContent>
+                                    <Stack direction="row" spacing={5} sx={{ pl: 3, pb: 5 }}>
+                                        <FormControl>
+                                            <InputLabel>QTY</InputLabel>
+                                            <Select
+                                                label="QTY"
+                                                variant='outlined'
+                                                name="quantity"
+                                                value={quantity}
+                                            // onChange={handleChange}
+                                            >
+                                                <MenuItem value={1}>1</MenuItem>
+                                                <MenuItem value={2}>2</MenuItem>
+                                                <MenuItem value={3}>3</MenuItem>
+                                                <MenuItem value={4}>4</MenuItem>
+                                                <MenuItem value={5}>5</MenuItem>
+                                                <MenuItem value={6}>6</MenuItem>
+                                                <MenuItem value={7}>7</MenuItem>
+                                                <MenuItem value={8}>8</MenuItem>
+                                            </Select>
+                                        </FormControl>
+                                        <Button variant="outlined" startIcon={<DeleteIcon />}>
+                                            Delete
+                                        </Button>
+                                    </Stack>
+                                </Box>
+                            </Card>
+                        </Grid>
+                    ))}
+                </Grid>
+                <Grid container item xs={12} sm={4}>
+                    <Grid item sx={{ p: 3, textAlign: 'center' }}>
+                        <Card>
+                            <CardHeader
+                                title="Order Summary"
+                                sx={{ backgroundColor: '' }}
+                            />
+                            <Divider />
+                            <CardContent>
+                                <Typography variant="h6">
+                                    Subtotal ${total.toFixed(2)}
                                 </Typography>
                             </CardContent>
-                            <Stack direction="row" spacing={5} sx={{ pl: 3, pb: 5 }}>
-                                <FormControl>
-                                    <InputLabel>QTY</InputLabel>
-                                    <Select
-                                        label="QTY"
-                                        variant='outlined'
-                                        name="quantity"
-                                        value={quantity}
-                                    // onChange={handleChange}
-                                    >
-                                        <MenuItem value={1}>1</MenuItem>
-                                        <MenuItem value={2}>2</MenuItem>
-                                        <MenuItem value={3}>3</MenuItem>
-                                        <MenuItem value={4}>4</MenuItem>
-                                        <MenuItem value={5}>5</MenuItem>
-                                        <MenuItem value={6}>6</MenuItem>
-                                        <MenuItem value={7}>7</MenuItem>
-                                        <MenuItem value={8}>8</MenuItem>
-                                    </Select>
-                                </FormControl>
-                                <Button variant="outlined" startIcon={<DeleteIcon />}>
-                                    Delete
+                            <CardActions>
+                                <Button fullWidth variant='outlined'>
+                                    Proceed to Checkout
                                 </Button>
-                            </Stack>
-                        </Box>
-                    </Card>
-                ))}
+                            </CardActions>
+                        </Card>
+                    </Grid>
+                </Grid>
             </Grid>
         </>
     )

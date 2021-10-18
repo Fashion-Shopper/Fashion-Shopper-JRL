@@ -44,6 +44,7 @@ export const addToCart = (productToAdd) => async dispatch => {
                 authorization: token //to identify the user
             }
         })
+        // console.log(data)
         dispatch(addorupdateCart(data))
     }
 }
@@ -55,14 +56,14 @@ export const addToCart = (productToAdd) => async dispatch => {
 
 
 ////////////////// REDUCER ////////////////////
-const initialState = []
+const initialState = {}
 
 export default function (state = initialState, action) {
     switch (action.type) {
         case FETCH_USER_CART:
             return action.cart
         case ADD_TO_CART:
-            return [action.addOrupdateProduct, ...state.filter(item => item.id !== action.addOrupdateProduct.id)]
+            return { ...state, orderitems: action.addOrupdateProduct, }
         // case REMOVE_FROM_CART:
         //     return
         // case CHANGE_PRODUCT_QUANTITY:

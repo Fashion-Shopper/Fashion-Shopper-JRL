@@ -8,7 +8,7 @@ router.get("/", async (req, res, next) => {
         const token = req.headers.authorization;
         const user = await User.findByToken(token)
 
-        const [activeorder] = await Order.findOrCreate({
+        const [cart] = await Order.findOrCreate({
             where: {
                 userId: user.id,
                 isCart: true
@@ -16,15 +16,20 @@ router.get("/", async (req, res, next) => {
             defaults: {
                 userId: user.id
             },
-            include: OrderItem
+            include: {
+                model: OrderItem,
+                include: {
+                    model: Product
+                }
+            }
         });
 
-        const cart = await OrderItem.findAll({
-            where: {
-                orderId: activeorder.id
-            },
-            include: Product
-        })
+        // const cart = await OrderItem.findAll({
+        //     where: {
+        //         orderId: activeorder.id
+        //     },
+        //     include: Product
+        // })
 
         res.json(cart);
     }
@@ -39,43 +44,40 @@ router.post("/", async (req, res, next) => {
         const token = req.headers.authorization;
         const user = await User.findByToken(token)
 
-        const [usercart] = await Order.findOrCreate({
+        const [cart] = await Order.findOrCreate({
             where: {
                 userId: user.id,
                 isCart: true
             },
             defaults: {
                 userId: user.id
-            },
-            include: OrderItem
+            }
         });
 
         const productExist = await OrderItem.findOne({
             where: {
-                orderId: usercart.id,
+                orderId: cart.id,
                 productId: product.productId
             }
         });
 
-        let updatedItem;
-
         if (productExist) {
             const newquantity = productExist.quantity + (product.quantity * 1);
             await productExist.update({ ...productExist, quantity: newquantity })
-            updatedItem = await productExist.save()
+            await productExist.save()
         }
         else {
-            updatedItem = await OrderItem.create({ orderId: usercart.id, ...product })
+            await OrderItem.create({ orderId: cart.id, ...product })
         }
 
-        updatedItem = await OrderItem.findOne({
+        const updateditems = await OrderItem.findAll({
             where: {
-                id: updatedItem.id
+                orderId: cart.id
             },
             include: Product
         })
 
-        res.json(updatedItem);
+        res.json(updateditems);
     }
     catch (err) {
         next(err);
