@@ -12,8 +12,8 @@ Brand.hasMany(Product);
 Order.belongsTo(User);
 User.hasMany(Order);
 
-OrderItem.belongsTo(Order);
-Order.hasMany(OrderItem);
+// OrderItem.belongsTo(Order);
+// Order.hasMany(OrderItem);
 
 OrderItem.belongsTo(Product);
 Product.hasMany(OrderItem);

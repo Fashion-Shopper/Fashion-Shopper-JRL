@@ -8,11 +8,11 @@ const {
 const Order = require("../server/db/models/Order");
 
 //for images/avatar
-const path = require('path');
-const fs = require('fs');
+const path = require("path");
+const fs = require("fs");
 const OrderItem = require("../server/db/models/OrderItem");
 
-//To Work On Later 
+//To Work On Later
 // const loadImage = (imagePath) =>{
 //   return new Promise((res, rej)=> {
 //     fs.readFile(imagePath, 'base64', (err,data)=>{
@@ -25,7 +25,6 @@ const OrderItem = require("../server/db/models/OrderItem");
 //   })
 // })
 // }
-
 
 /**
  * seed - this function clears the database, updates tables to
@@ -45,7 +44,7 @@ async function seed() {
 
   console.log(`seeded ${users.length} users`);
   //avatar
-  //Later 
+  //Later
   // cody.avatar = await loadImage(__dirname, 'square.png')
 
   // Creating Products...
@@ -111,11 +110,11 @@ async function seed() {
   brands.forEach((brand) => brand.save());
 
   //Testing orders
-  Order.create({ userId: users[0].id })
-  Order.create({ userId: users[1].id })
+  await Order.create({ userId: users[0].id });
+  await Order.create({ userId: users[1].id });
 
-  OrderItem.create({ orderId: 1, productId: 1, quantity: 3 })
-  OrderItem.create({ orderId: 1, productId: 2, quantity: 5 })
+  await OrderItem.create({ orderId: 1, productId: 1, quantity: 3 });
+  await OrderItem.create({ orderId: 1, productId: 2, quantity: 5 });
 
   console.log(`seeded successfully`);
   return {
