@@ -44,7 +44,6 @@ export const addToCart = (productToAdd) => async dispatch => {
                 authorization: token //to identify the user
             }
         })
-        // console.log(data)
         dispatch(addorupdateCart(data))
     }
 }

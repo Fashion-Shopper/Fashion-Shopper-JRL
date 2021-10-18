@@ -42,7 +42,7 @@ class SingleProduct extends Component {
 
   onSubmit(evt) {
     evt.preventDefault();
-    // console.log(this.state)
+    console.log(this.state)
     this.props.addToCart(this.state)
 
 

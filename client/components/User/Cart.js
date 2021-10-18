@@ -5,10 +5,12 @@ import { useDispatch, useSelector } from 'react-redux'
 import { Button, Card, CardActions, CardContent, CardHeader, CardMedia, CircularProgress, Divider, FormControl, Grid, InputLabel, MenuItem, Select, Stack, Typography } from '@mui/material'
 import { Box } from '@mui/system';
 import DeleteIcon from '@mui/icons-material/Delete';
+import { addToCart } from '../../store';
 
 
 
 const Cart = () => {
+    const dispatch = useDispatch()
     const { userCart } = useSelector(state => state)
 
     /////////// THIS DISPLAY THE LOADING SPINNER ///////////////
@@ -27,8 +29,6 @@ const Cart = () => {
         total = userCart.orderitems.reduce((acc, { product, quantity }) => acc + (product.price * quantity), 0)
     }
 
-    console.log(userCart.orderitems)
-
     if (userCart.orderitems && userCart.orderitems.length === 0) {
         return (
             <>
@@ -41,6 +41,12 @@ const Cart = () => {
                 </Typography>
             </>
         )
+    }
+
+    const handleChange = (evt, productId) => {
+        const updatedProduct = { productId, [evt.target.name]: evt.target.value }
+        ////////// make an update cart thunk to handle the update //////
+        // dispatch(addToCart(updatedProduct))
     }
 
     return (
@@ -78,7 +84,7 @@ const Cart = () => {
                                                 variant='outlined'
                                                 name="quantity"
                                                 value={quantity}
-                                            // onChange={handleChange}
+                                                onChange={(evt) => handleChange(evt, product.id)}
                                             >
                                                 <MenuItem value={1}>1</MenuItem>
                                                 <MenuItem value={2}>2</MenuItem>
