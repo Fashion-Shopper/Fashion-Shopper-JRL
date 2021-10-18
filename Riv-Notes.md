@@ -29,3 +29,8 @@ PART 2: Single Brand Page
 - [ ] Sequelize
 - [ ] App.js: add Route
 - [ ] Make sure single brand is factored into action/thunk creators, store etc.
+
+Building Admin Functionality:
+
+- [ ] Add Routes for admin-specific pages
+- [ ] Add admin-only apis
