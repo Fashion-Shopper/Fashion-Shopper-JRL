@@ -12,7 +12,7 @@ const Cart = () => {
     const { userCart } = useSelector(state => state)
 
     /////////// THIS DISPLAY THE LOADING SPINNER ///////////////
-    if (!userCart) {
+    if (!userCart.orderitems) {
         return (
             <Box sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', height: '80vh' }}>
                 <CircularProgress size={100} />
@@ -23,9 +23,13 @@ const Cart = () => {
         )
     }
     let total = 0;
-    // const total = userCart.reduce((acc, { product, quantity }) => acc + (product.price * quantity))
+    if (userCart.orderitems) {
+        total = userCart.orderitems.reduce((acc, { product, quantity }) => acc + (product.price * quantity), 0)
+    }
 
-    if (userCart.length === 0 && userCart) {
+    console.log(userCart.orderitems)
+
+    if (userCart.orderitems && userCart.orderitems.length === 0) {
         return (
             <>
                 <Typography variant='h5' gutterBottom>
@@ -46,30 +50,9 @@ const Cart = () => {
             </Typography>
             <Divider />
 
-            <Grid container>
-                <Grid container item xs={12} sm={4}>
-                    <Grid item sx={{ p: 3 }}>
-                        <Card>
-                            <CardHeader
-                                title="ORDER SUMMARY"
-                                sx={{ backgroundColor: '' }}
-                            />
-                            <Divider />
-                            <CardContent>
-                                <Typography variant="body2">
-                                    Estimated Total: {total}
-                                </Typography>
-                            </CardContent>
-                            <CardActions>
-                                <Button fullWidth variant='outlined'>
-                                    Checkout
-                                </Button>
-                            </CardActions>
-                        </Card>
-                    </Grid>
-                </Grid>
+            <Grid container sx={{ pb: 12 }}>
                 <Grid container item xs={12} sm={8}>
-                    {userCart.map(({ product, quantity }) => (
+                    {userCart.orderitems.map(({ product, quantity }) => (
                         <Grid item sx={{ p: 3 }}>
                             <Card sx={{ display: 'flex' }} key={product.id}>
                                 <CardMedia
@@ -81,7 +64,7 @@ const Cart = () => {
                                 <Box sx={{ display: 'flex', flexDirection: 'column' }}>
                                     <CardContent sx={{ flex: '1 0 auto' }}>
                                         <Typography component="div" variant="h5">
-                                            {product.price}
+                                            {product.name}
                                         </Typography>
                                         <Typography variant="subtitle1" color="text.secondary" component="div">
                                             {product.description}
@@ -115,6 +98,27 @@ const Cart = () => {
                             </Card>
                         </Grid>
                     ))}
+                </Grid>
+                <Grid container item xs={12} sm={4}>
+                    <Grid item sx={{ p: 3, textAlign: 'center' }}>
+                        <Card>
+                            <CardHeader
+                                title="Order Summary"
+                                sx={{ backgroundColor: '' }}
+                            />
+                            <Divider />
+                            <CardContent>
+                                <Typography variant="h6">
+                                    Subtotal ${total.toFixed(2)}
+                                </Typography>
+                            </CardContent>
+                            <CardActions>
+                                <Button fullWidth variant='outlined'>
+                                    Proceed to Checkout
+                                </Button>
+                            </CardActions>
+                        </Card>
+                    </Grid>
                 </Grid>
             </Grid>
         </>

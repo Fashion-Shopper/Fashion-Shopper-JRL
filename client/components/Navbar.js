@@ -16,10 +16,9 @@ const Navbar = () => {
   const products = useSelector(state => state.products)
   const cart = useSelector(state => state.userCart)
 
-
   let quantity = 0;
-  if (Array.isArray(cart) && isLoggedIn) {
-    quantity = cart.reduce((acc, item) => acc + item.quantity, quantity)
+  if (cart.orderitems && isLoggedIn) {
+    quantity = cart.orderitems.reduce((acc, item) => acc + item.quantity, quantity)
   }
 
   const handleClick = () => {
