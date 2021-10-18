@@ -29,13 +29,12 @@ const { pluralize } = require("inflection");
 /////////////////// ROUTES (DYNAMIC) ///////////////////
 
 // router.get("/orders", isLoggedIn, isAdmin, async (req, res, next) => {
-//     try {
-//         const orders = await Order.findAll()
-//         res.json(orders);
-//     }
-//     catch (err) {
-//         next(err);
-//     }
+//   try {
+//     const orders = await Order.findAll();
+//     res.json(orders);
+//   } catch (err) {
+//     next(err);
+//   }
 // });
 
 // router.get("/users", isLoggedIn, isAdmin, async (req, res, next) => {
@@ -57,6 +56,8 @@ const { pluralize } = require("inflection");
 //         next(err);
 //     }
 // });
+
+module.exports = router;
 
 //Do three Routes in a more efficient way (dynamic routes)
 const obj = {
@@ -90,5 +91,3 @@ Object.entries(obj).forEach((entry) => {
     }
   );
 });
-
-module.exports = router;
