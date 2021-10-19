@@ -36,7 +36,7 @@ async function seed() {
 
   // Creating Users...
   const users = await Promise.all([
-    User.create({ username: "cody", password: "123", isAdmin: true }),
+    User.create({ username: "cody", password: "123" }),
     User.create({ username: "murphy", password: "123", isAdmin: true }),
   ]);
 
@@ -110,11 +110,11 @@ async function seed() {
   brands.forEach((brand) => brand.save());
 
   //Testing orders
-  await Order.create({ userId: users[0].id })
-  await Order.create({ userId: users[1].id })
+  await Order.create({ userId: users[0].id });
+  await Order.create({ userId: users[1].id });
 
-  await OrderItem.create({ orderId: 1, productId: 1, quantity: 3 })
-  await OrderItem.create({ orderId: 1, productId: 2, quantity: 5 })
+  await OrderItem.create({ orderId: 1, productId: 1, quantity: 3 });
+  await OrderItem.create({ orderId: 1, productId: 2, quantity: 5 });
 
   console.log(`seeded successfully`);
   return {
