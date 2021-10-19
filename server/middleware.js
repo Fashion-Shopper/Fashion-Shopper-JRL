@@ -17,6 +17,7 @@ const isAdmin = (req, res, next) => {
   if (req.user.isAdmin) {
     return next();
   }
+  console.log(req);
   const error = new Error("must be Admin!");
   error.status = 401;
   next(error);
