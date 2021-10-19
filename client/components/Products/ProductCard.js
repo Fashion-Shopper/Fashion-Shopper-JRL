@@ -10,6 +10,7 @@ import Typography from "@mui/material/Typography";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import IconButton from "@mui/material/IconButton";
 import { Button } from "@mui/material";
+import DeleteIcon from "@mui/icons-material/Delete";
 
 import { destroyProduct } from "../../store";
 
@@ -61,6 +62,14 @@ function ProductCard(props) {
         <Button variant="outlined" component={Link} to={`/products/${id}`}>
           {" "}
           VEIW ITEM{" "}
+        </Button>
+        <Button
+          // ATTENTION (Riv): The argument for handleDelete needs to be changed...
+          onClick={() => handleDelete(3)}
+          variant="outlined"
+          startIcon={<DeleteIcon />}
+        >
+          Remove
         </Button>
       </CardActions>
     </Card>
