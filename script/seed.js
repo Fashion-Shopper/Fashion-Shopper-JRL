@@ -111,11 +111,11 @@ async function seed() {
   brands.forEach((brand) => brand.save());
 
   //Testing orders
-  Order.create({ userId: users[0].id })
-  Order.create({ userId: users[1].id })
+  await Order.create({ userId: users[0].id })
+  await Order.create({ userId: users[1].id })
 
-  OrderItem.create({ orderId: 1, productId: 1, quantity: 3 })
-  OrderItem.create({ orderId: 1, productId: 2, quantity: 5 })
+  await OrderItem.create({ orderId: 1, productId: 1, quantity: 3 })
+  await OrderItem.create({ orderId: 1, productId: 2, quantity: 5 })
 
   console.log(`seeded successfully`);
   return {
