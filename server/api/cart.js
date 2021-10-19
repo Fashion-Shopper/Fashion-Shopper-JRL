@@ -1,5 +1,4 @@
 const router = require("express").Router();
-
 const { models: { Order, OrderItem, Product } } = require("../db");
 const User = require("../db/models/User");
 
@@ -43,10 +42,12 @@ router.get("/", async (req, res, next) => {
 
 router.post("/", async (req, res, next) => {
     try {
-        const product = req.body
+        const addOrderItem = req.body
         const token = req.headers.authorization;
         const user = await User.findByToken(token)
 
+
+        //// Find user order that is a cart ///////
         const [cart] = await Order.findOrCreate({
             where: {
                 userId: user.id,
@@ -57,22 +58,25 @@ router.post("/", async (req, res, next) => {
             }
         });
 
-        const productExist = await OrderItem.findOne({
+        /////// Look for orderitem that has productId inside cart //////
+        const orderItemExist = await OrderItem.findOne({
             where: {
                 orderId: cart.id,
-                productId: product.productId
+                productId: addOrderItem.productId
             }
         });
 
-        if (productExist) {
-            const newquantity = productExist.quantity + (product.quantity * 1);
-            await productExist.update({ ...productExist, quantity: newquantity })
-            await productExist.save()
+        /////////// Check if orderitem exist and just increse quantity /////
+        if (orderItemExist) {
+            const newquantity = orderItemExist.quantity + (addOrderItem.quantity * 1);
+            await orderItemExist.update({ ...orderItemExist, quantity: newquantity })
         }
+        ///////////// Or just add new orderitem to the cart order ////////
         else {
-            await OrderItem.create({ orderId: cart.id, ...product })
+            await OrderItem.create({ orderId: cart.id, ...addOrderItem })
         }
 
+        ////// Get all orderitems in the cart order //////
         const updateditems = await OrderItem.findAll({
             where: {
                 orderId: cart.id
@@ -92,29 +96,29 @@ router.post("/", async (req, res, next) => {
 
 router.put("/", async (req, res, next) => {
     try {
-        const product = req.body
+        const updateOrderItem = req.body
         const token = req.headers.authorization;
         const user = await User.findByToken(token)
 
-        const cart = await Order.findOne({
+        // const cart = await Order.findOne({
+        //     where: {
+        //         userId: user.id,
+        //         isCart: true
+        //     }
+        // });
+
+        const orderItemToUpdate = await OrderItem.findOne({
             where: {
-                userId: user.id,
-                isCart: true
+                id: updateOrderItem.id
+                // productId: updateOrderItem.productId
             }
         });
 
-        const productToUpdate = await OrderItem.findOne({
-            where: {
-                orderId: cart.id,
-                productId: product.productId
-            }
-        });
+        await orderItemToUpdate.update(updateOrderItem)
 
-        await productToUpdate.update(product)
-
-        const updateditems = await OrderItem.findAll({
+        const updatedItems = await OrderItem.findAll({
             where: {
-                orderId: cart.id
+                orderId: orderItemToUpdate.orderId
             },
             order: [
                 ['createdAt', 'DESC'],
@@ -122,43 +126,41 @@ router.put("/", async (req, res, next) => {
             include: Product
         })
 
-        res.json(updateditems);
+        res.json(updatedItems);
     }
     catch (err) {
         next(err);
     }
 });
 
-router.delete("/:productId", async (req, res, next) => {
+router.delete("/:orderItemId", async (req, res, next) => {
     try {
-        const { productId } = req.params
+        const { orderItemId } = req.params
         const token = req.headers.authorization;
         const user = await User.findByToken(token)
 
-        const cart = await Order.findOne({
-            where: {
-                userId: user.id,
-                isCart: true
-            }
-        });
+        // const cart = await Order.findOne({
+        //     where: {
+        //         userId: user.id,
+        //         isCart: true
+        //     }
+        // });
 
-        const productToDelete = await OrderItem.findByPk(productId, {
-            where: {
-                orderId: cart.id,
-            }
+        const orderItemToDelete = await OrderItem.findByPk(orderItemId, {
+            // where: {
+            //     orderId: cart.id,
+            // }
         });
-
-        await productToDelete.destroy()
+        await orderItemToDelete.destroy()
 
         const updateditems = await OrderItem.findAll({
             where: {
-                orderId: cart.id
+                orderId: orderItemToDelete.orderId
             },
             order: [
                 ['createdAt', 'DESC'],
             ],
-            include: Product,
-
+            include: Product
         })
 
         res.json(updateditems);
