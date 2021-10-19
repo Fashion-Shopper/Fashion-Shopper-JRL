@@ -61,7 +61,7 @@ function ProductCard(props) {
       <CardActions sx={{ display: "flex", flexDirection: "column" }}>
         <Button variant="outlined" component={Link} to={`/products/${id}`}>
           {" "}
-          VEIW ITEM{" "}
+          VIEW ITEM{" "}
         </Button>
         <Button
           onClick={() => handleDelete(id)}
