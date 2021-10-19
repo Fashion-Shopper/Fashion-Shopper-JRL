@@ -4,7 +4,6 @@ const { isLoggedIn } = require("../middleware");
 
 router.get("/", isLoggedIn, async (req, res, next) => {
   try {
-    const token = req.headers.authorization;
     const user = req.user;
 
     const [cart] = await Order.findOrCreate({
@@ -40,7 +39,6 @@ router.get("/", isLoggedIn, async (req, res, next) => {
 router.post("/", isLoggedIn, async (req, res, next) => {
   try {
     const addOrderItem = req.body;
-    const token = req.headers.authorization;
     const user = req.user;
 
     //// Find user order that is a cart ///////
@@ -90,7 +88,6 @@ router.post("/", isLoggedIn, async (req, res, next) => {
 router.put("/", isLoggedIn, async (req, res, next) => {
   try {
     const updateOrderItem = req.body;
-    const token = req.headers.authorization;
     // const user = req.user;
 
     // const cart = await Order.findOne({
@@ -126,7 +123,6 @@ router.put("/", isLoggedIn, async (req, res, next) => {
 router.delete("/:orderItemId", isLoggedIn, async (req, res, next) => {
   try {
     const { orderItemId } = req.params;
-    const token = req.headers.authorization;
     // const user = req.user;
 
     // const cart = await Order.findOne({
