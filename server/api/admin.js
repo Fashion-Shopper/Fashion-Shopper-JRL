@@ -69,7 +69,7 @@ const obj = {
 Object.entries(obj).forEach((entry) => {
   const _path = pluralize(entry[0]);
   const model = entry[1];
-  router.get(`/${_path}`, isLoggedIn, /*isAdmin,*/ async (req, res, next) => {
+  router.get(`/${_path}`, isLoggedIn, isAdmin, async (req, res, next) => {
     try {
       res.send(await model.findAll());
     } catch (err) {
