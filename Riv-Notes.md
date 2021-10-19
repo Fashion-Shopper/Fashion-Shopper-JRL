@@ -32,5 +32,7 @@ PART 2: Single Brand Page
 
 Building Admin Functionality:
 
-- [ ] Add Routes for admin-specific pages
-- [ ] Add admin-only apis
+A. Admin-Only Update/Delete/Add Requests
+
+- Going to start by creating normal requests in products api, then migrate code to admin api
+- 
