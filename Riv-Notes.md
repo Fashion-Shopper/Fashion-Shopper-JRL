@@ -29,3 +29,10 @@ PART 2: Single Brand Page
 - [ ] Sequelize
 - [ ] App.js: add Route
 - [ ] Make sure single brand is factored into action/thunk creators, store etc.
+
+Building Admin Functionality:
+
+A. Admin-Only Update/Delete/Add Requests
+
+- Going to start by creating normal requests in products api, then migrate code to admin api
+- 

@@ -1,12 +1,15 @@
+import { CircularProgress } from "@mui/material";
 import React from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+
+//import {}
 
 const Brands = () => {
   const brands = useSelector((state) => state.brands);
 
   if (!brands) {
-    return <h1>...loading</h1>;
+    return <CircularProgress />;
   }
 
   return (

@@ -8,11 +8,11 @@ const {
 const Order = require("../server/db/models/Order");
 
 //for images/avatar
-const path = require('path');
-const fs = require('fs');
+const path = require("path");
+const fs = require("fs");
 const OrderItem = require("../server/db/models/OrderItem");
 
-//To Work On Later 
+//To Work On Later
 // const loadImage = (imagePath) =>{
 //   return new Promise((res, rej)=> {
 //     fs.readFile(imagePath, 'base64', (err,data)=>{
@@ -26,7 +26,6 @@ const OrderItem = require("../server/db/models/OrderItem");
 // })
 // }
 
-
 /**
  * seed - this function clears the database, updates tables to
  *      match the models, and populates the database.
@@ -37,7 +36,7 @@ async function seed() {
 
   // Creating Users...
   const users = await Promise.all([
-    User.create({ username: "cody", password: "123" }),
+    User.create({ username: "cody", password: "123", isAdmin: true }),
     User.create({ username: "murphy", password: "123", isAdmin: true }),
   ]);
 
@@ -45,7 +44,7 @@ async function seed() {
 
   console.log(`seeded ${users.length} users`);
   //avatar
-  //Later 
+  //Later
   // cody.avatar = await loadImage(__dirname, 'square.png')
 
   // Creating Products...

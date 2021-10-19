@@ -3,41 +3,38 @@ const { models: { Order, OrderItem, Product } } = require("../db");
 const User = require("../db/models/User");
 
 router.get("/", async (req, res, next) => {
-    try {
-        const token = req.headers.authorization;
-        const user = await User.findByToken(token)
+  try {
+    const token = req.headers.authorization;
+    const user = await User.findByToken(token);
 
-        const [cart] = await Order.findOrCreate({
-            where: {
-                userId: user.id,
-                isCart: true
-            },
-            defaults: {
-                userId: user.id
-            },
-            include: {
-                model: OrderItem,
-                include: {
-                    model: Product
-                }
-            },
-            order: [
-                [OrderItem, 'createdAt', 'DESC'],
-            ],
-        });
+    const [cart] = await Order.findOrCreate({
+      where: {
+        userId: user.id,
+        isCart: true,
+      },
+      defaults: {
+        userId: user.id,
+      },
+      include: {
+        model: OrderItem,
+        include: {
+          model: Product,
+        },
+      },
+      order: [[OrderItem, "createdAt", "DESC"]],
+    });
 
-        // const cart = await OrderItem.findAll({
-        //     where: {
-        //         orderId: activeorder.id
-        //     },
-        //     include: Product
-        // })
+    // const cart = await OrderItem.findAll({
+    //     where: {
+    //         orderId: activeorder.id
+    //     },
+    //     include: Product
+    // })
 
-        res.json(cart);
-    }
-    catch (err) {
-        next(err);
-    }
+    res.json(cart);
+  } catch (err) {
+    next(err);
+  }
 });
 
 router.post("/", async (req, res, next) => {
@@ -92,6 +89,19 @@ router.post("/", async (req, res, next) => {
     catch (err) {
         next(err);
     }
+
+    const updateditems = await OrderItem.findAll({
+      where: {
+        orderId: cart.id,
+      },
+      order: [["createdAt", "DESC"]],
+      include: Product,
+    });
+
+    res.json(updateditems);
+  } catch (err) {
+    next(err);
+  }
 });
 
 router.put("/", async (req, res, next) => {

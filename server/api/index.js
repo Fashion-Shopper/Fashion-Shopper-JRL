@@ -6,7 +6,6 @@ const ordersRoute = require("./orders");
 const cartRoute = require("./cart");
 const adminRoute = require("./admin");
 
-
 router.use("/cart", cartRoute);
 router.use("/products", productsRoute);
 router.use("/users", usersRoute);
