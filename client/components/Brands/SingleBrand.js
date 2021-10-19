@@ -41,16 +41,17 @@ class SingleBrand extends Component {
   }
 }
 
-const mapStateToProps = (state) => {
+const mapStateToProps = (state, otherProps) => {
+  const brandId = otherProps.match.params.brandId * 1; //otherProps include the browser window info
   return {
-    brand: state.singleBrand,
+    brand: state.brands.filter(brand => brand.id === brandId || {})
   };
 };
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    loadSingleBrand: (brandId) => dispatch(fetchSingleBrand(brandId)),
-  };
-};
+// const mapDispatchToProps = (dispatch) => {
+//   return {
+//     loadSingleBrand: (brandId) => dispatch(fetchSingleBrand(brandId)),
+//   };
+// };
 
-export default connect(mapStateToProps, mapDispatchToProps)(SingleBrand);
+export default connect(mapStateToProps)(SingleBrand);

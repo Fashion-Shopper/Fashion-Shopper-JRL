@@ -1,6 +1,7 @@
+///////////////////////Library Imports/////////////////////// 
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Route, Switch, Redirect } from "react-router-dom";
+import { withRouter, Route, Switch, Redirect } from "react-router-dom";
 import { Login, Signup } from "./components/AuthForm";
 import Home from "./components/Home";
 import { me } from "./store";
@@ -47,7 +48,12 @@ const Routes = () => {
 
             <Redirect to="/home" />
             {
-              // !!auth.isAdmin && <Route path='/admin' component={Admin} />
+              // !!auth.isAdmin && (
+              //   <>
+              //   <Route path='/admin' component = {Admin} />
+              //   // all of the rest of your admin routes go in here
+              //   </>
+              //   )
             }
           </Switch>
         </>

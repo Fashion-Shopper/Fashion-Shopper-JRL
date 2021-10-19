@@ -1,5 +1,5 @@
 const db = require("../db");
-const { STRING, INTEGER, DECIMAL, TEXT } = require("sequelize");
+const { STRING, DECIMAL, TEXT, ENUM } = require("sequelize");
 
 ///////////////// PRODUCT MODEL /////////////////
 const Product = db.define("product", {
@@ -12,6 +12,12 @@ const Product = db.define("product", {
   },
   // Note: the brand column will be used to pair Product with Brand via script/seed.js.
   // john - I comment this out because this is automatically create by the association in the indexjs
+
+  // Another option: just use the association
+  // add brand to a product
+  // const cdg = await Brand.create({ name: 'comme des garcon' });
+  // const shirt = await Product.create({ name: 'some shirt', brandId: cdg.id });
+
   brandName: {
     type: STRING,
     allowNull: false,
@@ -24,25 +30,25 @@ const Product = db.define("product", {
     allowNull: false,
   },
   price: {
-    type: INTEGER,
+    type: DECIMAL(10,2),
     allowNull: false,
   },
   category: {
-    type: STRING,
+    type: ENUM(["jacket","sweatshirt","pants", "tee", "accessory", "bag","shoes"]), //not string
     allowNull: false,
     validate: {
       notEmpty: true,
     },
   },
-  gender: {
-    type: STRING,
-    allowNull: false,
-    validate: {
-      notEmpty: true,
-    },
-  },
+  // gender: {
+  //   type: STRING,
+  //   allowNull: false,
+  //   validate: {
+  //     notEmpty: true,
+  //   },
+  // },
   size: {
-    type: STRING,
+    type: ENUM(['XS', 'S','M', 'L', 'XL']),
     allowNull: false,
     validate: {
       notEmpty: true,
