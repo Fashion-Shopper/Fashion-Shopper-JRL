@@ -41,37 +41,34 @@ export const fetchProducts = () => {
   };
 };
 
-export const createProduct = (product, history) => {
+export const createProduct = (product) => {
   return async (dispatch) => {
     try {
       const { data } = await axios.post("/api/products", product);
       dispatch(_createProduct(data));
-      history.push("/");
     } catch (err) {
       console.log(err);
     }
   };
 };
 
-export const updateProduct = (product, history) => {
+export const updateProduct = (product) => {
   return async (dispatch) => {
     try {
       console.log(product);
       const { data } = await axios.put(`/api/products/${product.id}`, product);
       dispatch(_updateProduct(data));
-      history.push("/");
     } catch (err) {
       console.log(err);
     }
   };
 };
 
-export const destroyProduct = (id, history) => {
+export const destroyProduct = (id) => {
   return async (dispatch) => {
     try {
       await axios.delete(`/api/products/${id}`);
       dispatch(_destroyProduct({ id: id * 1 }));
-      history.push("/");
     } catch (err) {
       console.log(err);
     }
