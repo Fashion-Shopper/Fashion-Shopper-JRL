@@ -64,12 +64,11 @@ function ProductCard(props) {
           VEIW ITEM{" "}
         </Button>
         <Button
-          // ATTENTION (Riv): The argument for handleDelete needs to be changed...
-          onClick={() => handleDelete(3)}
+          onClick={() => handleDelete(id)}
           variant="outlined"
           startIcon={<DeleteIcon />}
         >
-          Remove
+          Delete
         </Button>
       </CardActions>
     </Card>

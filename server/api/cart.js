@@ -87,19 +87,6 @@ router.post("/", async (req, res, next) => {
   } catch (err) {
     next(err);
   }
-
-  const updateditems = await OrderItem.findAll({
-    where: {
-      orderId: cart.id,
-    },
-    order: [["createdAt", "DESC"]],
-    include: Product,
-  });
-
-  res.json(updateditems);
-  //   } catch (err) {
-  //     next(err);
-  //   }
 });
 
 router.put("/", async (req, res, next) => {
