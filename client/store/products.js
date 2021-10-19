@@ -1,9 +1,9 @@
 import axios from "axios";
 
 const SET_PRODUCTS = "SET_PRODUCTS";
-// const CREATE_PRODUCT = 'CREATE_PRODUCT'
-// const DESTROY_PRODUCT = 'DESTROY_PRODUCT'
-// const UPDATE_PRODUCT = 'UPDATE_PRODUCT'
+const CREATE_PRODUCT = "CREATE_PRODUCT";
+const DESTROY_PRODUCT = "DESTROY_PRODUCT";
+const UPDATE_PRODUCT = "UPDATE_PRODUCT";
 
 const _setProducts = (products) => {
   return {
