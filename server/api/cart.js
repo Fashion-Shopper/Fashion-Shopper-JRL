@@ -1,13 +1,11 @@
 const router = require("express").Router();
-const {
-  models: { Order, OrderItem, Product },
-} = require("../db");
-const User = require("../db/models/User");
+const { models: { Order, OrderItem, Product }, } = require("../db");
+const { isLoggedIn } = require("../middleware");
 
-router.get("/", async (req, res, next) => {
+router.get("/", isLoggedIn, async (req, res, next) => {
   try {
     const token = req.headers.authorization;
-    const user = await User.findByToken(token);
+    const user = req.user;
 
     const [cart] = await Order.findOrCreate({
       where: {
@@ -39,11 +37,11 @@ router.get("/", async (req, res, next) => {
   }
 });
 
-router.post("/", async (req, res, next) => {
+router.post("/", isLoggedIn, async (req, res, next) => {
   try {
     const addOrderItem = req.body;
     const token = req.headers.authorization;
-    const user = await User.findByToken(token);
+    const user = req.user;
 
     //// Find user order that is a cart ///////
     const [cart] = await Order.findOrCreate({
@@ -89,11 +87,11 @@ router.post("/", async (req, res, next) => {
   }
 });
 
-router.put("/", async (req, res, next) => {
+router.put("/", isLoggedIn, async (req, res, next) => {
   try {
     const updateOrderItem = req.body;
     const token = req.headers.authorization;
-    const user = await User.findByToken(token);
+    // const user = req.user;
 
     // const cart = await Order.findOne({
     //     where: {
@@ -125,11 +123,11 @@ router.put("/", async (req, res, next) => {
   }
 });
 
-router.delete("/:orderItemId", async (req, res, next) => {
+router.delete("/:orderItemId", isLoggedIn, async (req, res, next) => {
   try {
     const { orderItemId } = req.params;
     const token = req.headers.authorization;
-    const user = await User.findByToken(token);
+    // const user = req.user;
 
     // const cart = await Order.findOne({
     //     where: {

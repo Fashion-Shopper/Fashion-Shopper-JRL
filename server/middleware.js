@@ -1,9 +1,7 @@
 const User = require("./db/models/User");
 
-//Middlewares
-
+//////////////////  MIDDLEWARES   ///////////////////////
 const isLoggedIn = async (req, res, next) => {
-  //this is a middleware to dry things out
   try {
     const user = await User.findByToken(req.headers.authorization);
     req.user = user;
@@ -14,7 +12,7 @@ const isLoggedIn = async (req, res, next) => {
 };
 
 const isAdmin = (req, res, next) => {
-  if (req.user.dataValues.isAdmin) {
+  if (req.user.isAdmin) {
     return next();
   }
   const error = new Error("must be Admin!");
