@@ -38,7 +38,7 @@ function ProductCard(props) {
                     Rating: {rating}
                 </Typography>
                 <Typography variant="body2" color="text.secondary">
-                    Price: ${price}.99
+                    Price: ${price}
                 </Typography>
             </CardContent>
             <CardActions sx={{ display: 'flex', flexDirection: 'column' }}>
