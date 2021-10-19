@@ -1,6 +1,6 @@
 import * as React from "react";
 import { Link } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 import Card from "@mui/material/Card";
 import CardMedia from "@mui/material/CardMedia";
@@ -18,6 +18,8 @@ import { destroyProduct } from "../../store";
 // import { MdOutlineAddShoppingCart } from 'react-icons/md'
 
 function ProductCard(props) {
+  const { isAdmin } = useSelector((state) => state.auth);
+
   const {
     id,
     name,
@@ -63,13 +65,15 @@ function ProductCard(props) {
           {" "}
           VIEW ITEM{" "}
         </Button>
-        <Button
-          onClick={() => handleDelete(id)}
-          variant="outlined"
-          startIcon={<DeleteIcon />}
-        >
-          Delete
-        </Button>
+        {!!isAdmin && (
+          <Button
+            onClick={() => handleDelete(id)}
+            variant="outlined"
+            startIcon={<DeleteIcon />}
+          >
+            Delete
+          </Button>
+        )}
       </CardActions>
     </Card>
   );

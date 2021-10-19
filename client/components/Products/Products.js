@@ -15,19 +15,26 @@ import { Box } from "@mui/system";
 //import DeleteProduct from './DeleteProduct';
 //import brand from '../store/brand';
 
-
 const Products = () => {
   const products = useSelector((state) => state.products);
 
   if (!products) {
     return (
-      <Box sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', height: '80vh' }}>
+      <Box
+        sx={{
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "center",
+          alignItems: "center",
+          height: "80vh",
+        }}
+      >
         <CircularProgress size={100} />
         <Typography variant="body2" color="text.secondary">
           LOADING...
         </Typography>
       </Box>
-    )
+    );
   }
 
   return (
