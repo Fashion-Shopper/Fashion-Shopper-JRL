@@ -1,57 +1,46 @@
 const router = require("express").Router();
-const { models: { Order, User } } = require("../db");
+const {
+  models: { Order, OrderItem, User },
+} = require("../db");
 
-//Middlewares
-const { isLoggedIn, isAdmin } = require('../middleware');
-const { pluralize } = require('inflection');
+const { isLoggedIn, isAdmin } = require("../middleware");
+const { pluralize } = require("inflection");
 
-//Do three Routes in a more efficient way (dynamic routes)
-const obj = {
-    orders: Order,
-    //orderItems: OrderItem,
-    users: User
-}
+/////////////////// ROUTES / SIMPLE ///////////////////
 
-Object.entries(obj).forEach(entry => {
-    const _path = pluralize(entry[0]);
-    const model = entry[1];
-    router.get(`/${_path}`, isLoggedIn, isAdmin, async (req, res, next) => {
-        try {
-            res.send(await model.findAll())
-        }
-        catch (err) {
-            next(err);
-        }
-    });
-    router.delete(`/${_path}/:id`, isLoggedIn, isAdmin, async (req, res, next) => {
-        try {
-            const item = await model.findByPk(res.params.id)
-            await item.destroy()
-            res.sendStatus(201)
-        }
-        catch (err) {
-            next(err);
-        }
-    });
-})
+// router.get("/orders", async (req, res, next) => {
+//   try {
+//     const orders = await Order.findAll();
+//     res.send(orders);
+//   } catch (err) {
+//     next(err);
+//   }
+// });
 
+// router.get("/users", async (req, res, next) => {
+//   try {
+//     const users = await User.findAll();
+//     res.send(users);
+//   } catch (err) {
+//     next(err);
+//   }
+// });
 
-//Routes 
+/////////////////// ROUTES (DYNAMIC) ///////////////////
 
 // router.get("/orders", isLoggedIn, isAdmin, async (req, res, next) => {
-//     try {
-//         const orders = await Order.findAll()
-//         res.json(orders);
-//     }
-//     catch (err) {
-//         next(err);
-//     }
+//   try {
+//     const orders = await Order.findAll();
+//     res.json(orders);
+//   } catch (err) {
+//     next(err);
+//   }
 // });
 
 // router.get("/users", isLoggedIn, isAdmin, async (req, res, next) => {
 //     try {
 //         const users = await User.findAll()
-//         res.json(userss);
+//         res.json(users);
 //     }
 //     catch (err) {
 //         next(err);
@@ -69,3 +58,36 @@ Object.entries(obj).forEach(entry => {
 // });
 
 module.exports = router;
+
+//Do three Routes in a more efficient way (dynamic routes)
+const obj = {
+  orders: Order,
+  orderItems: OrderItem,
+  users: User,
+};
+
+Object.entries(obj).forEach((entry) => {
+  const _path = pluralize(entry[0]);
+  const model = entry[1];
+  router.get(`/${_path}`, isLoggedIn, isAdmin, async (req, res, next) => {
+    try {
+      res.send(await model.findAll());
+    } catch (err) {
+      next(err);
+    }
+  });
+  router.delete(
+    `/${_path}/:id`,
+    isLoggedIn,
+    isAdmin,
+    async (req, res, next) => {
+      try {
+        const item = await model.findByPk(req.params.id);
+        await item.destroy();
+        res.sendStatus(201);
+      } catch (err) {
+        next(err);
+      }
+    }
+  );
+});
