@@ -15,7 +15,7 @@ const App = () => {
   useEffect(() => {
     dispatch(fetchProducts());
     dispatch(fetchBrands());
-  });
+  },[]);
 
   return (
     <>
