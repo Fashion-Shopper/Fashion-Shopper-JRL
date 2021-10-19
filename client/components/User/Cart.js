@@ -43,13 +43,13 @@ const Cart = () => {
         )
     }
 
-    const handleChange = (evt, productId) => {
-        const updatedProduct = { productId, [evt.target.name]: evt.target.value }
-        dispatch(updateCart(updatedProduct))
+    const handleChange = (evt, id) => {
+        const updateOrderItem = { id, [evt.target.name]: evt.target.value }
+        dispatch(updateCart(updateOrderItem))
     }
 
-    const handleRemove = (productId) => {
-        dispatch(removeFromCart(productId))
+    const handleRemove = (orderItemId) => {
+        dispatch(removeFromCart(orderItemId))
     }
 
     return (
@@ -60,9 +60,9 @@ const Cart = () => {
             <Divider />
 
             <Grid container sx={{ pb: 12 }}>
-                <Grid container item xs={12} sm={8}>
-                    {userCart.orderitems.map(({ product, quantity }) => (
-                        <Grid item sx={{ p: 2 }} key={product.id}>
+                <Grid container item xs={12} sm={8} md={8}>
+                    {userCart.orderitems.map(({ id, product, quantity }) => (
+                        <Grid item xs={12} sx={{ p: 2 }} key={product.id}>
                             <Card sx={{ display: 'flex' }} >
                                 <CardMedia
                                     component="img"
@@ -76,7 +76,7 @@ const Cart = () => {
                                             {product.name}
                                         </Typography>
                                         <Typography variant="subtitle1" color="text.secondary" component="div">
-                                            {product.description}
+                                            {product.price}
                                         </Typography>
                                     </CardContent>
                                     <Stack direction="row" spacing={5} sx={{ pl: 3, pb: 5 }}>
@@ -87,7 +87,7 @@ const Cart = () => {
                                                 variant='outlined'
                                                 name="quantity"
                                                 value={quantity}
-                                                onChange={(evt) => handleChange(evt, product.id)}
+                                                onChange={(evt) => handleChange(evt, id)}
                                             >
                                                 <MenuItem value={1}>1</MenuItem>
                                                 <MenuItem value={2}>2</MenuItem>
@@ -99,7 +99,7 @@ const Cart = () => {
                                                 <MenuItem value={8}>8</MenuItem>
                                             </Select>
                                         </FormControl>
-                                        <Button onClick={() => handleRemove(product.id)} variant="outlined" startIcon={<DeleteIcon />}>
+                                        <Button onClick={() => handleRemove(id)} variant="outlined" startIcon={<DeleteIcon />}>
                                             Remove
                                         </Button>
                                     </Stack>
@@ -108,7 +108,7 @@ const Cart = () => {
                         </Grid>
                     ))}
                 </Grid>
-                <Grid item container xs={12} sm={4}>
+                <Grid item container xs={12} sm={4} md={4}>
                     <Grid item xs={12} sx={{ p: 2 }} >
                         <Card sx={{ textAlign: 'center', m: 'auto' }}>
                             <CardHeader

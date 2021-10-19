@@ -1,8 +1,5 @@
 const router = require("express").Router();
-
-const {
-  models: { Order, OrderItem, Product },
-} = require("../db");
+const { models: { Order, OrderItem, Product } } = require("../db");
 const User = require("../db/models/User");
 
 router.get("/", async (req, res, next) => {
@@ -41,34 +38,56 @@ router.get("/", async (req, res, next) => {
 });
 
 router.post("/", async (req, res, next) => {
-  try {
-    const product = req.body;
-    const token = req.headers.authorization;
-    const user = await User.findByToken(token);
+    try {
+        const addOrderItem = req.body
+        const token = req.headers.authorization;
+        const user = await User.findByToken(token)
 
-    const [cart] = await Order.findOrCreate({
-      where: {
-        userId: user.id,
-        isCart: true,
-      },
-      defaults: {
-        userId: user.id,
-      },
-    });
 
-    const productExist = await OrderItem.findOne({
-      where: {
-        orderId: cart.id,
-        productId: product.productId,
-      },
-    });
+        //// Find user order that is a cart ///////
+        const [cart] = await Order.findOrCreate({
+            where: {
+                userId: user.id,
+                isCart: true
+            },
+            defaults: {
+                userId: user.id
+            }
+        });
 
-    if (productExist) {
-      const newquantity = productExist.quantity + product.quantity * 1;
-      await productExist.update({ ...productExist, quantity: newquantity });
-      await productExist.save();
-    } else {
-      await OrderItem.create({ orderId: cart.id, ...product });
+        /////// Look for orderitem that has productId inside cart //////
+        const orderItemExist = await OrderItem.findOne({
+            where: {
+                orderId: cart.id,
+                productId: addOrderItem.productId
+            }
+        });
+
+        /////////// Check if orderitem exist and just increse quantity /////
+        if (orderItemExist) {
+            const newquantity = orderItemExist.quantity + (addOrderItem.quantity * 1);
+            await orderItemExist.update({ ...orderItemExist, quantity: newquantity })
+        }
+        ///////////// Or just add new orderitem to the cart order ////////
+        else {
+            await OrderItem.create({ orderId: cart.id, ...addOrderItem })
+        }
+
+        ////// Get all orderitems in the cart order //////
+        const updateditems = await OrderItem.findAll({
+            where: {
+                orderId: cart.id
+            },
+            order: [
+                ['createdAt', 'DESC'],
+            ],
+            include: Product
+        })
+
+        res.json(updateditems);
+    }
+    catch (err) {
+        next(err);
     }
 
     const updateditems = await OrderItem.findAll({
@@ -86,74 +105,79 @@ router.post("/", async (req, res, next) => {
 });
 
 router.put("/", async (req, res, next) => {
-  try {
-    const product = req.body;
-    const token = req.headers.authorization;
-    const user = await User.findByToken(token);
+    try {
+        const updateOrderItem = req.body
+        const token = req.headers.authorization;
+        const user = await User.findByToken(token)
 
-    const cart = await Order.findOne({
-      where: {
-        userId: user.id,
-        isCart: true,
-      },
-    });
+        // const cart = await Order.findOne({
+        //     where: {
+        //         userId: user.id,
+        //         isCart: true
+        //     }
+        // });
 
-    const productToUpdate = await OrderItem.findOne({
-      where: {
-        orderId: cart.id,
-        productId: product.productId,
-      },
-    });
+        const orderItemToUpdate = await OrderItem.findOne({
+            where: {
+                id: updateOrderItem.id
+                // productId: updateOrderItem.productId
+            }
+        });
 
-    await productToUpdate.update(product);
+        await orderItemToUpdate.update(updateOrderItem)
 
-    const updateditems = await OrderItem.findAll({
-      where: {
-        orderId: cart.id,
-      },
-      order: [["createdAt", "DESC"]],
-      include: Product,
-    });
+        const updatedItems = await OrderItem.findAll({
+            where: {
+                orderId: orderItemToUpdate.orderId
+            },
+            order: [
+                ['createdAt', 'DESC'],
+            ],
+            include: Product
+        })
 
-    res.json(updateditems);
-  } catch (err) {
-    next(err);
-  }
+        res.json(updatedItems);
+    }
+    catch (err) {
+        next(err);
+    }
 });
 
-router.delete("/:productId", async (req, res, next) => {
-  try {
-    const { productId } = req.params;
-    const token = req.headers.authorization;
-    const user = await User.findByToken(token);
+router.delete("/:orderItemId", async (req, res, next) => {
+    try {
+        const { orderItemId } = req.params
+        const token = req.headers.authorization;
+        const user = await User.findByToken(token)
 
-    const cart = await Order.findOne({
-      where: {
-        userId: user.id,
-        isCart: true,
-      },
-    });
+        // const cart = await Order.findOne({
+        //     where: {
+        //         userId: user.id,
+        //         isCart: true
+        //     }
+        // });
 
-    const productToDelete = await OrderItem.findByPk(productId, {
-      where: {
-        orderId: cart.id,
-      },
-    });
+        const orderItemToDelete = await OrderItem.findByPk(orderItemId, {
+            // where: {
+            //     orderId: cart.id,
+            // }
+        });
+        await orderItemToDelete.destroy()
 
-    await productToDelete.destroy();
+        const updateditems = await OrderItem.findAll({
+            where: {
+                orderId: orderItemToDelete.orderId
+            },
+            order: [
+                ['createdAt', 'DESC'],
+            ],
+            include: Product
+        })
 
-    const updateditems = await OrderItem.findAll({
-      where: {
-        orderId: cart.id,
-      },
-      order: [["createdAt", "DESC"]],
-      include: Product,
-    });
-
-    res.json(updateditems);
-  } catch (err) {
-    next(err);
-  }
+        res.json(updateditems);
+    }
+    catch (err) {
+        next(err);
+    }
 });
 
 module.exports = router;
