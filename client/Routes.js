@@ -50,7 +50,7 @@ const Routes = () => {
 
             {!!isAdmin && (
               <>
-                <Route path="/admin" component={AdminProducts} />
+                <Route exact path="/admin" component={AdminProducts} />
                 <Route path="/admin/api/users" component={AdminUsersApi} />
               </>
             )}
