@@ -7,6 +7,7 @@ import productsReducer from "./products";
 // import singleProductReducer from "./singleProduct"; // This is not needed. Just filter from all products
 import ordersReducer from "./orders";
 import cartReducer from './cart'
+import adminProductsReducer from './admin/adminProducts'
 
 
 
@@ -15,9 +16,10 @@ const reducer = combineReducers({
   products: productsReducer,
   // singleProduct: singleProductReducer, // this is not needed. Just filter from all products
   userOrders: ordersReducer,
-  userCart: cartReducer
-
+  userCart: cartReducer,
+  adminProducts: adminProductsReducer
 });
+
 const middleware = composeWithDevTools(
   applyMiddleware(thunkMiddleware, createLogger({ collapsed: true }))
 );

@@ -9,7 +9,7 @@ import CardActions from "@mui/material/CardActions";
 import Typography from "@mui/material/Typography";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import IconButton from "@mui/material/IconButton";
-import { Button } from "@mui/material";
+import { Button, Rating } from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";
 
 import { destroyProduct } from "../../store";
@@ -53,11 +53,12 @@ function ProductCard(props) {
         <Typography variant="body2" color="text.secondary">
           {brandName}
         </Typography>
+        {/* <Typography variant="body2" color="text.secondary"> */}
+        {/* Rating: {} */}
+        <Rating name="half-rating-read" defaultValue={rating} precision={0.5} readOnly />
+        {/* </Typography> */}
         <Typography variant="body2" color="text.secondary">
-          Rating: {rating}
-        </Typography>
-        <Typography variant="body2" color="text.secondary">
-          Price: ${price}.99
+          Price: ${price}
         </Typography>
       </CardContent>
       <CardActions sx={{ display: "flex", flexDirection: "column" }}>

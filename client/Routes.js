@@ -15,6 +15,7 @@ import Cart from './components/User/Cart'
 
 ///////////////// STORE ////////////////////////
 import { fetchCart } from './store'
+import AdminProducts from "./components/admin/AdminProducts";
 // import Settings from './components/Settings'
 // import auth from "./store/auth";
 
@@ -27,6 +28,7 @@ import { fetchCart } from './store'
 const Routes = () => {
   const dispatch = useDispatch();
   const isLoggedIn = useSelector(state => !!state.auth.id)
+  const { isAdmin } = useSelector(state => state.auth)
 
   useEffect(() => {
     dispatch(me())
@@ -46,15 +48,14 @@ const Routes = () => {
             <Route path="/products/:productId" component={SingleProduct} />
             <Route exact path="/cart" component={Cart} />
 
-            <Redirect to="/home" />
             {
-              // !!auth.isAdmin && (
-              //   <>
-              //   <Route path='/admin' component = {Admin} />
-              //   // all of the rest of your admin routes go in here
+              !!isAdmin && (
+                <>
+                  <Route path='/admin' component={AdminProducts} />
               //   </>
-              //   )
+              )
             }
+            <Redirect to="/home" />
           </Switch>
         </>
       ) : (
