@@ -28,11 +28,11 @@ router.post("/", async (req, res, next) => {
 });
 
 //Updating Single Product...
-router.put("/:id", async (req, res, next) => {
+router.put("/:productId", async (req, res, next) => {
   try {
-    const singleProduct = await Product.findByPk(req.params.id);
+    const singleProduct = await Product.findByPk(req.params.productId);
     await singleProduct.update(req.body);
-    res.send(singleProduct);
+    res.send(await singleProduct.save()); //save()
   } catch (err) {
     next(err);
   }
