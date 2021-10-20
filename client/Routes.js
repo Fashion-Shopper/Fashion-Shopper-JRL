@@ -17,6 +17,7 @@ import Cart from './components/User/Cart'
 import { fetchCart } from './store'
 import AdminProducts from "./components/admin/AdminProducts";
 import PastOrders from "./components/User/PastOrders";
+import Checkout from "./components/User/Checkout/Checkout";
 // import Settings from './components/Settings'
 // import auth from "./store/auth";
 
@@ -49,7 +50,7 @@ const Routes = () => {
             <Route path="/products/:productId" component={SingleProduct} />
             <Route exact path="/cart" component={Cart} />
             <Route exact path="/orders" component={PastOrders} />
-
+            <Route exact path="/checkout" component={Checkout} />
             {
               !!isAdmin && (
                 <>
