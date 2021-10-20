@@ -1,23 +1,23 @@
 import axios from "axios";
 
 const TOKEN = "token";
-const SET_PRODUCTS = "SET_PRODUCTS";
+const SET_USERS = "SET_USERS";
 
-const _setProducts = (products) => {
+const _setUsers = (users) => {
   return {
-    type: SET_PRODUCTS,
-    products,
+    type: SET_USERS,
+    users,
   };
 };
 
 ///////////////////// THUNK CREATOR ///////////////////////
-export const fetchAdminProducts = () => {
+export const fetchAdminUsers = () => {
   return async (dispatch) => {
     const token = window.localStorage.getItem(TOKEN);
-    const { data } = await axios.get("/api/admin/products", {
+    const { data } = await axios.get("/api/admin/users", {
       headers: { authorization: token },
     });
-    dispatch(_setProducts(data));
+    dispatch(_setUsers(data));
   };
 };
 
@@ -25,8 +25,8 @@ const initialState = [];
 
 export default (state = initialState, action) => {
   switch (action.type) {
-    case SET_PRODUCTS:
-      return action.products;
+    case SET_USERS:
+      return action.users;
     default:
       return state;
   }

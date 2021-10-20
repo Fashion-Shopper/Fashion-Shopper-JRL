@@ -1,4 +1,4 @@
-///////////////////////Library Imports/////////////////////// 
+///////////////////////Library Imports///////////////////////
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Route, Switch, Redirect } from "react-router-dom";
@@ -11,11 +11,12 @@ import Brands from "./components/Brands/Brands";
 import SingleBrand from "./components/Brands/SingleBrand";
 import Products from "./components/Products/Products";
 import SingleProduct from "./components/Products/SingleProduct";
-import Cart from './components/User/Cart'
+import Cart from "./components/User/Cart";
 
 ///////////////// STORE ////////////////////////
-import { fetchCart } from './store'
+import { fetchCart } from "./store";
 import AdminProducts from "./components/admin/AdminProducts";
+import AdminUsers from "./components/admin/AdminUsers";
 import PastOrders from "./components/User/PastOrders";
 import Checkout from "./components/User/Checkout/Checkout";
 // import Settings from './components/Settings'
@@ -29,14 +30,13 @@ import Checkout from "./components/User/Checkout/Checkout";
 
 const Routes = () => {
   const dispatch = useDispatch();
-  const isLoggedIn = useSelector(state => !!state.auth.id)
-  const { isAdmin } = useSelector(state => state.auth)
+  const isLoggedIn = useSelector((state) => !!state.auth.id);
+  const { isAdmin } = useSelector((state) => state.auth);
 
   useEffect(() => {
-    dispatch(me())
-    dispatch(fetchCart())
-  }, [isLoggedIn])
-
+    dispatch(me());
+    dispatch(fetchCart());
+  }, [isLoggedIn]);
 
   return (
     <div>
@@ -54,8 +54,9 @@ const Routes = () => {
             {
               !!isAdmin && (
                 <>
-                  <Route path='/admin' component={AdminProducts} />
-              //   </>
+                  <Route exact path='/admin' component={AdminProducts} />
+                  <Route path="/admin/users" component={AdminUsers} />
+                </>
               )
             }
             <Redirect to="/home" />
@@ -79,7 +80,7 @@ const Routes = () => {
         ) */}
     </div>
   );
-}
+};
 
 ////////////////////// EXPORT COMPONENT ///////////////////////////////
 export default Routes;

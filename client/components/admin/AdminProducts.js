@@ -4,19 +4,15 @@ import { fetchAdminProducts } from '../../store/admin/adminProducts'
 import {ProductForm} from './ProductForm'
 
 const AdminProducts = () => {
-    const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
-    useEffect(() => {
-        dispatch(fetchAdminProducts())
-    }, [])
+  useEffect(() => {
+    dispatch(fetchAdminProducts());
+  }, []);
 
-    const adminproducts = useSelector(state => state.adminProducts)
+  const adminproducts = useSelector((state) => state.adminProducts);
 
-    return (
-        <pre>
-            {JSON.stringify(adminproducts, null, 2)}
-        </pre>
-    )
-}
+  return <pre>{JSON.stringify(adminproducts, null, 2)}</pre>;
+};
 
-export default AdminProducts
+export default AdminProducts;
