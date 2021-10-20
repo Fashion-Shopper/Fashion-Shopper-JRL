@@ -57,7 +57,9 @@ User.authenticate = async function ({ username, password }) {
 User.findByToken = async function (token) {
   try {
     const { id } = await jwt.verify(token, SECRET);
-    const user = User.findByPk(id);
+    const user = User.findByPk(id, {
+      attributes: ['id', 'avatar', 'isAdmin', 'username']
+    });
     if (!user) {
       throw "Incorrect User";
     }
