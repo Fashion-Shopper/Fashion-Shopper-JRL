@@ -1,5 +1,6 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+import { Link } from 'react-router-dom'
 
 ////////////////////////// MATERIAL UI ///////////////////////////////////////
 import { Button, Card, CardActions, CardContent, CardHeader, CardMedia, CircularProgress, Divider, FormControl, Grid, InputLabel, MenuItem, Select, Stack, Typography } from '@mui/material'
@@ -63,10 +64,12 @@ const Cart = () => {
                 <Grid container item xs={12} sm={8} md={8}>
                     {userCart.orderitems.map(({ id, product, quantity }) => (
                         <Grid item xs={12} sx={{ p: 2 }} key={product.id}>
-                            <Card sx={{ display: 'flex' }} >
+                            <Card sx={{
+                                display: 'flex', '@media screen and (max-width: 800px)': { flexDirection: 'column' }
+                            }} >
                                 <CardMedia
                                     component="img"
-                                    sx={{ width: 250, p: 3 }}
+                                    sx={{ maxWidth: 250, p: 3 }}
                                     image={product.imageURL}
                                     alt={product.name}
                                 />
@@ -76,10 +79,16 @@ const Cart = () => {
                                             {product.name}
                                         </Typography>
                                         <Typography variant="subtitle1" color="text.secondary" component="div">
-                                            {product.price}
+                                            {product.brandName}
+                                        </Typography>
+                                        <Typography variant="h6" color="text.secondary" component="div">
+                                            Size: {product.size}
+                                        </Typography>
+                                        <Typography variant="h6" color="text.secondary" component="div">
+                                            Price: ${product.price}
                                         </Typography>
                                     </CardContent>
-                                    <Stack direction="row" spacing={5} sx={{ pl: 3, pb: 5 }}>
+                                    <Stack direction="row" spacing={2} sx={{ pl: 3, pb: 5 }}>
                                         <FormControl>
                                             <InputLabel>QTY</InputLabel>
                                             <Select
@@ -122,7 +131,7 @@ const Cart = () => {
                                 </Typography>
                             </CardContent>
                             <CardActions>
-                                <Button fullWidth variant='outlined'>
+                                <Button component={Link} to='/checkout' fullWidth variant='outlined'>
                                     Proceed to Checkout
                                 </Button>
                             </CardActions>

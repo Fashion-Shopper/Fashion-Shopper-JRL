@@ -52,11 +52,11 @@ export const createProduct = (product) => {
   };
 };
 
-export const updateProduct = (product) => {
+export const updateProduct = (productId, product) => {
   return async (dispatch) => {
     try {
       console.log(product);
-      const { data } = await axios.put(`/api/products/${product.id}`, product);
+      const { data } = await axios.put(`/api/products/${productId}`, product); // changed here
       dispatch(_updateProduct(data));
     } catch (err) {
       console.log(err);
@@ -84,7 +84,7 @@ export default (state = initialState, action) => {
     case CREATE_PRODUCT:
       return [...state, action.product];
 
-    case UPDATE_PRODUCT:
+    case UPDATE_PRODUCT:  //?
       return [
         ...state,
         state.map((product) =>

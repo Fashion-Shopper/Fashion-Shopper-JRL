@@ -1,6 +1,7 @@
-import React, { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { fetchAdminProducts } from "../../store/admin/adminProducts";
+import React, { useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { fetchAdminProducts } from '../../store/admin/adminProducts'
+import {ProductForm} from './ProductForm'
 
 const AdminProducts = () => {
   const dispatch = useDispatch();

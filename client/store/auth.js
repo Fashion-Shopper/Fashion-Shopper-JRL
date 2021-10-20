@@ -13,9 +13,9 @@ const SET_AUTH = 'SET_AUTH'
  */
 const setAuth = auth => ({ type: SET_AUTH, auth })
 
-export const updateAuth=(avatar)=>{
-  return async(dispatch, getState)=>{ //safest way to get the state
-    const user = {...getState().auth, avatar};
+export const updateAuth = (avatar) => {
+  return async (dispatch, getState) => { //safest way to get the state
+    const user = { ...getState().auth, avatar };
     const token = window.localStorage.getItem(TOKEN)
     const res = await axios.get('/api/users', user, {
       headers: {
@@ -23,7 +23,7 @@ export const updateAuth=(avatar)=>{
       }
     })
     return dispatch(setAuth(res.data))
-    }
+  }
 }
 
 /**
@@ -53,7 +53,7 @@ export const authenticate = (username, password, method) => async dispatch => {
 
 export const logout = () => {
   window.localStorage.removeItem(TOKEN)
-  history.push('/login')
+  history.push('/products')
   return {
     type: SET_AUTH,
     auth: {}

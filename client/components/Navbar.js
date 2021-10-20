@@ -3,15 +3,18 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 
+///////////// COMPONENTS //////////////////
+import Profile from './User/Profile';
+
+
 ////////////// STORE ///////////////////
-import { logout } from '../store'
+
 
 /////////////////// MATERIAL UI ///////////////////////////
 import { AppBar, Toolbar, Typography, Button, Badge, IconButton } from '@mui/material';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 
 const Navbar = () => {
-  const dispatch = useDispatch()
   const isLoggedIn = useSelector(state => !!state.auth.id)
   const products = useSelector(state => state.products)
   const cart = useSelector(state => state.userCart)
@@ -19,10 +22,6 @@ const Navbar = () => {
   let quantity = 0;
   if (cart.orderitems && isLoggedIn) {
     quantity = cart.orderitems.reduce((acc, item) => acc + item.quantity, quantity)
-  }
-
-  const handleClick = () => {
-    dispatch(logout())
   }
 
   return (
@@ -34,7 +33,7 @@ const Navbar = () => {
         {isLoggedIn ? (
           <>
             <Button component={Link} to="/home" color="inherit">Home</Button>
-            <Button component={Link} to="/" onClick={handleClick} color="inherit">Logout</Button>
+            {/* <Button component={Link} to="/" onClick={handleClick} color="inherit">Logout</Button> */}
 
 
             {/* <Link to='/settings'>
@@ -48,8 +47,8 @@ const Navbar = () => {
             }
 
             <Button component={Link} to="/products" color="inherit">Products ({products.length})</Button>
-
-            <IconButton component={Link} to="/cart" size="large" aria-label="show user cart quantity" color="inherit">
+            <Profile />
+            <IconButton component={Link} to="/cart" size="large" aria-label="user cart" color="inherit">
               <Badge badgeContent={quantity} color="error">
                 <ShoppingCartIcon />
               </Badge>

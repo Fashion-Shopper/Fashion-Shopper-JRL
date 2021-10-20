@@ -1,4 +1,4 @@
-import { CssBaseline } from "@mui/material";
+import { CssBaseline, ThemeProvider } from "@mui/material";
 import React, { useEffect } from "react";
 import { useDispatch } from "react-redux";
 
@@ -8,6 +8,9 @@ import Footer from "./components/Footer";
 
 import { fetchProducts } from "./store/products";
 import { fetchBrands } from "./store/brands";
+import { Route } from "react-router";
+
+import theme from "./theme";
 
 const App = () => {
   const dispatch = useDispatch();
@@ -15,15 +18,15 @@ const App = () => {
   useEffect(() => {
     dispatch(fetchProducts());
     dispatch(fetchBrands());
-  },[]);
+  }, []);
 
   return (
-    <>
+    <ThemeProvider theme={theme}>
       <CssBaseline />
       <Navbar />
       <Routes />
       <Footer />
-    </>
+    </ThemeProvider>
   );
 };
 
