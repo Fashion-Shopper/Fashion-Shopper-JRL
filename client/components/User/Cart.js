@@ -1,5 +1,6 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+import { Link } from 'react-router-dom'
 
 ////////////////////////// MATERIAL UI ///////////////////////////////////////
 import { Button, Card, CardActions, CardContent, CardHeader, CardMedia, CircularProgress, Divider, FormControl, Grid, InputLabel, MenuItem, Select, Stack, Typography } from '@mui/material'
@@ -130,7 +131,7 @@ const Cart = () => {
                                 </Typography>
                             </CardContent>
                             <CardActions>
-                                <Button fullWidth variant='outlined'>
+                                <Button component={Link} to='/checkout' fullWidth variant='outlined'>
                                     Proceed to Checkout
                                 </Button>
                             </CardActions>
