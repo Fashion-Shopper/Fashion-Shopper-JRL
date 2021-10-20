@@ -55,7 +55,7 @@ function ProductCard(props) {
         </Typography>
         {/* <Typography variant="body2" color="text.secondary"> */}
         {/* Rating: {} */}
-        <Rating name="half-rating-read" defaultValue={rating} precision={0.5} readOnly />
+        <Rating name="half-rating-read" defaultValue={rating * 1} precision={0.5} readOnly />
         {/* </Typography> */}
         <Typography variant="body2" color="text.secondary">
           Price: ${price}
@@ -63,8 +63,7 @@ function ProductCard(props) {
       </CardContent>
       <CardActions sx={{ display: "flex", flexDirection: "column" }}>
         <Button variant="outlined" component={Link} to={`/products/${id}`}>
-          {" "}
-          VIEW ITEM{" "}
+          VIEW ITEM
         </Button>
         {!!isAdmin && (
           <Button

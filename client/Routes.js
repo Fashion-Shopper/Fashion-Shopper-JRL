@@ -1,7 +1,7 @@
 ///////////////////////Library Imports/////////////////////// 
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { withRouter, Route, Switch, Redirect } from "react-router-dom";
+import { Route, Switch, Redirect } from "react-router-dom";
 import { Login, Signup } from "./components/AuthForm";
 import Home from "./components/Home";
 import { me } from "./store";
@@ -16,6 +16,7 @@ import Cart from './components/User/Cart'
 ///////////////// STORE ////////////////////////
 import { fetchCart } from './store'
 import AdminProducts from "./components/admin/AdminProducts";
+import PastOrders from "./components/User/PastOrders";
 // import Settings from './components/Settings'
 // import auth from "./store/auth";
 
@@ -47,6 +48,7 @@ const Routes = () => {
             <Route exact path="/products" component={Products} />
             <Route path="/products/:productId" component={SingleProduct} />
             <Route exact path="/cart" component={Cart} />
+            <Route exact path="/orders" component={PastOrders} />
 
             {
               !!isAdmin && (

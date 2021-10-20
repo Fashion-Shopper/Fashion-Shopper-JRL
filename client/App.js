@@ -8,6 +8,7 @@ import Footer from "./components/Footer";
 
 import { fetchProducts } from "./store/products";
 import { fetchBrands } from "./store/brands";
+import { Route } from "react-router";
 
 const App = () => {
   const dispatch = useDispatch();
@@ -15,7 +16,7 @@ const App = () => {
   useEffect(() => {
     dispatch(fetchProducts());
     dispatch(fetchBrands());
-  },[]);
+  }, []);
 
   return (
     <>

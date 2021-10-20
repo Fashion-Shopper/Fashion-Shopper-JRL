@@ -18,7 +18,7 @@ router.get("/", async (req, res, next) => {
                 }
             },
             where: {
-                userId: 1
+                userId: user.id
             }
         });
         res.json(orders);
