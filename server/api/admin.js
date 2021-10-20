@@ -5,6 +5,7 @@ const {
 
 const { isLoggedIn, isAdmin } = require("../middleware");
 const { pluralize } = require("inflection");
+const Product = require("../db/models/Product");
 
 /////////////////// ROUTES / SIMPLE ///////////////////
 
@@ -64,6 +65,7 @@ const obj = {
   orders: Order,
   orderItems: OrderItem,
   users: User,
+  products: Product
 };
 
 Object.entries(obj).forEach((entry) => {
