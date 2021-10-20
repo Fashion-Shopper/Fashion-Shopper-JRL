@@ -16,7 +16,7 @@ import Cart from "./components/User/Cart";
 ///////////////// STORE ////////////////////////
 import { fetchCart } from "./store";
 import AdminProducts from "./components/admin/AdminProducts";
-import AdminUsersApi from "./components/admin/AdminUsersApi";
+import AdminUsers from "./components/admin/AdminUsers";
 // import Settings from './components/Settings'
 // import auth from "./store/auth";
 
@@ -51,7 +51,7 @@ const Routes = () => {
             {!!isAdmin && (
               <>
                 <Route exact path="/admin" component={AdminProducts} />
-                <Route path="/admin/api/users" component={AdminUsersApi} />
+                <Route path="/admin/users" component={AdminUsers} />
               </>
             )}
             <Redirect to="/home" />
