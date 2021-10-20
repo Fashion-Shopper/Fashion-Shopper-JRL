@@ -9,9 +9,9 @@ const AdminUsers = () => {
     dispatch(fetchAdminUsers());
   }, []);
 
-  const users = useSelector((state) => state.users);
+  const adminUsers = useSelector((state) => state.adminUsers);
 
-  return <pre>{JSON.stringify(users, null, 2)}</pre>;
+  return <pre>{JSON.stringify(adminUsers, null, 2)}</pre>;
 };
 
 export default AdminUsers;
