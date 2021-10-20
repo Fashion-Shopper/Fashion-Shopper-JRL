@@ -12,7 +12,10 @@ const _setUsers = (users) => {
 ///////////////////// THUNK CREATOR ///////////////////////
 export const fetchAdminUsers = () => {
   return async (dispatch) => {
-    const { data } = await axios.get("/api/admin/users");
+    const token = window.localStorage.getItem(TOKEN);
+    const { data } = await axios.get("/api/admin/users", {
+      headers: { authorization: token },
+    });
     dispatch(_setUsers(data));
   };
 };
