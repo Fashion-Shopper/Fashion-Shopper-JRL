@@ -65,7 +65,7 @@ const obj = {
   orders: Order,
   orderItems: OrderItem,
   users: User,
-  products: Product
+  products: Product,
 };
 
 Object.entries(obj).forEach((entry) => {

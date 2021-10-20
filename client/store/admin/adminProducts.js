@@ -1,5 +1,6 @@
 import axios from "axios";
 
+const TOKEN = "token";
 const SET_PRODUCTS = "SET_PRODUCTS";
 
 const _setProducts = (products) => {
@@ -9,15 +10,16 @@ const _setProducts = (products) => {
   };
 };
 
-
 ///////////////////// THUNK CREATOR ///////////////////////
 export const fetchAdminProducts = () => {
   return async (dispatch) => {
-    const { data } = await axios.get("/api/admin/products");
+    const token = window.localStorage.getItem(TOKEN);
+    const { data } = await axios.get("/api/admin/products", {
+      headers: { authorization: token },
+    });
     dispatch(_setProducts(data));
   };
 };
-
 
 const initialState = [];
 

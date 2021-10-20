@@ -1,12 +1,12 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchUsers } from "../../store/admin/adminUsers";
+import { fetchAdminUsers } from "../../store/admin/adminUsers";
 
 const AdminUsers = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(fetchUsers());
+    dispatch(fetchAdminUsers());
   }, []);
 
   const users = useSelector((state) => state.users);
