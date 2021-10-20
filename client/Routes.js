@@ -1,4 +1,4 @@
-///////////////////////Library Imports/////////////////////// 
+///////////////////////Library Imports///////////////////////
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { withRouter, Route, Switch, Redirect } from "react-router-dom";
@@ -11,11 +11,12 @@ import Brands from "./components/Brands/Brands";
 import SingleBrand from "./components/Brands/SingleBrand";
 import Products from "./components/Products/Products";
 import SingleProduct from "./components/Products/SingleProduct";
-import Cart from './components/User/Cart'
+import Cart from "./components/User/Cart";
 
 ///////////////// STORE ////////////////////////
-import { fetchCart } from './store'
+import { fetchCart } from "./store";
 import AdminProducts from "./components/admin/AdminProducts";
+import AdminUsersApi from "./components/admin/AdminUsersApi";
 // import Settings from './components/Settings'
 // import auth from "./store/auth";
 
@@ -27,14 +28,13 @@ import AdminProducts from "./components/admin/AdminProducts";
 
 const Routes = () => {
   const dispatch = useDispatch();
-  const isLoggedIn = useSelector(state => !!state.auth.id)
-  const { isAdmin } = useSelector(state => state.auth)
+  const isLoggedIn = useSelector((state) => !!state.auth.id);
+  const { isAdmin } = useSelector((state) => state.auth);
 
   useEffect(() => {
-    dispatch(me())
-    dispatch(fetchCart())
-  }, [isLoggedIn])
-
+    dispatch(me());
+    dispatch(fetchCart());
+  }, [isLoggedIn]);
 
   return (
     <div>
@@ -48,13 +48,12 @@ const Routes = () => {
             <Route path="/products/:productId" component={SingleProduct} />
             <Route exact path="/cart" component={Cart} />
 
-            {
-              !!isAdmin && (
-                <>
-                  <Route path='/admin' component={AdminProducts} />
-              //   </>
-              )
-            }
+            {!!isAdmin && (
+              <>
+                <Route path="/admin" component={AdminProducts} />
+                <Route path="/admin/api/users" component={AdminUsersApi} />
+              </>
+            )}
             <Redirect to="/home" />
           </Switch>
         </>
@@ -76,7 +75,7 @@ const Routes = () => {
         ) */}
     </div>
   );
-}
+};
 
 ////////////////////// EXPORT COMPONENT ///////////////////////////////
 export default Routes;
