@@ -1,7 +1,7 @@
 //////////////// REACT / REDUX //////////////
 import React from 'react'
 import { Link } from 'react-router-dom'
-import { useDispatch, useSelector } from 'react-redux'
+import { useSelector } from 'react-redux'
 
 ///////////// COMPONENTS //////////////////
 import Profile from './User/Profile';
@@ -41,7 +41,7 @@ const Navbar = () => {
             </Link> */}
             {/* {
             !!auth.avatar && <img src={`${auth.avatar}`} /> 
-            } */}
+          } */}
             {
               //  !!auth.isAdmin && <Link to = '/admin'> Admin </Link>
             }
@@ -57,6 +57,7 @@ const Navbar = () => {
           </>
         ) : (
           <>
+            <Button component={Link} to="/home" color="inherit">Home</Button>
             <Button component={Link} to="/login" color="inherit">Login</Button>
             <Button component={Link} to="/signup" color="inherit">Sign Up</Button>
             <Button component={Link} to="/products" color="inherit">Products ({products.length})</Button>

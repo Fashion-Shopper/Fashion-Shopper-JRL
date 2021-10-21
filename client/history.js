@@ -1,5 +1,3 @@
-//This is not in use!
-
 import { createMemoryHistory, createBrowserHistory } from 'history'
 
 const history =

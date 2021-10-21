@@ -9,6 +9,7 @@ import ProductCard from "./ProductCard";
 /////////////// MATERIAL UI //////////////////////
 import { CircularProgress, Grid, Typography } from "@mui/material";
 import { Box } from "@mui/system";
+import LoadSpinner from "../Materialui/LoadSpinner";
 
 //import { fetchProducts, updateProduct, createProduct, destroyProduct } from '../../store/products';
 //import CreateProduct from './CreateProduct';
@@ -20,20 +21,7 @@ const Products = () => {
 
   if (!products) {
     return (
-      <Box
-        sx={{
-          display: "flex",
-          flexDirection: "column",
-          justifyContent: "center",
-          alignItems: "center",
-          height: "80vh",
-        }}
-      >
-        <CircularProgress size={100} />
-        <Typography variant="body2" color="text.secondary">
-          LOADING...
-        </Typography>
-      </Box>
+      <LoadSpinner />
     );
   }
 
@@ -48,7 +36,7 @@ const Products = () => {
         ))}
       </Grid>
       <Grid item xs={false} sm={2} />
-    </Grid>
+    </Grid >
   );
 };
 

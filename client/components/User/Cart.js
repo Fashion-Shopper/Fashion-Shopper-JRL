@@ -108,7 +108,7 @@ const Cart = () => {
                                                 <MenuItem value={8}>8</MenuItem>
                                             </Select>
                                         </FormControl>
-                                        <Button onClick={() => handleRemove(id)} variant="outlined" startIcon={<DeleteIcon />}>
+                                        <Button color='error' onClick={() => handleRemove(id)} variant="outlined" startIcon={<DeleteIcon />}>
                                             Remove
                                         </Button>
                                     </Stack>

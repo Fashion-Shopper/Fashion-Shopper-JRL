@@ -17,7 +17,7 @@ import Cart from "./components/User/Cart";
 import { fetchCart } from "./store";
 import AdminProducts from "./components/admin/AdminProducts";
 import AdminUsers from "./components/admin/AdminUsers";
-import PastOrders from "./components/User/PastOrders";
+import PastOrders from "./components/User/PastOrders/Table";
 import Checkout from "./components/User/Checkout/Checkout";
 // import Settings from './components/Settings'
 // import auth from "./store/auth";
@@ -65,6 +65,7 @@ const Routes = () => {
       ) : (
         <>
           <Switch>
+            <Route path="/home" component={Home} />
             <Route exact path="/" component={Login} />
             <Route path="/login" component={Login} />
             <Route path="/signup" component={Signup} />
