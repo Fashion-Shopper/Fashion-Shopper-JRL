@@ -2,18 +2,6 @@ import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchOrders } from '../../store';
 
-
-// const PastOrders = () => {
-
-//     return (
-//         <pre>
-//             {JSON.stringify(orders, null, 2)}
-//         </pre>
-//     )
-// }
-
-// export default PastOrders
-
 import PropTypes from 'prop-types';
 import Box from '@mui/material/Box';
 import Collapse from '@mui/material/Collapse';
@@ -115,31 +103,31 @@ function Row(props) {
     );
 }
 
-Row.propTypes = {
-    row: PropTypes.shape({
-        calories: PropTypes.number.isRequired,
-        carbs: PropTypes.number.isRequired,
-        fat: PropTypes.number.isRequired,
-        history: PropTypes.arrayOf(
-            PropTypes.shape({
-                amount: PropTypes.number.isRequired,
-                customerId: PropTypes.string.isRequired,
-                date: PropTypes.string.isRequired,
-            }),
-        ).isRequired,
-        name: PropTypes.string.isRequired,
-        price: PropTypes.number.isRequired,
-        protein: PropTypes.number.isRequired,
-    }).isRequired,
-};
+// Row.propTypes = {
+//     row: PropTypes.shape({
+//         calories: PropTypes.number.isRequired,
+//         carbs: PropTypes.number.isRequired,
+//         fat: PropTypes.number.isRequired,
+//         history: PropTypes.arrayOf(
+//             PropTypes.shape({
+//                 amount: PropTypes.number.isRequired,
+//                 customerId: PropTypes.string.isRequired,
+//                 date: PropTypes.string.isRequired,
+//             }),
+//         ).isRequired,
+//         name: PropTypes.string.isRequired,
+//         price: PropTypes.number.isRequired,
+//         protein: PropTypes.number.isRequired,
+//     }).isRequired,
+// };
 
-const rows = [
-    createData('Frozen yoghurt', 159, 6.0, 24, 4.0, 3.99),
-    createData('Ice cream sandwich', 237, 9.0, 37, 4.3, 4.99),
-    createData('Eclair', 262, 16.0, 24, 6.0, 3.79),
-    createData('Cupcake', 305, 3.7, 67, 4.3, 2.5),
-    createData('Gingerbread', 356, 16.0, 49, 3.9, 1.5),
-];
+// const rows = [
+//     createData('Frozen yoghurt', 159, 6.0, 24, 4.0, 3.99),
+//     createData('Ice cream sandwich', 237, 9.0, 37, 4.3, 4.99),
+//     createData('Eclair', 262, 16.0, 24, 6.0, 3.79),
+//     createData('Cupcake', 305, 3.7, 67, 4.3, 2.5),
+//     createData('Gingerbread', 356, 16.0, 49, 3.9, 1.5),
+// ];
 
 const PastOrders = () => {
     const dispatch = useDispatch()
@@ -165,9 +153,9 @@ const PastOrders = () => {
                     </TableRow>
                 </TableHead>
                 <TableBody>
-                    {rows.map((row) => (
-                        <Row key={row.name} row={row} />
-                    ))}
+                    {/* {orders.map((order) => (
+                        <Row key={order.id} row={order} />
+                    ))} */}
                 </TableBody>
             </Table>
         </TableContainer>
