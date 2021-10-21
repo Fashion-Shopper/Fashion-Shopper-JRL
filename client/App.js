@@ -8,7 +8,6 @@ import Footer from "./components/Footer";
 
 import { fetchProducts } from "./store/products";
 import { fetchBrands } from "./store/brands";
-import { Route } from "react-router";
 
 import theme from "./theme";
 

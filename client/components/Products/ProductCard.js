@@ -9,7 +9,7 @@ import CardActions from "@mui/material/CardActions";
 import Typography from "@mui/material/Typography";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import IconButton from "@mui/material/IconButton";
-import { Button, Rating } from "@mui/material";
+import { Button, Grow, Rating } from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";
 
 import { destroyProduct } from "../../store";
@@ -41,41 +41,43 @@ function ProductCard(props) {
   };
 
   return (
-    <Card sx={{ maxWidth: 350 }}>
-      <IconButton aria-label="add to favorites">
-        <FavoriteIcon />
-      </IconButton>
-      <CardMedia component="img" height="350" image={imageURL} />
-      <CardContent sx={{ textAlign: "center" }}>
-        <Typography variant="body1" color="text.secondary">
-          {name}
-        </Typography>
-        <Typography variant="body2" color="text.secondary">
-          {brandName}
-        </Typography>
-        {/* <Typography variant="body2" color="text.secondary"> */}
-        {/* Rating: {} */}
-        <Rating name="half-rating-read" defaultValue={rating * 1} precision={0.5} readOnly />
-        {/* </Typography> */}
-        <Typography variant="body2" color="text.secondary">
-          Price: ${price}
-        </Typography>
-      </CardContent>
-      <CardActions sx={{ display: "flex", flexDirection: "column" }}>
-        <Button variant="outlined" component={Link} to={`/products/${id}`}>
-          VIEW ITEM
-        </Button>
-        {!!isAdmin && (
-          <Button
-            onClick={() => handleDelete(id)}
-            variant="outlined"
-            startIcon={<DeleteIcon />}
-          >
-            Delete
+    <Grow in={true}>
+      <Card sx={{ maxWidth: 350 }}>
+        <IconButton aria-label="add to favorites">
+          <FavoriteIcon />
+        </IconButton>
+        <CardMedia component="img" height="350" image={imageURL} />
+        <CardContent sx={{ textAlign: "center" }}>
+          <Typography variant="body1" color="text.secondary">
+            {name}
+          </Typography>
+          <Typography variant="body2" color="text.secondary">
+            {brandName}
+          </Typography>
+          {/* <Typography variant="body2" color="text.secondary"> */}
+          {/* Rating: {} */}
+          <Rating name="half-rating-read" defaultValue={rating * 1} precision={0.5} readOnly />
+          {/* </Typography> */}
+          <Typography variant="body2" color="text.secondary">
+            Price: ${price}
+          </Typography>
+        </CardContent>
+        <CardActions sx={{ display: "flex", flexDirection: "column" }}>
+          <Button variant="outlined" component={Link} to={`/products/${id}`}>
+            VIEW ITEM
           </Button>
-        )}
-      </CardActions>
-    </Card>
+          {!!isAdmin && (
+            <Button
+              onClick={() => handleDelete(id)}
+              variant="outlined"
+              startIcon={<DeleteIcon />}
+            >
+              Delete
+            </Button>
+          )}
+        </CardActions>
+      </Card>
+    </Grow>
   );
 }
 

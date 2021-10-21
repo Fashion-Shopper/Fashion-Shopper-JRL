@@ -1,5 +1,8 @@
 import React, { useState } from 'react'
 import { Avatar, Divider, IconButton, ListItemIcon, Menu, MenuItem, Tooltip, Typography } from "@mui/material"
+import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
+
+
 import { Settings, Logout, History } from '@mui/icons-material';
 import { useDispatch, useSelector } from 'react-redux';
 import { logout } from '../../store';
@@ -23,7 +26,6 @@ const Profile = () => {
         setMenu(null);
     };
 
-
     const handleLogout = () => {
         dispatch(logout())
     }
@@ -33,6 +35,7 @@ const Profile = () => {
             <Tooltip title="User settings">
                 <IconButton onClick={handleMenu}>
                     <Avatar src={user.avatar}>{user.username.charAt(0).toUpperCase()}</Avatar>
+                    <ArrowDropDownIcon />
                 </IconButton>
             </Tooltip>
             <Typography>
