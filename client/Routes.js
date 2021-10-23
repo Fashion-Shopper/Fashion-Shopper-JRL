@@ -16,8 +16,8 @@ import AdminDashboard from "./components/Admin/Dashboard";
 
 ///////////////// STORE ////////////////////////
 import { fetchCart } from "./store";
-import AdminProducts from "./components/Admin/AdminProducts";
-import AdminUsers from "./components/Admin/AdminUsers";
+import AdminProducts from "./components/Admin/Products/AdminProductsTable";
+import AdminUsers from "./components/Admin/Users/AdminUsersTable";
 import PastOrders from "./components/User/PastOrders/Table";
 import Checkout from "./components/User/Checkout/Checkout";
 // import Settings from './components/Settings'
