@@ -15,8 +15,8 @@ import Cart from "./components/User/Cart";
 
 ///////////////// STORE ////////////////////////
 import { fetchCart } from "./store";
-import AdminProducts from "./components/admin/AdminProducts";
-import AdminUsers from "./components/admin/AdminUsers";
+import AdminProducts from "./components/Admin/AdminProducts";
+import AdminUsers from "./components/Admin/AdminUsers";
 import PastOrders from "./components/User/PastOrders/Table";
 import Checkout from "./components/User/Checkout/Checkout";
 // import Settings from './components/Settings'
@@ -51,14 +51,12 @@ const Routes = () => {
             <Route exact path="/cart" component={Cart} />
             <Route exact path="/orders" component={PastOrders} />
             <Route exact path="/checkout" component={Checkout} />
-            {
-              !!isAdmin && (
-                <>
-                  <Route exact path='/admin' component={AdminProducts} />
-                  <Route path="/admin/users" component={AdminUsers} />
-                </>
-              )
-            }
+            {!!isAdmin && (
+              <>
+                <Route path="/admin/products" component={AdminProducts} />
+                <Route path="/admin/users" component={AdminUsers} />
+              </>
+            )}
             <Redirect to="/home" />
           </Switch>
         </>
