@@ -21,7 +21,7 @@
 
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchAdminProducts } from "../../../store/admin/adminProducts";
+import { fetchProducts } from "../../../store";
 
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
@@ -39,10 +39,10 @@ const ProductsTable = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(fetchAdminProducts());
+    dispatch(fetchProducts());
   }, []);
 
-  const products = useSelector((state) => state.adminProducts);
+  const products = useSelector((state) => state.products);
 
   if (!products) {
     return <LoadSpinner />;
