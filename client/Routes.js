@@ -12,6 +12,7 @@ import SingleBrand from "./components/Brands/SingleBrand";
 import Products from "./components/Products/Products";
 import SingleProduct from "./components/Products/SingleProduct";
 import Cart from "./components/User/Cart";
+import AdminDashboard from "./components/Admin/Dashboard";
 
 ///////////////// STORE ////////////////////////
 import { fetchCart } from "./store";
@@ -53,6 +54,7 @@ const Routes = () => {
             <Route exact path="/checkout" component={Checkout} />
             {!!isAdmin && (
               <>
+                <Route exact path="/admin" component={AdminDashboard} />
                 <Route path="/admin/products" component={AdminProducts} />
                 <Route path="/admin/users" component={AdminUsers} />
               </>
