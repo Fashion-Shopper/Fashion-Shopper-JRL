@@ -87,7 +87,7 @@ const Profile = () => {
                     </ListItemIcon>
                     Past Orders
                 </MenuItem>
-                <MenuItem>
+                <MenuItem component={Link} to='/settings'>
                     <ListItemIcon>
                         <Settings fontSize="small" />
                     </ListItemIcon>

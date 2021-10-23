@@ -1,4 +1,4 @@
-const User = require("./db/models/User");
+const {models: {User, Address}} = require('./db');
 
 //////////////////  MIDDLEWARES   ///////////////////////
 const isLoggedIn = async (req, res, next) => {

@@ -18,6 +18,9 @@ Order.hasMany(OrderItem);
 OrderItem.belongsTo(Product);
 Product.hasMany(OrderItem);
 
+Address.belongsTo(User);
+User.hasMany(Address);
+
 module.exports = {
   db,
   models: {
@@ -26,5 +29,6 @@ module.exports = {
     Brand,
     Order,
     OrderItem,
+    Address
   },
 };

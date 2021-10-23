@@ -84,7 +84,7 @@ export default (state = initialState, action) => {
     case CREATE_PRODUCT:
       return [...state, action.product];
 
-    case UPDATE_PRODUCT:  //?
+    case UPDATE_PRODUCT:  
       return [
         ...state,
         state.map((product) =>
