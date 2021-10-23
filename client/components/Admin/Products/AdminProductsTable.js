@@ -61,6 +61,8 @@ const ProductsTable = () => {
               <TableCell align="center">Category</TableCell>
               <TableCell align="center">Size</TableCell>
               <TableCell align="center">Price</TableCell>
+              <TableCell align="center">Action: Update</TableCell>
+              <TableCell align="center">Action: Delete</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
