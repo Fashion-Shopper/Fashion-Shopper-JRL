@@ -1,5 +1,7 @@
 import axios from "axios";
 
+const TOKEN = "token";
+
 const SET_PRODUCTS = "SET_PRODUCTS";
 const CREATE_PRODUCT = "CREATE_PRODUCT";
 const DESTROY_PRODUCT = "DESTROY_PRODUCT";
@@ -67,7 +69,10 @@ export const updateProduct = (productId, product) => {
 export const destroyProduct = (id) => {
   return async (dispatch) => {
     try {
-      await axios.delete(`/api/products/${id}`);
+      const token = window.localStorage.getItem(TOKEN);
+      await axios.delete(`/api/products/${id}`, {
+        headers: { authorization: token },
+      });
       dispatch(_destroyProduct({ id: id * 1 }));
     } catch (err) {
       console.log(err);
@@ -84,7 +89,7 @@ export default (state = initialState, action) => {
     case CREATE_PRODUCT:
       return [...state, action.product];
 
-    case UPDATE_PRODUCT:  //?
+    case UPDATE_PRODUCT: //?
       return [
         ...state,
         state.map((product) =>
