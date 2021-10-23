@@ -17,6 +17,9 @@ function Row(props) {
           {username}
         </TableCell>
         <TableCell scope="row" align="center">
+          <Button variant="outlined">Update</Button>
+        </TableCell>
+        <TableCell scope="row" align="center">
           <Button
             scope="row"
             align="center"

@@ -45,7 +45,7 @@ export const fetchAdminUsers = () => {
   };
 };
 
-export const createUser = (product) => {
+export const createUser = (user) => {
   return async (dispatch) => {
     try {
       const token = window.localStorage.getItem(TOKEN);
@@ -62,6 +62,7 @@ export const createUser = (product) => {
 export const updateUser = (userId, user) => {
   return async (dispatch) => {
     try {
+      const token = window.localStorage.getItem(TOKEN);
       const { data } = await axios.put(`/api/admin/users/${userId}`, user, {
         headers: { authorization: token },
       });
@@ -72,11 +73,14 @@ export const updateUser = (userId, user) => {
   };
 };
 
-export const destroyProduct = (id) => {
+export const destroyUser = (id) => {
   return async (dispatch) => {
     try {
-      await axios.delete(`/api/products/${id}`);
-      dispatch(_destroyProduct({ id: id * 1 }));
+      const token = window.localStorage.getItem(TOKEN);
+      await axios.delete(`/api/admin/users/${id}`, {
+        headers: { authorization: token },
+      });
+      dispatch(_destroyUser({ id: id * 1 }));
     } catch (err) {
       console.log(err);
     }
@@ -89,6 +93,15 @@ export default (state = initialState, action) => {
   switch (action.type) {
     case SET_USERS:
       return action.users;
+    case CREATE_USER:
+      return [...state, action.user];
+    case UPDATE_USER:
+      return [
+        ...state,
+        state.map((user) => (user.id === action.user.id ? action.user : user)),
+      ];
+    case DESTROY_USER:
+      return state.filter((user) => user.id !== action.user.id);
     default:
       return state;
   }
