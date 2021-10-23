@@ -1,15 +1,31 @@
 import React from "react";
 import TableCell from "@mui/material/TableCell";
 import TableRow from "@mui/material/TableRow";
+import { Button } from "@mui/material";
+import DeleteIcon from "@mui/icons-material/Delete";
 
 function Row(props) {
-  const { user } = props;
+  const { id, username, isAdmin } = props.user;
 
   return (
     <>
       <TableRow>
         <TableCell scope="row" align="center">
-          {user.id}
+          {id}
+        </TableCell>
+        <TableCell scope="row" align="center">
+          {username}
+        </TableCell>
+        <TableCell scope="row" align="center">
+          <Button
+            scope="row"
+            align="center"
+            onClick={() => handleDelete(id)}
+            variant="outlined"
+            startIcon={<DeleteIcon />}
+          >
+            Delete
+          </Button>
         </TableCell>
       </TableRow>
     </>
