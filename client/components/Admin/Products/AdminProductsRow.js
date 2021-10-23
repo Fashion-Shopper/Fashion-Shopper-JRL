@@ -1,12 +1,21 @@
 import React from "react";
+import { useDispatch } from "react-redux";
 import TableCell from "@mui/material/TableCell";
 import TableRow from "@mui/material/TableRow";
 import { Button, CardMedia } from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";
 
+import { destroyProduct } from "../../../store";
+
 function Row(props) {
   const { id, imageURL, name, brandName, category, size, price } =
     props.product;
+
+  const dispatch = useDispatch();
+
+  const handleDelete = (productId) => {
+    dispatch(destroyProduct(productId));
+  };
 
   return (
     <>
