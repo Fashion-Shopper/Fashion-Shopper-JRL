@@ -12,7 +12,7 @@ import SingleBrand from "./components/Brands/SingleBrand";
 import Products from "./components/Products/Products";
 import SingleProduct from "./components/Products/SingleProduct";
 import Cart from "./components/User/Cart";
-import Settings from "./components/User/User/Settings/Settings";
+import Settings from "./components/User/Settings/Settings";
 
 import AdminProducts from "./components/admin/AdminProducts";
 import AdminUsers from "./components/admin/AdminUsers";

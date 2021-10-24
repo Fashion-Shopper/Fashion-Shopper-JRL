@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux'
-import {createAddress, updateAddress, deleteAddress} from '../store/adddress';
+import {createAddress, updateAddress, deleteAddress} from '../../../store/address';
 
 class Address extends Component{
     constructor(){
@@ -42,7 +42,7 @@ class Address extends Component{
         return (
             <div>
                 <h3>Address</h3>
-            <input ref={el =>this.el=ref } style={ {width: '100%', height = '1.5rem'} } />
+            <input ref={el => this.el=el} style={ {width: '100%', height: '1.5rem'} } />
             <button disabled={ !place } onClick={save}> Save </button>
             <ul>{
             addresses.map(address =>{
@@ -83,7 +83,7 @@ const mapStateToProps = (addresses) => {
     };
   };
   
-  export default connect(mapStateToProps, mapDispatchToProps)(Address);
+export default connect(mapStateToProps, mapDispatchToProps)(Address);
   
 
 

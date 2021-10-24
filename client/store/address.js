@@ -22,7 +22,7 @@ const _createAddress = address => {
     }
 }
 
-const _destoryAddress = address => {
+const _destroyAddress = address => {
     return {
         type: DESTROY_USER_ADDRESS, 
         address
@@ -40,7 +40,7 @@ const _updateAddress = address => {
 export const fetchAddresses = () => async dispatch => {
     const token = window.localStorage.getItem(TOKEN)
     if (token) {
-        const { data } = await axios.get('/api/addresses', {
+        const { data } = await axios.get('/api/address', {
             headers: {
                 authorization: token
             }
@@ -49,10 +49,10 @@ export const fetchAddresses = () => async dispatch => {
     }
 }
 
-export const createAddress = (address) => {
+export const createAddress = (address)  => async dispatch => {
     const token = window.localStorage.getItem(TOKEN)
     if (token) {
-          const { data } = await axios.post("/api/addresss", address, {
+          const { data } = await axios.post("/api/address", address, {
             headers: {
                 authorization: token
             }
@@ -62,10 +62,10 @@ export const createAddress = (address) => {
 };
 
   
-  export const updateAddress = (id, address) => {
+  export const updateAddress = (id, address)  => async dispatch => {
     const token = window.localStorage.getItem(TOKEN)
     if (token) {
-          const { data } = await axios.put(`/api/addresss/${id}`, address, {
+          const { data } = await axios.put(`/api/address/${id}`, address, {
             headers: {
                 authorization: token
             }
@@ -74,10 +74,10 @@ export const createAddress = (address) => {
       }
   };
   
-  export const destroyAddress = (id) => {
+  export const deleteAddress = (id)  => async dispatch => {
     const token = window.localStorage.getItem(TOKEN)
     if (token) {
-          await axios.delete(`/api/addresss/${id}`, {
+          await axios.delete(`/api/address/${id}`, {
             headers: {
                 authorization: token
             }

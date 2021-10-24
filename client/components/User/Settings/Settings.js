@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux'
 import {updateAuth} from '../../../store/auth';
-import {Address} from './Address'
+import Address from './Address'
 
 
 class Settings extends Component{
@@ -35,15 +35,14 @@ class Settings extends Component{
         })
     }
     render(){
-        const {avatar, username} = this.state
-        const 
+        const {avatar, username} = this.state;
         const {save} = this; 
         return (
         <div>
         <h3> Profile Picture </h3>
         <form>
             <input type='file' ref={el =>this.el=el} />
-            <button disabled={ !avatar }> Save </button>
+            <button disabled={ !avatar } onClick={save}> Save </button>
             {!!avatar && <img src={avatar} /> }                    
         </form>
         <h3> Username </h3>

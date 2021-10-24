@@ -1,4 +1,5 @@
 const db = require("./db");
+const Address = require("./models/Address");
 const User = require("./models/User");
 const Product = require("./models/Product");
 const Brand = require("./models/Brand");
