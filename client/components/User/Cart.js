@@ -8,6 +8,9 @@ import { Box } from '@mui/system';
 import DeleteIcon from '@mui/icons-material/Delete';
 import { removeFromCart, updateCart } from '../../store';
 
+////////////// to convert to currency ////////////////
+import currency from 'numeral'
+currency.defaultFormat('$0,0.00');
 
 
 const Cart = () => {
@@ -85,7 +88,7 @@ const Cart = () => {
                                             Size: {product.size}
                                         </Typography>
                                         <Typography variant="h6" color="text.secondary" component="div">
-                                            Price: ${product.price}
+                                            Price: {currency(product.price).format()}
                                         </Typography>
                                     </CardContent>
                                     <Stack direction="row" spacing={2} sx={{ pl: 3, pb: 5 }}>
@@ -127,7 +130,7 @@ const Cart = () => {
                             <Divider />
                             <CardContent>
                                 <Typography variant="h6">
-                                    Subtotal ${total.toFixed(2)}
+                                    Subtotal {currency(total.toFixed(2)).format()}
                                 </Typography>
                             </CardContent>
                             <CardActions>

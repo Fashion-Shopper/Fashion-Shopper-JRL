@@ -13,6 +13,7 @@ import Profile from './User/Profile';
 /////////////////// MATERIAL UI ///////////////////////////
 import { AppBar, Toolbar, Typography, Button, Badge, IconButton } from '@mui/material';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+import ShoppingBagIcon from '@mui/icons-material/ShoppingBag';
 
 const Navbar = () => {
   const isLoggedIn = useSelector(state => !!state.auth.id)
@@ -47,12 +48,12 @@ const Navbar = () => {
             }
 
             <Button component={Link} to="/products" color="inherit">Products ({products.length})</Button>
-            <Profile />
             <IconButton component={Link} to="/cart" size="large" aria-label="user cart" color="inherit">
               <Badge badgeContent={quantity} color="error">
-                <ShoppingCartIcon />
+                <ShoppingBagIcon />
               </Badge>
             </IconButton>
+            <Profile />
 
           </>
         ) : (
@@ -63,7 +64,7 @@ const Navbar = () => {
             <Button component={Link} to="/products" color="inherit">Products ({products.length})</Button>
             <IconButton size="large" aria-label="show guess cart quantity" color="inherit">
               <Badge badgeContent={quantity} color="error">
-                <ShoppingCartIcon />
+                <ShoppingBagIcon />
               </Badge>
             </IconButton>
           </>

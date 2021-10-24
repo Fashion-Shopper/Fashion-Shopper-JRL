@@ -17,6 +17,10 @@ import { destroyProduct } from "../../store";
 ////////////// REACT ICONS ///////////////////////
 // import { MdOutlineAddShoppingCart } from 'react-icons/md'
 
+////////////// to convert to currency ////////////////
+import currency from 'numeral'
+currency.defaultFormat('$0,0.00');
+
 function ProductCard(props) {
   const { isAdmin } = useSelector((state) => state.auth);
 
@@ -59,7 +63,7 @@ function ProductCard(props) {
           <Rating name="half-rating-read" defaultValue={rating * 1} precision={0.5} readOnly />
           {/* </Typography> */}
           <Typography variant="body2" color="text.secondary">
-            Price: ${price}
+            Price: {currency(price).format()}
           </Typography>
         </CardContent>
         <CardActions sx={{ display: "flex", flexDirection: "column" }}>

@@ -7,7 +7,6 @@ import { Settings, Logout, History } from '@mui/icons-material';
 import { useDispatch, useSelector } from 'react-redux';
 import { logout } from '../../store';
 
-import { FaUserEdit } from 'react-icons/fa'
 import { Link } from 'react-router-dom';
 
 const Profile = () => {
@@ -32,10 +31,10 @@ const Profile = () => {
 
     return (
         <>
-            <Tooltip title="User settings">
+            <Tooltip title="User profile">
                 <IconButton onClick={handleMenu}>
+                    <ArrowDropDownIcon size='small' color="secondary" />
                     <Avatar src={user.avatar}>{user.username.charAt(0).toUpperCase()}</Avatar>
-                    <ArrowDropDownIcon />
                 </IconButton>
             </Tooltip>
             <Typography>
@@ -75,17 +74,17 @@ const Profile = () => {
                 transformOrigin={{ horizontal: 'right', vertical: 'top' }}
                 anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
             >
-                <MenuItem>
+                {/* <MenuItem>
                     <ListItemIcon>
                         <FaUserEdit size='1.5rem' />
                     </ListItemIcon>
                     Edit Profile
-                </MenuItem>
+                </MenuItem> */}
                 <MenuItem component={Link} to='/orders'>
                     <ListItemIcon>
                         <History />
                     </ListItemIcon>
-                    Past Orders
+                    Order History
                 </MenuItem>
                 <MenuItem>
                     <ListItemIcon>
