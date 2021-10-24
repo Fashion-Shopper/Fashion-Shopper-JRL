@@ -16,8 +16,8 @@ app.use(express.json())
 app.use('/auth', require('./auth'))
 app.use('/api', require('./api'))
 
-//app.get('/', (req, res)=> res.sendFile(path.join(__dirname, '..', 'public/index.html')));
-app.get('*', (req, res)=> res.render(path.join(__dirname, '..', 'public/index.html'), {GOOGLE_KEY:process.env.GOOGLE_KEY}));
+app.get('/', (req, res)=> res.sendFile(path.join(__dirname, '..', 'public/index.html')));
+// app.get('*', (req, res)=> res.render(path.join(__dirname, '..', 'public/index.html'), {GOOGLE_KEY:process.env.GOOGLE_KEY}));
 
 // static file-serving middleware
 app.use(express.static(path.join(__dirname, '..', 'public')))

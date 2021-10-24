@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux'
-import {createAddress, updateAddress, deleteAddress} from '../../../store/address';
+import {fetchAddresses, createAddress, updateAddress, deleteAddress} from '../../../store/address';
 
 class Address extends Component{
     constructor(){
@@ -37,40 +37,60 @@ class Address extends Component{
     }
     render(){
         const {addresses} = this.props;
+        console.log(addresses)
         const {place} = this.state;
         const {save, handleUpdate, handleDelete} = this; 
         return (
             <div>
-                <h3>Address</h3>
-            <input ref={el => this.el=el} style={ {width: '100%', height: '1.5rem'} } />
-            <button disabled={ !place } onClick={save}> Save </button>
-            <ul>{
-            addresses.map(address =>{
-                return(
-                    <li key = {address.id}>
+              <h3>Address</h3>
+              <div>
+              <input type={'text'} ref={el => this.el=el} style={ {width: '100%', height: '1.5rem'} } />
+              <button disabled={ !place } onClick={save}> Save </button>
+              </div>
+              <div>
+                {addresses.length=== 0 ? ( 
+                            <div className="no-data">
+                                <h3>There are no available Addresses at this moment.</h3>
+                                <h3>Please use the form to add a Address.</h3>
+                            </div>) :                      
+            
+                (<ul>
+                {addresses.map(address =>{
+                    return(
+                        <li className='address' key = {address.id}>
                         {
                         addresses.place.formatted_addreess
                         }
+                        {/* <pre>
+                            {
+                               JSON.stringify(address.place, null, 2) 
+                            }
+                        </pre> */}
                         <Button onClick={() => handleUpdate(address.id, this.state.place)}> Update </Button>
                         <Button onClick={() => handleDelete(address.id)}> Delete </Button>
                     </li>
-                )
-            })     
-            }
-            </ul>
+                    )
+                    })
+                }     
+                </ul>)
+                }
+            </div>
         </div>
         )
     }
 }
 
-const mapStateToProps = (addresses) => {
+const mapStateToProps = (state) => {
     return {
-      addresses
-    };
+        addresses: state.addresses
+    }
   };
   
-  const mapDispatchToProps = (dispatch) => {
+const mapDispatchToProps = (dispatch) => {
     return {
+      fetchAddresses: ()=>{
+        dispatch(fetchAddresses())  
+      },
       createAddress: (place) => {
         dispatch(createAddress(place));
       },
@@ -81,10 +101,6 @@ const mapStateToProps = (addresses) => {
         dispatch(deleteAddress(id));
       }
     };
-  };
+};
   
 export default connect(mapStateToProps, mapDispatchToProps)(Address);
-  
-
-
-

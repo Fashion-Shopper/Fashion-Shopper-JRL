@@ -1,9 +1,9 @@
-try{
-  require('../env.js')
-}
-catch(ex){
-  console.log('DO YOU NEED ENVIRONMENT VARIABLES?')
-}
+// try{
+//   require('../env.js')
+// }
+// catch(ex){
+//   console.log('DO YOU NEED ENVIRONMENT VARIABLES?')
+// }
 
 const { db } = require('./db')
 const PORT = process.env.PORT || 8080

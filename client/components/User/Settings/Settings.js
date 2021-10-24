@@ -60,7 +60,7 @@ class Settings extends Component{
 
 const mapDispatchToProps =()=>{
     return{
-        updateAuth: user
+      updateAuth: (avatar,username) => dispatch(updateAuth(avatar,username))
     }
 }
 
