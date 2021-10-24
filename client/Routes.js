@@ -4,7 +4,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { Route, Switch, Redirect } from "react-router-dom";
 import { Login, Signup } from "./components/AuthForm";
 import Home from "./components/Home";
-import { me } from "./store";
 
 /////////////////////// COMPONENTS  /////////////////////
 import Brands from "./components/Brands/Brands";
@@ -14,11 +13,12 @@ import SingleProduct from "./components/Products/SingleProduct";
 import Cart from "./components/User/Cart";
 
 ///////////////// STORE ////////////////////////
-import { fetchCart } from "./store";
+import { fetchCart, fetchOrders, me } from "./store";
 import AdminProducts from "./components/admin/AdminProducts";
 import AdminUsers from "./components/admin/AdminUsers";
-import PastOrders from "./components/User/PastOrders/Table";
+import PastOrders from "./components/User/orderHistory/Table";
 import Checkout from "./components/User/Checkout/Checkout";
+import Success from "./components/User/Checkout/Success";
 // import Settings from './components/Settings'
 // import auth from "./store/auth";
 
@@ -36,6 +36,7 @@ const Routes = () => {
   useEffect(() => {
     dispatch(me());
     dispatch(fetchCart());
+    dispatch(fetchOrders())
   }, [isLoggedIn]);
 
   return (
@@ -51,6 +52,7 @@ const Routes = () => {
             <Route exact path="/cart" component={Cart} />
             <Route exact path="/orders" component={PastOrders} />
             <Route exact path="/checkout" component={Checkout} />
+            <Route exact path="/checkout/success" component={Success} />
             {
               !!isAdmin && (
                 <>

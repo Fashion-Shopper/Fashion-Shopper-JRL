@@ -10,7 +10,7 @@ import { addToCart } from "../../store/cart";
 
 
 //////////////// MATERIAL UI /////////////////////
-import { TextField, Button, } from '@mui/material';
+import { TextField, Button, Stack, } from '@mui/material';
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 
 class SingleProduct extends Component {
@@ -68,22 +68,24 @@ class SingleProduct extends Component {
         </div>
         <div id="cartForm">
           <form onSubmit={onSubmit} className="cart-form">
-            <TextField
-              label="Quantity"
-              type="number"
-              InputProps={{
-                inputProps: {
-                  max: 20,
-                  min: 1
-                }
-              }}
-              name="quantity"
-              value={quantity}
-              onChange={onChange}
-            />
-            <Button type='submit' variant="outlined" startIcon={<AddShoppingCartIcon />}>
-              Add to Cart
-            </Button>
+            <Stack direction="row">
+              <TextField
+                label="Quantity"
+                type="number"
+                InputProps={{
+                  inputProps: {
+                    max: 20,
+                    min: 1
+                  }
+                }}
+                name="quantity"
+                value={quantity}
+                onChange={onChange}
+              />
+              <Button type='submit' variant="contained" startIcon={<AddShoppingCartIcon />}>
+                Add to Cart
+              </Button>
+            </Stack>
           </form>
         </div >
       </div >

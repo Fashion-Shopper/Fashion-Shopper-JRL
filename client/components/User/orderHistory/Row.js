@@ -51,11 +51,17 @@ function Row(props) {
                 <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={6}>
                     <Collapse in={open} timeout="auto" unmountOnExit>
                         <Box sx={{ margin: 1 }}>
-                            <Typography variant="h6" gutterBottom component="div">
+                            <Typography variant="h6" align='center' fontWeight='700' gutterBottom component="div">
                                 Order Details
                             </Typography>
+                            <Typography variant="body1" gutterBottom component="div" sx={{ textDecoration: 'underline' }}>
+                                Shipping Information
+                            </Typography>
                             <Typography variant="body1" gutterBottom component="div">
-                                Shipping Address: 'some address'
+                                Name: {order.shippingName}
+                            </Typography>
+                            <Typography variant="body1" gutterBottom component="div">
+                                Address: {order.shippingAddress}
                             </Typography>
                             <Table size="small" aria-label="details">
                                 <TableHead>
