@@ -35,11 +35,17 @@ class Address extends Component{
                 });
         })
     }
+
     render(){
         const {addresses} = this.props;
         console.log(this.props)
         const {place} = this.state;
         const {save, handleUpdate, handleDelete} = this; 
+        if (!addresses) {
+            return (
+                    <div className="single-card">...Loading</div>
+            )
+        }
         return (
             <div>
               <h3>Address</h3>
@@ -61,11 +67,7 @@ class Address extends Component{
                         {
                         addresses.place.formatted_addreess
                         }
-                        {/* <pre>
-                            {
-                               JSON.stringify(address.place, null, 2) 
-                            }
-                        </pre> */}
+                        
                         <Button onClick={() => handleUpdate(address.id, this.state.place)}> Update </Button>
                         <Button onClick={() => handleDelete(address.id)}> Delete </Button>
                     </li>
