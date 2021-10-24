@@ -37,14 +37,14 @@ class Address extends Component{
     }
     render(){
         const {addresses} = this.props;
-        console.log(addresses)
+        console.log(this.props)
         const {place} = this.state;
         const {save, handleUpdate, handleDelete} = this; 
         return (
             <div>
               <h3>Address</h3>
               <div>
-              <input type={'text'} ref={el => this.el=el} style={ {width: '100%', height: '1.5rem'} } />
+              <input type={'text'} ref={ref => this.el=ref} style={ {width: '100%', height: '1.5rem'} } />
               <button disabled={ !place } onClick={save}> Save </button>
               </div>
               <div>
@@ -80,9 +80,9 @@ class Address extends Component{
     }
 }
 
-const mapStateToProps = (state) => {
+const mapStateToProps = (addresses) => {
     return {
-        addresses: state.addresses
+        addresses
     }
   };
   
