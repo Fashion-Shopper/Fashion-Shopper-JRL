@@ -25,7 +25,7 @@ class ProductUpdateForm extends Component {
 
   async componentDidMount() {
     const product = (
-      await axios.get(`/api/campuses/${this.props.match.params.productId}`)
+      await axios.get(`/api/products/${this.props.match.params.productId}`)
     ).data;
     this.setState({
       name: product.name,
@@ -45,13 +45,27 @@ class ProductUpdateForm extends Component {
 
   onSubmit(evt) {
     evt.preventDefault();
-    const updatedCampus = {
-      id: this.state.id,
+    const updatedProduct = {
       name: this.state.name,
-      address: this.state.address,
+      brandName: this.state.brandName,
+      imageURL: this.state.imageURL,
+      price: this.state.price,
+      category: this.state.category,
+      size: this.state.size,
+      rating: this.state.rating,
+      description: this.state.description,
     };
-    this.props.update(updatedCampus);
-    this.setState({ name: "", address: "" });
+    this.props.update(updatedProduct);
+    this.setState({
+      name: "",
+      brandName: "",
+      imageURL: "",
+      price: "",
+      category: "",
+      size: "",
+      rating: "",
+      description: "",
+    });
   }
 
   render() {
@@ -78,43 +92,17 @@ class ProductUpdateForm extends Component {
             </button>
           </div>
         </form>
-        <div id="selectedCampusStudents">
-          <h2>Campus Students</h2>
-          {!this.state.campusStudents ? (
-            <h1>The Selected Campus does not have any Students.</h1>
-          ) : (
-            <ul>
-              {this.state.campusStudents.map((singleStudent) => {
-                return (
-                  <div key={singleStudent.id}>
-                    <Link to={`/students/${singleStudent.id}`}>
-                      <li>
-                        {singleStudent.firstName} {singleStudent.lastName}
-                      </li>
-                    </Link>
-                    <button onClick={() => this.onUnregister(singleStudent.id)}>
-                      unregister
-                    </button>
-                  </div>
-                );
-              })}
-            </ul>
-          )}
-        </div>
       </div>
     );
   }
 }
 
-const mapDispatchToProps = (dispatch, { history }) => {
+const mapDispatchToProps = (dispatch) => {
   return {
-    update: (campusInfo) => {
-      dispatch(updateCampus(campusInfo, history));
-    },
-    updateStudent: (studentInfo) => {
-      dispatch(updateCampusStudent(studentInfo));
+    update: (productInfo) => {
+      dispatch(updateProduct(productInfo));
     },
   };
 };
 
-export default connect(null, mapDispatchToProps)(CampusUpdateForm);
+export default connect(null, mapDispatchToProps)(ProductUpdateForm);
