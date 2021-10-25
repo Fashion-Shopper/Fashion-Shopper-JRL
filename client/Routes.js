@@ -56,7 +56,8 @@ const Routes = () => {
             {!!isAdmin && (
               <>
                 <Route exact path="/admin" component={AdminDashboard} />
-                <Route path="/admin/products" component={AdminProducts} />
+                <Route exact path="/admin/products" component={AdminProducts} />
+                <Route path="/admin/products/form" component={ProductForm} />
                 <Route path="/admin/users" component={AdminUsers} />
               </>
             )}
