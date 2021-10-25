@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 
 ////////////////////////// MATERIAL UI ///////////////////////////////////////
-import { Avatar, Button, Card, CardActions, CardContent, CardHeader, CardMedia, CircularProgress, Container, Divider, FormControl, Grid, InputLabel, List, ListItem, ListItemText, MenuItem, Paper, Select, Stack, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Typography } from '@mui/material'
+import { Button, Divider, FormControl, Grid, InputLabel, MenuItem, Select, Stack, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Typography } from '@mui/material'
 import { Box } from '@mui/system';
 import DeleteIcon from '@mui/icons-material/Delete';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
@@ -37,13 +37,25 @@ const Cart = () => {
     if (userCart.orderitems && userCart.orderitems.length === 0) {
         return (
             <>
-                <Typography variant='h5' gutterBottom aling='center'>
-                    CART
+                <Typography variant='h3' gutterBottom align='center' sx={{ mt: 5 }}>
+                    Cart <ShoppingCartIcon fontSize="large" />
                 </Typography>
-                <Divider />
-                <Typography>
-                    Your Cart is Empty
-                </Typography>
+                <Grid container
+                    direction='column'
+                    justifyContent="center"
+                    alignItems="center"
+                    sx={{ mt: 20 }}>
+                    <Grid item xs={6}>
+                        <Typography variant='h5' gutterBottom component='div'>
+                            Your Cart is Empty!
+                        </Typography>
+                    </Grid>
+                    <Grid item xs={6}>
+                        <Button component={Link} to='/products' variant='contained'>
+                            Shop Now!
+                        </Button>
+                    </Grid>
+                </Grid>
             </>
         )
     }
@@ -56,17 +68,6 @@ const Cart = () => {
     const handleRemove = (orderItemId) => {
         dispatch(removeFromCart(orderItemId))
     }
-    function createData(name, calories, fat, carbs, protein) {
-        return { name, calories, fat, carbs, protein };
-    }
-
-    const rows = [
-        createData('Frozen yoghurt', 159, 6.0, 24, 4.0),
-        createData('Ice cream sandwich', 237, 9.0, 37, 4.3),
-        createData('Eclair', 262, 16.0, 24, 6.0),
-        createData('Cupcake', 305, 3.7, 67, 4.3),
-        createData('Gingerbread', 356, 16.0, 49, 3.9),
-    ];
 
     return (
         <>
@@ -91,12 +92,12 @@ const Cart = () => {
                                 {userCart.orderitems.map(({ id, product, quantity }) => (
                                     <TableRow key={id}>
                                         <TableCell padding='none' sx={{ height: 100, width: '100%' }}>
-                                            <Stack direction='row' spacing={4} sx={{ '@media screen and (max-width: 840px)': { flexDirection: 'column' } }}>
-                                                <Stack>
+                                            <Stack direction='row' spacing={4} sx={{ '@media screen and (max-width: 860px)': { flexDirection: 'column' } }}>
+                                                <Stack component={Link} to={`/products/${product.id}`}>
                                                     <img src={product.imageURL} width='200' />
                                                 </Stack>
                                                 <Stack justifyContent='space-between'>
-                                                    <Box>
+                                                    <Box component={Link} to={`/products/${product.id}`} sx={{ color: 'inherit' }}>
                                                         <Typography variant="subtitle1" color="text.secondary" component="div">
                                                             {product.brandName}
                                                         </Typography>
@@ -151,54 +152,6 @@ const Cart = () => {
                             </TableBody>
                         </Table>
                     </TableContainer>
-                    {/* {userCart.orderitems.map(({ id, product, quantity }) => (
-                        <Grid item xs={12} sx={{ p: 2 }} key={product.id}>
-                            <Card sx={{
-                                display: 'flex', '@media screen and (max-width: 800px)': { flexDirection: 'column' }
-                            }} >
-                                <CardMedia
-                                    component="img"
-                                    sx={{ maxWidth: 250, p: 3 }}
-                                    image={product.imageURL}
-                                    alt={product.name}
-                                />
-                                <Box sx={{ display: 'flex', flexDirection: 'column' }}>
-                                    <CardContent sx={{ flex: '1 0 auto' }}>
-                                        <Typography component="div" variant="h5">
-                                            {product.name}
-                                        </Typography>
-                                        <Typography variant="subtitle1" color="text.secondary" component="div">
-                                            {product.brandName}
-                                        </Typography>
-                                        
-                                        
-                                    </CardContent>
-                                    <Stack direction="row" spacing={2} sx={{ pl: 3, pb: 5 }}>
-                                        <FormControl>
-                                            <InputLabel>QTY</InputLabel>
-                                            <Select
-                                                label="QTY"
-                                                variant='outlined'
-                                                name="quantity"
-                                                value={quantity}
-                                                onChange={(evt) => handleChange(evt, id)}
-                                            >
-                                                <MenuItem value={1}>1</MenuItem>
-                                                <MenuItem value={2}>2</MenuItem>
-                                                <MenuItem value={3}>3</MenuItem>
-                                                <MenuItem value={4}>4</MenuItem>
-                                                <MenuItem value={5}>5</MenuItem>
-                                                <MenuItem value={6}>6</MenuItem>
-                                                <MenuItem value={7}>7</MenuItem>
-                                                <MenuItem value={8}>8</MenuItem>
-                                            </Select>
-                                        </FormControl>
-                                        
-                                    </Stack>
-                                </Box>
-                            </Card>
-                        </Grid>
-                    ))} */}
                 </Grid>
                 <Grid item container xs={12} sm={4} md={4}>
                     <Grid item xs={12} sx={{ p: 2 }} >
