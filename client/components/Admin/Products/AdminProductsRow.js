@@ -1,5 +1,6 @@
 import React from "react";
 import { useDispatch } from "react-redux";
+import { Link } from "react-router-dom";
 import TableCell from "@mui/material/TableCell";
 import TableRow from "@mui/material/TableRow";
 import { Button, CardMedia } from "@mui/material";
@@ -47,7 +48,13 @@ function Row(props) {
           {price}
         </TableCell>
         <TableCell scope="row" align="center">
-          <Button variant="outlined">Update</Button>
+          <Button
+            variant="outlined"
+            component={Link}
+            to={`/admin/products/update`}
+          >
+            Update
+          </Button>
         </TableCell>
         <TableCell scope="row" align="center">
           <Button

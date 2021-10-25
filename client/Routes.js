@@ -13,7 +13,7 @@ import Products from "./components/Products/Products";
 import SingleProduct from "./components/Products/SingleProduct";
 import Cart from "./components/User/Cart";
 import AdminDashboard from "./components/Admin/Dashboard";
-import ProductForm from "./components/Admin/Products/ProductForm.js";
+import ProductUpdateForm from "./components/Admin/Products/ProductUpdateForm";
 
 ///////////////// STORE ////////////////////////
 import { fetchCart } from "./store";
@@ -57,7 +57,10 @@ const Routes = () => {
               <>
                 <Route exact path="/admin" component={AdminDashboard} />
                 <Route exact path="/admin/products" component={AdminProducts} />
-                <Route path="/admin/products/form" component={ProductForm} />
+                <Route
+                  path="/admin/products/update"
+                  component={ProductUpdateForm}
+                />
                 <Route path="/admin/users" component={AdminUsers} />
               </>
             )}
