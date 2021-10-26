@@ -1,11 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-// import { updateCampus } from "../store/campuses";
-// import { updateCampusStudent } from "../store/students";
 import axios from "axios";
-import { Link } from "react-router-dom";
 import { updateProduct } from "../../../store/products";
-import { ConstructionOutlined } from "@mui/icons-material";
 
 class ProductUpdateForm extends Component {
   constructor(props) {
@@ -15,7 +11,7 @@ class ProductUpdateForm extends Component {
       name: "",
       brandName: "",
       imageURL: "",
-      price: "",
+      price: 0,
       category: "",
       size: "",
       rating: "",
@@ -79,11 +75,53 @@ class ProductUpdateForm extends Component {
       <div>
         <form className="campus-update-form">
           <div>
-            <label>Product Name</label>
+            <label>Name</label>
             <input
               name="name"
               type="text"
               value={this.state.name}
+              onChange={this.onChange}
+            />
+            <label>Brand</label>
+            <input
+              name="name"
+              type="text"
+              value={this.state.brandName}
+              onChange={this.onChange}
+            />
+            <label>Image URL</label>
+            <input
+              name="name"
+              type="text"
+              value={this.state.imageURL}
+              onChange={this.onChange}
+            />
+            <label>Price</label>
+            <input
+              name="name"
+              type="text"
+              value={this.state.price}
+              onChange={this.onChange}
+            />
+            <label>Category</label>
+            <input
+              name="name"
+              type="text"
+              value={this.state.category}
+              onChange={this.onChange}
+            />
+            <label>Size</label>
+            <input
+              name="name"
+              type="text"
+              value={this.state.size}
+              onChange={this.onChange}
+            />
+            <label>Description</label>
+            <input
+              name="name"
+              type="text"
+              value={this.state.description}
               onChange={this.onChange}
             />
             <button type="submit" onClick={this.onSubmit}>
