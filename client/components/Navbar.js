@@ -7,14 +7,14 @@ import { useSelector } from 'react-redux'
 import Profile from './User/Profile';
 
 ////////////////// LOGO ////////////////
-import logo from '!!file-loader!../../public/JRL-Logo.png'
+const logo = '/logo/JRL-Logo.png'
 
 ////////////// STORE ///////////////////
-
 
 /////////////////// MATERIAL UI ///////////////////////////
 import { AppBar, Toolbar, Typography, Button, Badge, IconButton } from '@mui/material';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+import { Box } from '@mui/system';
 
 const Navbar = () => {
   const isLoggedIn = useSelector(state => !!state.auth.id)
@@ -29,13 +29,17 @@ const Navbar = () => {
   return (
     <AppBar position="static" color='secondary' sx={{ boxShadow: 'none', borderBottom: 'solid 2px black' }}>
       <Toolbar>
-        {/* <img src='../../public/icons/JRL-Logo.png' /> */}
-        <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+        <Box sx={{ borderRight: 'solid 2px black', px: 2, py: 1 }} >
+          <Button component={Link} to="/home" color="inherit">
+            <img src={logo} width='120' />
+          </Button>
+        </Box>
+        {/* <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
           Fashion-JRL
-        </Typography>
+        </Typography> */}
         {isLoggedIn ? (
           <>
-            <Button component={Link} to="/home" color="inherit">Home</Button>
+            {/* <Button component={Link} to="/home" color="inherit">Home</Button> */}
             {/* <Button component={Link} to="/" onClick={handleClick} color="inherit">Logout</Button> */}
 
 
@@ -60,7 +64,7 @@ const Navbar = () => {
           </>
         ) : (
           <>
-            <Button component={Link} to="/home" color="inherit">Home</Button>
+            {/* <Button component={Link} to="/home" color="inherit">Home</Button> */}
             <Button component={Link} to="/login" color="inherit">Login</Button>
             <Button component={Link} to="/signup" color="inherit">Sign Up</Button>
             <Button component={Link} to="/products" color="inherit">Products ({products.length})</Button>
