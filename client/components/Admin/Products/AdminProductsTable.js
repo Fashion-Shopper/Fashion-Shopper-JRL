@@ -22,7 +22,7 @@ const ProductsTable = () => {
     dispatch(fetchProducts());
   }, []);
 
-  const compare = (a, b) => {
+  const compareById = (a, b) => {
     const bandA = a.id;
     const bandB = b.id;
 
