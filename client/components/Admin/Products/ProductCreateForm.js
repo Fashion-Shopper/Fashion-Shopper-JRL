@@ -64,42 +64,42 @@ class ProductCreateForm extends Component {
             />
             <label>Brand</label>
             <input
-              name="name"
+              name="brandName"
               type="text"
               value={this.state.brandName}
               onChange={this.onChange}
             />
             <label>Image URL</label>
             <input
-              name="name"
+              name="imageURL"
               type="text"
               value={this.state.imageURL}
               onChange={this.onChange}
             />
             <label>Price</label>
             <input
-              name="name"
+              name="price"
               type="text"
               value={this.state.price}
               onChange={this.onChange}
             />
             <label>Category</label>
             <input
-              name="name"
+              name="category"
               type="text"
               value={this.state.category}
               onChange={this.onChange}
             />
             <label>Size</label>
             <input
-              name="name"
+              name="size"
               type="text"
               value={this.state.size}
               onChange={this.onChange}
             />
             <label>Description</label>
             <input
-              name="name"
+              name="description"
               type="text"
               value={this.state.description}
               onChange={this.onChange}

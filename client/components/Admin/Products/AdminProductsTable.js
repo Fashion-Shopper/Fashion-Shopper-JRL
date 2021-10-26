@@ -30,11 +30,7 @@ const ProductsTable = () => {
 
   return (
     <Container sx={{ mt: 3 }}>
-      <Button
-        variant="outlined"
-        // component={Link}
-        // to={`/admin/products/create`}
-      >
+      <Button variant="outlined" component={Link} to={`/admin/products/create`}>
         Create New Product
       </Button>
       <TableContainer component={Paper}>
