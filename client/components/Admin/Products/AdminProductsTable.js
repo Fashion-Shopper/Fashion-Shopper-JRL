@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 import { fetchProducts } from "../../../store";
 
 import Table from "@mui/material/Table";
@@ -11,7 +12,7 @@ import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 
 import LoadSpinner from "../../Materialui/LoadSpinner";
-import { Container } from "@mui/material";
+import { Container, Button } from "@mui/material";
 import Row from "./AdminProductsRow";
 
 const ProductsTable = () => {
@@ -29,6 +30,13 @@ const ProductsTable = () => {
 
   return (
     <Container sx={{ mt: 3 }}>
+      <Button
+        variant="outlined"
+        // component={Link}
+        // to={`/admin/products/create`}
+      >
+        Create New Product
+      </Button>
       <TableContainer component={Paper}>
         <Table aria-label="collapsible table">
           <TableHead>
