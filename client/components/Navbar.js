@@ -38,45 +38,43 @@ const Navbar = () => {
           Fashion-JRL
         </Typography> */}
         {isLoggedIn ? (
+
+          // <Link to='/settings'>
+          //       Settings
+          //     </Link>
+          // {
+          //     !!auth.avatar && <img src={`${auth.avatar}`} /> 
+          //   }
+          // {
+          //   //  !!auth.isAdmin && <Link to = '/admin'> Admin </Link>
+          // }
           <>
-            {/* <Button component={Link} to="/home" color="inherit">Home</Button> */}
-            {/* <Button component={Link} to="/" onClick={handleClick} color="inherit">Logout</Button> */}
-
-
-            {/* <Link to='/settings'>
-              Settings
-            </Link> */}
-            {/* {
-            !!auth.avatar && <img src={`${auth.avatar}`} /> 
-          } */}
-            {
-              //  !!auth.isAdmin && <Link to = '/admin'> Admin </Link>
-            }
-
             <Button component={Link} to="/products" color="inherit">Products ({products.length})</Button>
-            <IconButton component={Link} to="/cart" size="large" aria-label="user cart" color="inherit">
-              <Badge badgeContent={quantity} color="error">
-                <ShoppingCartIcon />
-              </Badge>
-            </IconButton>
+            <Box sx={{ flexGrow: 1, textAlign: 'right' }}>
+              <IconButton component={Link} to="/cart" size="large" aria-label="user cart" color="inherit">
+                <Badge badgeContent={quantity} color="error">
+                  <ShoppingCartIcon />
+                </Badge>
+              </IconButton>
+            </Box>
             <Profile />
-
           </>
         ) : (
           <>
-            {/* <Button component={Link} to="/home" color="inherit">Home</Button> */}
-            <Button component={Link} to="/login" color="inherit">Login</Button>
-            <Button component={Link} to="/signup" color="inherit">Sign Up</Button>
             <Button component={Link} to="/products" color="inherit">Products ({products.length})</Button>
-            <IconButton size="large" aria-label="show guess cart quantity" color="inherit">
-              <Badge badgeContent={quantity} color="error">
-                <ShoppingCartIcon />
-              </Badge>
-            </IconButton>
+            <Box sx={{ flexGrow: 1, textAlign: 'right' }}>
+              <IconButton size="large" aria-label="cart" color="inherit">
+                <Badge badgeContent={quantity} color="error">
+                  <ShoppingCartIcon />
+                </Badge>
+              </IconButton>
+              <Button component={Link} to="/login" color="inherit">Login</Button>
+              <Button component={Link} to="/signup" color="inherit">Sign Up</Button>
+            </Box>
           </>
         )}
       </Toolbar>
-    </AppBar>
+    </AppBar >
   )
 }
 
