@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 
 ////////////////////////// MATERIAL UI ///////////////////////////////////////
-import { Button, Divider, FormControl, Grid, InputLabel, MenuItem, Select, Stack, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Typography } from '@mui/material'
+import { Button, Container, Divider, FormControl, Grid, InputLabel, MenuItem, Select, Stack, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Typography } from '@mui/material'
 import { Box } from '@mui/system';
 import DeleteIcon from '@mui/icons-material/Delete';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
@@ -70,7 +70,7 @@ const Cart = () => {
     }
 
     return (
-        <>
+        <Container maxWidth="xl">
             <Typography variant='h3' gutterBottom align='center' sx={{ mt: 5 }}>
                 Cart <ShoppingCartIcon fontSize="large" />
             </Typography>
@@ -169,7 +169,7 @@ const Cart = () => {
                     </Grid>
                 </Grid>
             </Grid >
-        </>
+        </Container>
     )
 }
 

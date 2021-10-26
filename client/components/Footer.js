@@ -25,7 +25,8 @@ const Footer = () => {
             width: "100%",
             zIndex: '1',
             py: 3,
-            px: 2
+            px: 2,
+            borderTop: 'solid 2px black'
         }}>
             <Container>
                 <Typography variant='body1' align='center'>
