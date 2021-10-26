@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import axios from "axios";
 import { createProduct } from "../../../store/products";
 
 class ProductCreateForm extends Component {
@@ -123,4 +122,4 @@ const mapDispatchToProps = (dispatch, { history }) => {
   };
 };
 
-export default connect(null, mapDispatchToProps)(ProductCreateForm)
+export default connect(null, mapDispatchToProps)(ProductCreateForm);
