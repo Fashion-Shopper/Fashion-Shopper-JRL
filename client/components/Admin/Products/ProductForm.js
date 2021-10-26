@@ -1,6 +1,6 @@
 import React, { Component } from "react"
 import { connect } from "react-redux";
-import { createProduct, updateProduct } from "../../store/products";
+import { createProduct, updateProduct } from "../../../store/products";
 
 class ProductForm extends Component {
     constructor(props) {

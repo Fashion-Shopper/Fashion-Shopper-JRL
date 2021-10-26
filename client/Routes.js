@@ -11,11 +11,14 @@ import SingleBrand from "./components/Brands/SingleBrand";
 import Products from "./components/Products/Products";
 import SingleProduct from "./components/Products/SingleProduct";
 import Cart from "./components/User/Cart";
+import AdminDashboard from "./components/Admin/Dashboard";
+import ProductUpdateForm from "./components/Admin/Products/ProductUpdateForm";
+import ProductCreateForm from "./components/Admin/Products/ProductCreateForm";
 
 ///////////////// STORE ////////////////////////
 import { fetchCart, fetchOrders, me } from "./store";
-import AdminProducts from "./components/admin/AdminProducts";
-import AdminUsers from "./components/admin/AdminUsers";
+import AdminProducts from "./components/Admin/Products/AdminProductsTable";
+import AdminUsers from "./components/Admin/Users/AdminUsersTable";
 import PastOrders from "./components/User/orderHistory/Table";
 import Checkout from "./components/User/Checkout/Checkout";
 import Success from "./components/User/Checkout/Success";
@@ -53,14 +56,21 @@ const Routes = () => {
             <Route exact path="/orders" component={PastOrders} />
             <Route exact path="/checkout" component={Checkout} />
             <Route exact path="/checkout/success" component={Success} />
-            {
-              !!isAdmin && (
-                <>
-                  <Route exact path='/admin' component={AdminProducts} />
-                  <Route path="/admin/users" component={AdminUsers} />
-                </>
-              )
-            }
+            {!!isAdmin && (
+              <>
+                <Route exact path="/admin" component={AdminDashboard} />
+                <Route exact path="/admin/products" component={AdminProducts} />
+                <Route
+                  path="/admin/products/create"
+                  component={ProductCreateForm}
+                />
+                <Route
+                  path="/admin/products/:productId/update"
+                  component={ProductUpdateForm}
+                />
+                <Route path="/admin/users" component={AdminUsers} />
+              </>
+            )}
             <Redirect to="/home" />
           </Switch>
         </>
