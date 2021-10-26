@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import axios from "axios";
-import { updateProduct } from "../../../store/products";
+import { createProduct } from "../../../store/products";
 
-class ProductUpdateForm extends Component {
+class ProductCreateForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -19,23 +19,6 @@ class ProductUpdateForm extends Component {
     };
     this.onChange = this.onChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
-  }
-
-  async componentDidMount() {
-    const product = (
-      await axios.get(`/api/products/${this.props.match.params.productId * 1}`)
-    ).data;
-    this.setState({
-      id: product.id,
-      name: product.name,
-      brandName: product.brandName,
-      imageURL: product.imageURL,
-      price: product.price,
-      category: product.category,
-      size: product.size,
-      rating: product.rating,
-      description: product.description,
-    });
   }
 
   onChange(evt) {
@@ -55,7 +38,7 @@ class ProductUpdateForm extends Component {
       rating: this.state.rating,
       description: this.state.description,
     };
-    this.props.update(updatedProduct);
+    // this.props.update(updatedProduct);
     this.setState({
       name: "",
       brandName: "",
@@ -135,9 +118,9 @@ class ProductUpdateForm extends Component {
 const mapDispatchToProps = (dispatch, { history }) => {
   return {
     update: (productInfo) => {
-      dispatch(updateProduct(productInfo, history));
+      dispatch(createProduct(productInfo, history));
     },
   };
 };
 
-export default connect(null, mapDispatchToProps)(ProductUpdateForm);
+export default connect(null, mapDispatchToProps)(ProductCreateForm)

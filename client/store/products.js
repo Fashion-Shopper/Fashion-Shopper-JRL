@@ -43,11 +43,12 @@ export const fetchProducts = () => {
   };
 };
 
-export const createProduct = (product) => {
+export const createProduct = (productInfo, history) => {
   return async (dispatch) => {
     try {
-      const { data } = await axios.post("/api/products", product);
+      const { data } = await axios.post("/api/products", productInfo);
       dispatch(_createProduct(data));
+      history.push("/admin/products");
     } catch (err) {
       console.log(err);
     }
