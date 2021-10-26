@@ -26,7 +26,7 @@ class ProductCreateForm extends Component {
 
   onSubmit(evt) {
     evt.preventDefault();
-    const updatedProduct = {
+    const newProduct = {
       id: this.state.id,
       name: this.state.name,
       brandName: this.state.brandName,
@@ -37,23 +37,13 @@ class ProductCreateForm extends Component {
       rating: this.state.rating,
       description: this.state.description,
     };
-    // this.props.update(updatedProduct);
-    this.setState({
-      name: "",
-      brandName: "",
-      imageURL: "",
-      price: "",
-      category: "",
-      size: "",
-      rating: "",
-      description: "",
-    });
+    this.props.create(newProduct);
   }
 
   render() {
     return (
       <div>
-        <form className="campus-update-form">
+        <form className="campus-create-form">
           <div>
             <label>Name</label>
             <input

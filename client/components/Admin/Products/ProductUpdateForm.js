@@ -56,16 +56,6 @@ class ProductUpdateForm extends Component {
       description: this.state.description,
     };
     this.props.update(updatedProduct);
-    this.setState({
-      name: "",
-      brandName: "",
-      imageURL: "",
-      price: "",
-      category: "",
-      size: "",
-      rating: "",
-      description: "",
-    });
   }
 
   render() {
