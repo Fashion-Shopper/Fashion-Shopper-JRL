@@ -58,7 +58,7 @@ const Routes = () => {
                 <Route exact path="/admin" component={AdminDashboard} />
                 <Route exact path="/admin/products" component={AdminProducts} />
                 <Route
-                  path="/admin/products/update"
+                  path="/admin/products/:productId/update"
                   component={ProductUpdateForm}
                 />
                 <Route path="/admin/users" component={AdminUsers} />

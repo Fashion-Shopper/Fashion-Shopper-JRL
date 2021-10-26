@@ -7,8 +7,8 @@ import { Link } from "react-router-dom";
 import { updateProduct } from "../../../store/products";
 
 class ProductUpdateForm extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       name: "",
       brandName: "",
@@ -25,7 +25,7 @@ class ProductUpdateForm extends Component {
 
   async componentDidMount() {
     const product = (
-      await axios.get(`/api/products/${this.props.match.params.productId}`)
+      await axios.get(`/api/products/${this.props.match.params.productId * 1}`)
     ).data;
     this.setState({
       name: product.name,
@@ -40,6 +40,8 @@ class ProductUpdateForm extends Component {
   }
 
   onChange(evt) {
+    console.log(this.props);
+    console.log(this.state);
     this.setState({ [evt.target.name]: evt.target.value });
   }
 
@@ -78,13 +80,6 @@ class ProductUpdateForm extends Component {
               name="name"
               type="text"
               value={this.state.name}
-              onChange={this.onChange}
-            />
-            <label>Campus Address</label>
-            <input
-              name="address"
-              type="text"
-              value={this.state.address}
               onChange={this.onChange}
             />
             <button type="submit" onClick={this.onSubmit}>

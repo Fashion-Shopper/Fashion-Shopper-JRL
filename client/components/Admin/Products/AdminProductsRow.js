@@ -51,7 +51,7 @@ function Row(props) {
           <Button
             variant="outlined"
             component={Link}
-            to={`/admin/products/update`}
+            to={`/admin/products/${id}/update`}
           >
             Update
           </Button>
