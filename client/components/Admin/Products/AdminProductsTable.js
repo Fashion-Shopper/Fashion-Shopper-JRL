@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { fetchProducts } from "../../../store";
+import { compareById } from "./AdminProductsOrdering";
 
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
@@ -22,16 +23,7 @@ const ProductsTable = () => {
     dispatch(fetchProducts());
   }, []);
 
-  const compareById = (a, b) => {
-    const bandA = a.id;
-    const bandB = b.id;
-
-    let comparison = 0;
-    comparison = bandA > bandB ? 1 : -1;
-    return comparison;
-  };
-
-  const products = useSelector((state) => state.products).sort(compare);
+  const products = useSelector((state) => state.products).sort(compareById);
 
   if (!products) {
     return <LoadSpinner />;
