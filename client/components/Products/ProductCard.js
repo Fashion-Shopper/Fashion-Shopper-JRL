@@ -9,13 +9,17 @@ import CardActions from "@mui/material/CardActions";
 import Typography from "@mui/material/Typography";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import IconButton from "@mui/material/IconButton";
-import { Button, Grow, Rating } from "@mui/material";
+import { Button, Grow, Rating, Slide } from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";
 
 import { destroyProduct } from "../../store";
 
 ////////////// REACT ICONS ///////////////////////
 // import { MdOutlineAddShoppingCart } from 'react-icons/md'
+
+////////////// to convert to currency ////////////////
+import currency from 'numeral'
+currency.defaultFormat('$0,0.00');
 
 function ProductCard(props) {
   const { isAdmin } = useSelector((state) => state.auth);
@@ -41,7 +45,7 @@ function ProductCard(props) {
   };
 
   return (
-    <Grow in={true}>
+    <Slide in={true} direction='right' timeout={1000} mountOnEnter unmountOnExit>
       <Card sx={{ maxWidth: 350 }}>
         <IconButton aria-label="add to favorites">
           <FavoriteIcon />
@@ -59,7 +63,7 @@ function ProductCard(props) {
           <Rating name="half-rating-read" defaultValue={rating * 1} precision={0.5} readOnly />
           {/* </Typography> */}
           <Typography variant="body2" color="text.secondary">
-            Price: ${price}
+            Price: {currency(price).format()}
           </Typography>
         </CardContent>
         <CardActions sx={{ display: "flex", flexDirection: "column" }}>
@@ -77,7 +81,7 @@ function ProductCard(props) {
           )}
         </CardActions>
       </Card>
-    </Grow>
+    </Slide>
   );
 }
 

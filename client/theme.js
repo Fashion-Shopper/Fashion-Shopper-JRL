@@ -4,14 +4,29 @@ const theme = createTheme({
     palette: {
         mode: 'light',
         primary: {
-            main: '#035041',
+            main: '#000000',
         },
         secondary: {
-            main: '#2e8fd8',
+            main: '#ffffff',
         },
     },
     shape: {
-        borderRadius: 10,
+        borderRadius: 0,
+    },
+    typography: {
+        fontFamily: "Oswald",
+        h3: {
+            fontFamily: 'Bebas Neue',
+        },
+        h4: {
+            fontFamily: 'Bebas Neue',
+        },
+        h5: {
+            fontFamily: 'Bebas Neue',
+        },
+        h6: {
+            fontFamily: 'Bebas Neue',
+        },
     },
 });
 
