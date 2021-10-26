@@ -5,11 +5,13 @@ import { connect } from "react-redux";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import { updateProduct } from "../../../store/products";
+import { ConstructionOutlined } from "@mui/icons-material";
 
 class ProductUpdateForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      id: 0,
       name: "",
       brandName: "",
       imageURL: "",
@@ -28,6 +30,7 @@ class ProductUpdateForm extends Component {
       await axios.get(`/api/products/${this.props.match.params.productId * 1}`)
     ).data;
     this.setState({
+      id: product.id,
       name: product.name,
       brandName: product.brandName,
       imageURL: product.imageURL,
@@ -48,6 +51,7 @@ class ProductUpdateForm extends Component {
   onSubmit(evt) {
     evt.preventDefault();
     const updatedProduct = {
+      id: this.state.id,
       name: this.state.name,
       brandName: this.state.brandName,
       imageURL: this.state.imageURL,
@@ -92,10 +96,10 @@ class ProductUpdateForm extends Component {
   }
 }
 
-const mapDispatchToProps = (dispatch) => {
+const mapDispatchToProps = (dispatch, { history }) => {
   return {
     update: (productInfo) => {
-      dispatch(updateProduct(productInfo));
+      dispatch(updateProduct(productInfo, history));
     },
   };
 };
