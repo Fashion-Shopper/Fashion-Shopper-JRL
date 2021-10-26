@@ -6,14 +6,13 @@ class ProductCreateForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      id: 0,
       name: "",
       brandName: "",
       imageURL: "",
       price: 0,
       category: "",
       size: "",
-      rating: "",
+      rating: 0,
       description: "",
     };
     this.onChange = this.onChange.bind(this);
@@ -87,6 +86,13 @@ class ProductCreateForm extends Component {
               value={this.state.size}
               onChange={this.onChange}
             />
+            <label>Rating</label>
+            <input
+              name="rating"
+              type="text"
+              value={this.state.rating}
+              onChange={this.onChange}
+            />
             <label>Description</label>
             <input
               name="description"
@@ -95,7 +101,7 @@ class ProductCreateForm extends Component {
               onChange={this.onChange}
             />
             <button type="submit" onClick={this.onSubmit}>
-              Update Product
+              Create Product
             </button>
           </div>
         </form>
@@ -106,7 +112,7 @@ class ProductCreateForm extends Component {
 
 const mapDispatchToProps = (dispatch, { history }) => {
   return {
-    update: (productInfo) => {
+    create: (productInfo) => {
       dispatch(createProduct(productInfo, history));
     },
   };
