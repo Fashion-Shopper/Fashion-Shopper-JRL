@@ -75,7 +75,7 @@ class ProductUpdateForm extends Component {
       <div>
         <form className="campus-update-form">
           <div>
-            <label>Campus Name</label>
+            <label>Product Name</label>
             <input
               name="name"
               type="text"
@@ -83,7 +83,7 @@ class ProductUpdateForm extends Component {
               onChange={this.onChange}
             />
             <button type="submit" onClick={this.onSubmit}>
-              Update Campus
+              Update Product
             </button>
           </div>
         </form>
