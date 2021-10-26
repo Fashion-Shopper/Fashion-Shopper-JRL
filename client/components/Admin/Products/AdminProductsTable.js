@@ -22,7 +22,16 @@ const ProductsTable = () => {
     dispatch(fetchProducts());
   }, []);
 
-  const products = useSelector((state) => state.products);
+  const compare = (a, b) => {
+    const bandA = a.id;
+    const bandB = b.id;
+
+    let comparison = 0;
+    comparison = bandA > bandB ? 1 : -1;
+    return comparison;
+  };
+
+  const products = useSelector((state) => state.products).sort(compare);
 
   if (!products) {
     return <LoadSpinner />;
