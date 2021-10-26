@@ -6,6 +6,8 @@ import { useSelector } from 'react-redux'
 ///////////// COMPONENTS //////////////////
 import Profile from './User/Profile';
 
+////////////////// LOGO ////////////////
+import logo from '!!file-loader!../../public/JRL-Logo.png'
 
 ////////////// STORE ///////////////////
 
@@ -25,8 +27,9 @@ const Navbar = () => {
   }
 
   return (
-    <AppBar position="static">
+    <AppBar position="static" color='secondary' sx={{ boxShadow: 'none', borderBottom: 'solid 2px black' }}>
       <Toolbar>
+        {/* <img src='../../public/icons/JRL-Logo.png' /> */}
         <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
           Fashion-JRL
         </Typography>

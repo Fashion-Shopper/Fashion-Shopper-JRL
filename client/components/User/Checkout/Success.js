@@ -6,6 +6,7 @@ import { Button, Container, Paper, Typography } from '@mui/material'
 import { useDispatch } from 'react-redux';
 import { successOrder } from '../../../store/orders';
 import { fetchCart } from '../../../store';
+import LoadSpinner from '../../Materialui/LoadSpinner';
 
 const Success = () => {
     const [session, setSession] = useState({});
@@ -32,31 +33,32 @@ const Success = () => {
                 dispatch(successOrder(orderInfo))
             }
             dispatch(fetchCart())
-            // dispatch(fetchOrders())
         }
         catch (err) {
             console.log(err)
         }
     }, [sessionId, session.payment_status]);
 
-    // console.log(session)
 
     if (!session.id) {
         return (
-            <h1>loading</h1>
+            <LoadSpinner />
         )
     }
 
     return (
         <Container component="main" maxWidth='md' sx={{ mb: 10 }}>
-            <Paper variant="outlined" sx={{ my: { xs: 3, md: 6 }, p: { xs: 2, md: 3 } }}>
+            <Paper variant="outlined" sx={{ my: { xs: 3, md: 6 }, p: { xs: 2, md: 3 }, textAlign: 'center' }}>
                 <Typography component="h1" variant="h4" align='center'>
                     Checkout
                 </Typography>
-                <Typography variant="h5" gutterBottom>
+                <Typography variant="body1" color="text.secondary" align='center' sx={{ textDecoration: 'underline' }} gutterBottom>
+                    Confirmation
+                </Typography>
+                <Typography variant="h5" gutterBottom align='left'>
                     Thank you for your order.
                 </Typography>
-                <Typography variant="subtitle1">
+                <Typography variant="subtitle1" align='left'>
                     Your order confirmation number is #{session.client_reference_id}. We have emailed your order
                     confirmation, and will send you an update when your order has
                     shipped.

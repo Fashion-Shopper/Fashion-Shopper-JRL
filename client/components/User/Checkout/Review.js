@@ -19,7 +19,7 @@ export default function Review({ userCart, orderitems, total }) {
     }
     return (
         <>
-            <Typography variant="body1" align='center' sx={{ textDecoration: 'underline' }} gutterBottom>
+            <Typography variant="body1" color="text.secondary" align='center' sx={{ textDecoration: 'underline' }} gutterBottom>
                 Review Your Order
             </Typography>
             <Typography variant="h6" gutterBottom>
@@ -37,7 +37,7 @@ export default function Review({ userCart, orderitems, total }) {
                     </Fragment >
                 ))}
                 <ListItem sx={{ py: 1, px: 0 }}>
-                    <ListItemText primary="Total" />
+                    <ListItemText primary="TOTAL:" />
                     <Typography variant="subtitle1" sx={{ fontWeight: 700 }}>
                         {currency(total.toFixed(2)).format()}
                     </Typography>

@@ -14,9 +14,7 @@ const theme = createTheme({
         borderRadius: 0,
     },
     typography: {
-        fontFamily: "Oswald"
-    },
-    typography: {
+        fontFamily: "Oswald",
         h3: {
             fontFamily: 'Bebas Neue',
         },

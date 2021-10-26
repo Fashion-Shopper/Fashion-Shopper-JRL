@@ -9,7 +9,7 @@ import CardActions from "@mui/material/CardActions";
 import Typography from "@mui/material/Typography";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import IconButton from "@mui/material/IconButton";
-import { Button, Grow, Rating } from "@mui/material";
+import { Button, Grow, Rating, Slide } from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";
 
 import { destroyProduct } from "../../store";
@@ -45,7 +45,7 @@ function ProductCard(props) {
   };
 
   return (
-    <Grow in={true}>
+    <Slide in={true} direction='right' timeout={1000} mountOnEnter unmountOnExit>
       <Card sx={{ maxWidth: 350 }}>
         <IconButton aria-label="add to favorites">
           <FavoriteIcon />
@@ -81,7 +81,7 @@ function ProductCard(props) {
           )}
         </CardActions>
       </Card>
-    </Grow>
+    </Slide>
   );
 }
 
