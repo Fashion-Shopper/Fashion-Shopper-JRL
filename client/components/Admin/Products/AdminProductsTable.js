@@ -32,7 +32,26 @@ const ProductsTable = (props) => {
     return <LoadSpinner />;
   }
 
+  const sortedRowInfo = (rowArr, comparator) => {
+    const stabilizedRowArr = rowArr.map((el, idx) => [el, idx]);
+    stabilizedRowArr.sort((a, b) => {
+      const order = comparator(a[0], b[0]);
+      if (order !== 0) return order;
+      return a[1] - b[1];
+    });
+    return stabilizedRowArr.map((el) => el[0]);
+  };
+
   const [orderDirection, setOrderDirection] = React.useState("asc");
+  const [valueToOrderBy, setValueToOrderBy] = React.useState("id");
+  const [page, setPage] = React.useState(0);
+  const [rowsPerPage, setRowsPerPage] = React.useState(1);
+
+  const handleRequestSort = (event, property) => {
+    const isAscending = valueToOrderBy === property && orderDirection === "asc";
+    setValueToOrderBy(property);
+    setOrderDirection(isAscending ? "desc" : "asc");
+  };
 
   return (
     <Container sx={{ mt: 3 }}>
@@ -41,7 +60,17 @@ const ProductsTable = (props) => {
       </Button>
       <TableContainer component={Paper}>
         <Table aria-label="collapsible table">
-          <AdminProductHeader />
+          <AdminProductHeader
+            orderDirection={orderDirection}
+            valueToOrderBy={valueToOrderBy}
+            handleRequestSort={handleRequestSort}
+          />
+          {sortedRowInfo(
+            products,
+            getComparator(orderDirection, valueToOrderBy)
+          ).map((product) => (
+            <Row key={product.id} product={product} />
+          ))}
           <TableBody>
             {products.map((product) => (
               <Row key={product.id} product={product} />

@@ -5,13 +5,19 @@ import TableRow from "@mui/material/TableRow";
 import TableSortLabel from "@mui/material/TableSortLabel";
 
 const ProductsTableHeader = (props) => {
+  const { orderDirection, valueToOrderBy, handleRequestSort } = props;
+
+  const createSortHandler = (property) => (event) => {
+    handleRequestSort(event, property);
+  };
+
   return (
     <TableHead>
       <TableRow>
         <TableCell key="id" align="center">
           <TableSortLabel
-            active={"id" === "id"}
-            direction="asc"
+            active={valueToOrderBy === "id"}
+            direction={valueToOrderBy === "id" ? orderDirection : "asc"}
             onClick={createSortHandler("id")}
           >
             Id
@@ -19,7 +25,13 @@ const ProductsTableHeader = (props) => {
         </TableCell>
         <TableCell align="center">Image</TableCell>
         <TableCell key="title" align="center">
-          <TableSortLabel>Title</TableSortLabel>
+          <TableSortLabel
+            active={valueToOrderBy === "title"}
+            direction={valueToOrderBy === "title" ? orderDirection : "asc"}
+            onClick={createSortHandler("title")}
+          >
+            Title
+          </TableSortLabel>
         </TableCell>
         <TableCell key="brand" align="center">
           <TableSortLabel>Brand</TableSortLabel>
