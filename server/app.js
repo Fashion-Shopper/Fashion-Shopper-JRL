@@ -4,6 +4,8 @@ const morgan = require('morgan')
 const cors = require('cors')
 const app = express()
 
+///////// SECRET KEY /////////////////
+require('dotenv').config()
 
 app.engine('html',require('ejs').renderFile) //render engine
 module.exports = app
