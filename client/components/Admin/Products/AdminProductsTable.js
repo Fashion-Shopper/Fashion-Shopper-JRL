@@ -17,7 +17,7 @@ import LoadSpinner from "../../Materialui/LoadSpinner";
 import { Container, Button } from "@mui/material";
 import Row from "./AdminProductsRow";
 
-const ProductsTable = () => {
+const ProductsTable = (props) => {
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -30,6 +30,8 @@ const ProductsTable = () => {
     return <LoadSpinner />;
   }
 
+  const [orderDirection, setOrderDirection] = React.useState('asc')
+
   return (
     <Container sx={{ mt: 3 }}>
       <Button variant="outlined" component={Link} to={`/admin/products/create`}>
@@ -40,7 +42,13 @@ const ProductsTable = () => {
           <TableHead>
             <TableRow>
               <TableCell key="id" align="center">
-                <TableSortLabel>Id</TableSortLabel>
+                <TableSortLabel
+                  active={"id" === "id"}
+                  direction="asc"
+                  onClick={createSortHandler("id")}
+                >
+                  Id
+                </TableSortLabel>
               </TableCell>
               <TableCell align="center">Image</TableCell>
               <TableCell key="title" align="center">
