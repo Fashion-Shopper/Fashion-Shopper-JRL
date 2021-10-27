@@ -32,7 +32,16 @@ const ProductsTable = (props) => {
     return <LoadSpinner />;
   }
 
+  const [orderDirection, setOrderDirection] = React.useState("asc");
+  const [valueToOrderBy, setValueToOrderBy] = React.useState("id");
+  const [page, setPage] = React.useState(0);
+  const [rowsPerPage, setRowsPerPage] = React.useState(1);
+  // a & b refer to the objects in product arr?
+  // Comparing the the selected value of a to the selected value of b?
   function descendingComparator(a, b, orderBy) {
+    console.log(
+      `via descendingComparator: a=${a}, b= ${b}, orderBy= ${orderBy}`
+    );
     if (b[orderBy] < a[orderBy]) {
       return -1;
     } else if (b[orderBy] > a[orderBy]) {
@@ -42,11 +51,13 @@ const ProductsTable = (props) => {
   }
 
   function getComparator(order, orderBy) {
+    console.log(`order: ${order}, orderBy: ${orderBy}`);
     return order === "desc"
       ? (a, b) => descendingComparator(a, b, orderBy)
       : (a, b) => -descendingComparator(a, b, orderBy);
   }
 
+  //getComparator is the comparator -> getComparator is taking in.....?
   const sortedRowInfo = (rowArr, comparator) => {
     const stabilizedRowArr = rowArr.map((el, idx) => [el, idx]);
     stabilizedRowArr.sort((a, b) => {
@@ -59,15 +70,10 @@ const ProductsTable = (props) => {
     return stabilizedRowArr.map((el) => el[0]);
   };
 
-  const [orderDirection, setOrderDirection] = React.useState("asc");
-  const [valueToOrderBy, setValueToOrderBy] = React.useState("id");
-  const [page, setPage] = React.useState(0);
-  const [rowsPerPage, setRowsPerPage] = React.useState(1);
-
   const handleRequestSort = (event, property) => {
     const isAscending = valueToOrderBy === property && orderDirection === "asc";
-    setValueToOrderBy(property);
     setOrderDirection(isAscending ? "desc" : "asc");
+    setValueToOrderBy(property);
   };
 
   return (
