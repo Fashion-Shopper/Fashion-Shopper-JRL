@@ -7,7 +7,7 @@ module.exports = router
 
 router.post('/', isLoggedIn, async(req, res, next) =>{
     try{
-       res.send(await Address.create({...req.body, userId:req.user.id}))
+       res.send(await Address.create({place:req.body.address, userId:req.user.id}))
     }
     catch(ex){
         next(ex)

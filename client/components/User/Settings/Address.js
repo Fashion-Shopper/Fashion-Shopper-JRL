@@ -1,6 +1,10 @@
+import { Button } from '@mui/material';
 import React, {Component} from 'react';
 import {connect} from 'react-redux'
 import {fetchAddresses, createAddress, updateAddress, deleteAddress} from '../../../store/address';
+
+//state is for single address
+//props has all addresses
 
 class Address extends Component{
     constructor(){
@@ -8,19 +12,22 @@ class Address extends Component{
         this.state = {
             place: ''
         }
+        
         this.save = this.save.bind(this)
         this.handleUpdate = this.handleUpdate.bind(this)
         this.handleDelete = this.handleDelete.bind(this)
     }
     async save(){
         //ev.preventDefault();
-        await this.props.createAddress(this.state.place);
+        await this.props.createAddress(this.state.place.formatted_address);
+        //console.log(this.el)
+        console.log (this.state)
         this.setState({place:''});
         this.el.value = '';
     }
 
-    handleUpdate(id, place) {
-        this.props.updateAddress(id, place)
+    handleUpdate(address) {
+        this.setState({place: address.place.formatted_address})
     }
 
     handleDelete(id) {
@@ -28,6 +35,7 @@ class Address extends Component{
     }
 
     componentDidMount(){
+        this.props.fetchAddresses()  //initialize the addresses in the props 
         const autocomplete = new google.maps.places.Autocomplete(this.el) 
         autocomplete.addListener('place_changed',()=>{
             this.setState(
@@ -38,19 +46,19 @@ class Address extends Component{
 
     render(){
         const {addresses} = this.props;
-        console.log(this.props)
+        //console.log(this.props)
         const {place} = this.state;
         const {save, handleUpdate, handleDelete} = this; 
         if (!addresses) {
             return (
-                    <div className="single-card">...Loading</div>
+                    <div>...Loading</div>
             )
         }
         return (
             <div>
               <h3>Address</h3>
               <div>
-              <input type={'text'} ref={ref => this.el=ref} style={ {width: '100%', height: '1.5rem'} } />
+              <input type={'text'} ref={el => this.el=el} style={ {width: '30%', height: '1.5rem'} } />
               <button disabled={ !place } onClick={save}> Save </button>
               </div>
               <div>
@@ -60,15 +68,15 @@ class Address extends Component{
                                 <h3>Please use the form to add a Address.</h3>
                             </div>) :                      
             
-                (<ul>
+                (<ul style={{listStyleType:"none"}}>
                 {addresses.map(address =>{
                     return(
                         <li className='address' key = {address.id}>
                         {
-                        addresses.place.formatted_addreess
-                        }
+                        address.place
+                        } 
                         
-                        <Button onClick={() => handleUpdate(address.id, this.state.place)}> Update </Button>
+                        {/* <Button onClick={() => handleUpdate(address)}> Update </Button> */}
                         <Button onClick={() => handleDelete(address.id)}> Delete </Button>
                     </li>
                     )
@@ -82,9 +90,9 @@ class Address extends Component{
     }
 }
 
-const mapStateToProps = (addresses) => {
+const mapStateToProps = (state) => {
     return {
-        addresses
+        addresses:state.addresses
     }
   };
   

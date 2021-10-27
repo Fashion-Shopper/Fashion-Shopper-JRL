@@ -52,7 +52,7 @@ export const fetchAddresses = () => async dispatch => {
 export const createAddress = (address)  => async dispatch => {
     const token = window.localStorage.getItem(TOKEN)
     if (token) {
-          const { data } = await axios.post("/api/address", address, {
+          const { data } = await axios.post("/api/address", {address: address}, {
             headers: {
                 authorization: token
             }

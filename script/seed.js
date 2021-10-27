@@ -131,10 +131,10 @@ async function seed() {
   // const address3 = await Address.create({ userId: users[1].id });
   // const address4 = await Address.create({ userId: users[1].id });
 
-  await Address.create({ addressId: 1, place: "Central Park, New York" , userId: users[0].id });
-  await Address.create({ addressId: 2, place: "White Mountains, Virginia" , userId: users[0].id });
-  await Address.create({ addressId: 3, place: "Sunseet Bld,Hollywood,LA" ,userId: users[1].id });
-  await Address.create({ addressId: 4, place: "Riverside, NJ", userId: users[1].id });
+  await Address.create({ place: "Central Park, New York" , userId: users[0].id });
+  await Address.create({ place: "White Mountains, Virginia" , userId: users[0].id });
+  await Address.create({ place: "Sunset Blvd, Hollywood, LA" ,userId: users[1].id });
+  await Address.create({ place: "Riverside, NJ", userId: users[1].id });
   
   console.log(`seeded successfully`);
   return {
