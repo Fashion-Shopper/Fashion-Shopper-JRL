@@ -40,7 +40,7 @@ const ProductsTable = (props) => {
   // Comparing the the selected value of a to the selected value of b?
   function descendingComparator(a, b, orderBy) {
     console.log(
-      `via descendingComparator: a=${a}, b= ${b}, orderBy= ${orderBy}`
+      `via descendingComparator: a=${a[orderBy]}, b= ${b[orderBy]}, orderBy= ${orderBy}`
     );
     if (b[orderBy] < a[orderBy]) {
       return -1;

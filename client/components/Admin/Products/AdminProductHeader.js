@@ -24,11 +24,11 @@ const ProductsTableHeader = (props) => {
           </TableSortLabel>
         </TableCell>
         <TableCell align="center">Image</TableCell>
-        <TableCell key="title" align="center">
+        <TableCell key="name" align="center">
           <TableSortLabel
-            active={valueToOrderBy === "title"}
-            direction={valueToOrderBy === "title" ? orderDirection : "asc"}
-            onClick={createSortHandler("title")}
+            active={valueToOrderBy === "name"}
+            direction={valueToOrderBy === "name" ? orderDirection : "asc"}
+            onClick={createSortHandler("name")}
           >
             Title
           </TableSortLabel>
