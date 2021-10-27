@@ -33,20 +33,32 @@ const ProductsTableHeader = (props) => {
             Title
           </TableSortLabel>
         </TableCell>
-        <TableCell key="brand" align="center">
+        <TableCell key="brandName" align="center">
           <TableSortLabel
-            active={valueToOrderBy === "brand"}
-            direction={valueToOrderBy === "brand" ? orderDirection : "asc"}
-            onClick={createSortHandler("brand")}
+            active={valueToOrderBy === "brandName"}
+            direction={valueToOrderBy === "brandName" ? orderDirection : "asc"}
+            onClick={createSortHandler("brandName")}
           >
             Brand
           </TableSortLabel>
         </TableCell>
         <TableCell key="category" align="center">
-          <TableSortLabel>Category</TableSortLabel>
+          <TableSortLabel
+            active={valueToOrderBy === "category"}
+            direction={valueToOrderBy === "category" ? orderDirection : "asc"}
+            onClick={createSortHandler("category")}
+          >
+            Category
+          </TableSortLabel>
         </TableCell>
         <TableCell key="size" align="center">
-          <TableSortLabel>Size</TableSortLabel>
+          <TableSortLabel
+            active={valueToOrderBy === "size"}
+            direction={valueToOrderBy === "size" ? orderDirection : "asc"}
+            onClick={createSortHandler("size")}
+          >
+            Size
+          </TableSortLabel>
         </TableCell>
         <TableCell key="price" align="center">
           <TableSortLabel
