@@ -60,18 +60,16 @@ const SingleProduct = (props) => {
   const { productId } = props.match.params
   const singleProduct = products.find(product => product.id === productId * 1)
 
-  const [input, setinput] = useState({ productId: productId, quantity: 1 })
+  const [input, setinput] = useState({ quantity: 1 })
 
   const handleChange = (evt) => {
     const target = evt.target
-    setinput({ ...input, [target.name]: target.value })
+    setinput({ [target.name]: target.value })
   }
 
   const addsingleProductToCart = () => {
-    dispatch(addToCart(input))
+    dispatch(addToCart(singleProduct, input.quantity))
   }
-
-  const [check, setcheck] = useState(false)
 
 
   if (!singleProduct) {

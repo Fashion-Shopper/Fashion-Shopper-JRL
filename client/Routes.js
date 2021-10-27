@@ -22,7 +22,7 @@ import Checkout from "./components/User/Checkout/Checkout";
 import Success from "./components/User/Checkout/Success";
 
 ///////////////// STORE ////////////////////////
-import { fetchCart, fetchOrders, me } from "./store";
+import { fetchCart, fetchOrders, me, consolidateCart } from "./store";
 
 const Routes = () => {
   const dispatch = useDispatch();
@@ -32,7 +32,11 @@ const Routes = () => {
   useEffect(() => {
     dispatch(me());
     dispatch(fetchCart());
-    dispatch(fetchOrders())
+
+    if (isLoggedIn) {
+      dispatch(fetchOrders())
+      dispatch(consolidateCart())
+    }
   }, [isLoggedIn]);
 
   return (

@@ -22,7 +22,7 @@ const Navbar = () => {
   const cart = useSelector(state => state.userCart)
 
   let quantity = 0;
-  if (cart.orderitems && isLoggedIn) {
+  if (cart.orderitems) {
     quantity = cart.orderitems.reduce((acc, item) => acc + item.quantity, quantity)
   }
 
@@ -63,7 +63,7 @@ const Navbar = () => {
           <>
             <Button component={Link} to="/products" color="inherit">Products ({products.length})</Button>
             <Box sx={{ flexGrow: 1, textAlign: 'right' }}>
-              <IconButton size="large" aria-label="cart" color="inherit">
+              <IconButton component={Link} to="/cart" size="large" aria-label="user cart" color="inherit">
                 <Badge badgeContent={quantity} color="error">
                   <ShoppingCartIcon />
                 </Badge>
