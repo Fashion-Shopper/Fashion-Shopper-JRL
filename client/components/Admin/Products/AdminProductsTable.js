@@ -2,6 +2,8 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { fetchProducts } from "../../../store";
+
+import AdminProductHeader from "./AdminProductHeader";
 import { compareById } from "./AdminProductsOrdering";
 
 import Table from "@mui/material/Table";
@@ -30,7 +32,7 @@ const ProductsTable = (props) => {
     return <LoadSpinner />;
   }
 
-  const [orderDirection, setOrderDirection] = React.useState('asc')
+  const [orderDirection, setOrderDirection] = React.useState("asc");
 
   return (
     <Container sx={{ mt: 3 }}>
@@ -39,37 +41,7 @@ const ProductsTable = (props) => {
       </Button>
       <TableContainer component={Paper}>
         <Table aria-label="collapsible table">
-          <TableHead>
-            <TableRow>
-              <TableCell key="id" align="center">
-                <TableSortLabel
-                  active={"id" === "id"}
-                  direction="asc"
-                  onClick={createSortHandler("id")}
-                >
-                  Id
-                </TableSortLabel>
-              </TableCell>
-              <TableCell align="center">Image</TableCell>
-              <TableCell key="title" align="center">
-                <TableSortLabel>Title</TableSortLabel>
-              </TableCell>
-              <TableCell key="brand" align="center">
-                <TableSortLabel>Brand</TableSortLabel>
-              </TableCell>
-              <TableCell key="category" align="center">
-                <TableSortLabel>Category</TableSortLabel>
-              </TableCell>
-              <TableCell key="size" align="center">
-                <TableSortLabel>Size</TableSortLabel>
-              </TableCell>
-              <TableCell key="price" align="center">
-                <TableSortLabel>Price</TableSortLabel>
-              </TableCell>
-              <TableCell align="center">Action: Update</TableCell>
-              <TableCell align="center">Action: Delete</TableCell>
-            </TableRow>
-          </TableHead>
+          <AdminProductHeader />
           <TableBody>
             {products.map((product) => (
               <Row key={product.id} product={product} />
