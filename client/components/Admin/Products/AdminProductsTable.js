@@ -10,6 +10,7 @@ import TableCell from "@mui/material/TableCell";
 import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
+import TableSortLabel from "@mui/material/TableSortLabel";
 import Paper from "@mui/material/Paper";
 
 import LoadSpinner from "../../Materialui/LoadSpinner";
@@ -38,7 +39,9 @@ const ProductsTable = () => {
         <Table aria-label="collapsible table">
           <TableHead>
             <TableRow>
-              <TableCell align="center"> Id </TableCell>
+              <TableCell key="id" align="center">
+                <TableSortLabel>Id</TableSortLabel>
+              </TableCell>
               <TableCell align="center">Image</TableCell>
               <TableCell align="center">Title</TableCell>
               <TableCell align="center">Brand</TableCell>
