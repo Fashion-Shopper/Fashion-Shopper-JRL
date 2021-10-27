@@ -6,7 +6,7 @@ export const getGuestCart = () => {
     if (cart) {
         return cart
     }
-
+    
     clearGuestCart();
     return getGuestCart()
 }

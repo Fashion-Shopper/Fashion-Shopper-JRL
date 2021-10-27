@@ -17,28 +17,28 @@ export const updateAuthAvatar = (avatar) => { //update the user info
   return async (dispatch) => { // getState（）safest way to get the state
     const token = window.localStorage.getItem(TOKEN)
     if (token) {
-    const res = await axios.put('/api/users', {avatar}, {
-      headers: {
-        authorization: token
-      }
-    })
-    return dispatch(setAuth(res.data))
+      const res = await axios.put('/api/users', { avatar }, {
+        headers: {
+          authorization: token
+        }
+      })
+      return dispatch(setAuth(res.data))
+    }
   }
- }
 }
 
 export const updateAuthName = (username) => { //update the user info
   return async (dispatch) => { // getState（）safest way to get the state
     const token = window.localStorage.getItem(TOKEN)
     if (token) {
-    const res = await axios.put('/api/users', {username}, {
-      headers: {
-        authorization: token
-      }
-    })
-    return dispatch(setAuth(res.data))
+      const res = await axios.put('/api/users', { username }, {
+        headers: {
+          authorization: token
+        }
+      })
+      return dispatch(setAuth(res.data))
+    }
   }
- }
 }
 
 // how prof did this
@@ -74,6 +74,7 @@ export const authenticate = (username, password, method) => async dispatch => {
   try {
     const res = await axios.post(`/auth/${method}`, { username, password })
     window.localStorage.setItem(TOKEN, res.data.token)
+    history.goBack();
     dispatch(me())
   } catch (authError) {
     return dispatch(setAuth({ error: authError }))

@@ -21,6 +21,7 @@ import { removeFromCart, updateCart } from '../../store';
 
 const Cart = () => {
     const dispatch = useDispatch()
+    const isLoggedIn = useSelector((state) => !!state.auth.id);
     const { userCart } = useSelector(state => state)
 
     /////////// THIS DISPLAY THE LOADING SPINNER ///////////////
@@ -60,13 +61,13 @@ const Cart = () => {
         )
     }
 
-    const handleChange = (evt, id) => {
-        const updateOrderItem = { id, [evt.target.name]: evt.target.value }
-        dispatch(updateCart(updateOrderItem))
+    const handleChange = (evt, id, productId) => {
+        const quantity = evt.target.value
+        dispatch(updateCart(id, productId, quantity))
     }
 
-    const handleRemove = (orderItemId) => {
-        dispatch(removeFromCart(orderItemId))
+    const handleRemove = (orderItemId, productId) => {
+        dispatch(removeFromCart(orderItemId, productId))
     }
 
     return (
@@ -89,8 +90,8 @@ const Cart = () => {
                                 </TableRow>
                             </TableHead>
                             <TableBody>
-                                {userCart.orderitems.map(({ id, product, quantity }) => (
-                                    <TableRow key={id}>
+                                {userCart.orderitems.map(({ id, product, quantity }, idx) => (
+                                    <TableRow key={id || idx}>
                                         <TableCell padding='none' sx={{ height: 100, width: '100%' }}>
                                             <Stack direction='row' spacing={4} sx={{ '@media screen and (max-width: 860px)': { flexDirection: 'column' } }}>
                                                 <Stack component={Link} to={`/products/${product.id}`}>
@@ -117,7 +118,7 @@ const Cart = () => {
                                                                 name="quantity"
                                                                 value={quantity}
                                                                 color='primary'
-                                                                onChange={(evt) => handleChange(evt, id)}
+                                                                onChange={(evt) => handleChange(evt, id, product.id)}
                                                             >
                                                                 <MenuItem value={1}>1</MenuItem>
                                                                 <MenuItem value={2}>2</MenuItem>
@@ -142,7 +143,7 @@ const Cart = () => {
                                                 <Typography variant="h6" color="text.secondary" component="div">
                                                     {currency(product.price).format()}
                                                 </Typography>
-                                                <Button sx={{ textDecoration: 'underline', p: 2 }} color='error' onClick={() => handleRemove(id)} startIcon={<DeleteIcon />}>
+                                                <Button sx={{ textDecoration: 'underline', p: 2 }} color='error' onClick={() => handleRemove(id, product.id)} startIcon={<DeleteIcon />}>
                                                     Remove
                                                 </Button>
                                             </Stack>
@@ -162,9 +163,21 @@ const Cart = () => {
                             <Typography variant="h6" align='center' color='text.secondary'>
                                 Subtotal: &nbsp;{currency(total.toFixed(2)).format()}
                             </Typography>
-                            <Button component={Link} to='/checkout' variant='contained' sx={{ mt: 2, width: '75%' }}>
-                                Checkout
-                            </Button>
+                            {isLoggedIn ? (
+                                <Button component={Link} to='/checkout' variant='contained' sx={{ mt: 2, width: '75%' }}>
+                                    Checkout
+                                </Button>
+                            ) : (
+                                <>
+                                    <Button component={Link} to='/login' variant='contained' sx={{ mt: 2, width: '75%' }}>
+                                        Login
+                                    </Button>
+                                    <Typography variant="h6" align='center' color='text.secondary'>
+                                        Please Login to checkout!
+                                    </Typography>
+                                </>
+                            )}
+
                         </Grid>
                     </Grid>
                 </Grid>
