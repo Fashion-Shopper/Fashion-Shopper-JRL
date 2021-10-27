@@ -26,7 +26,7 @@ const ProductsTable = (props) => {
     dispatch(fetchProducts());
   }, []);
 
-  const products = useSelector((state) => state.products).sort(compareById);
+  const products = useSelector((state) => state.products);
 
   if (!products) {
     return <LoadSpinner />;
@@ -81,17 +81,19 @@ const ProductsTable = (props) => {
             valueToOrderBy={valueToOrderBy}
             handleRequestSort={handleRequestSort}
           />
-          {sortedRowInfo(
-            products,
-            getComparator(orderDirection, valueToOrderBy)
-          ).map((product) => (
-            <Row key={product.id} product={product} />
-          ))}
           <TableBody>
+            {sortedRowInfo(
+              products,
+              getComparator(orderDirection, valueToOrderBy)
+            ).map((product, idx) => (
+              <Row key={idx} product={product} />
+            ))}
+          </TableBody>
+          {/* <TableBody>
             {products.map((product) => (
               <Row key={product.id} product={product} />
             ))}
-          </TableBody>
+          </TableBody> */}
         </Table>
       </TableContainer>
     </Container>
