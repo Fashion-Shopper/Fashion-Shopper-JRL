@@ -43,11 +43,21 @@ const ProductsTable = () => {
                 <TableSortLabel>Id</TableSortLabel>
               </TableCell>
               <TableCell align="center">Image</TableCell>
-              <TableCell align="center">Title</TableCell>
-              <TableCell align="center">Brand</TableCell>
-              <TableCell align="center">Category</TableCell>
-              <TableCell align="center">Size</TableCell>
-              <TableCell align="center">Price</TableCell>
+              <TableCell key="title" align="center">
+                <TableSortLabel>Title</TableSortLabel>
+              </TableCell>
+              <TableCell key="brand" align="center">
+                <TableSortLabel>Brand</TableSortLabel>
+              </TableCell>
+              <TableCell key="category" align="center">
+                <TableSortLabel>Category</TableSortLabel>
+              </TableCell>
+              <TableCell key="size" align="center">
+                <TableSortLabel>Size</TableSortLabel>
+              </TableCell>
+              <TableCell key="price" align="center">
+                <TableSortLabel>Price</TableSortLabel>
+              </TableCell>
               <TableCell align="center">Action: Update</TableCell>
               <TableCell align="center">Action: Delete</TableCell>
             </TableRow>
