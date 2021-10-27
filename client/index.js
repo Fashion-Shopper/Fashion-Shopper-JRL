@@ -6,7 +6,10 @@ import store from './store'
 import App from './App'
 import history from './history'
 
+////////////////// Stripe /////////////////////
+
 ReactDOM.render(
+
   <Provider store={store}>
     <Router history={history}>
       <App />

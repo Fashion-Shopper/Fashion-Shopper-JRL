@@ -16,6 +16,15 @@ router.get("/", async (req, res, next) => {
   }
 });
 
+router.get("/:productId", async (req, res, next) => {
+  try {
+    const product = await Product.findByPk(req.params.productId);
+    res.send(product);
+  } catch (err) {
+    next(err);
+  }
+});
+
 // ATTENTION (Riv): It might be better for the following post/put/delete requests to migrate to api/admin.js
 
 //Creating New Product...

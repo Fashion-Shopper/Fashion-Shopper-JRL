@@ -4,7 +4,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { Route, Switch, Redirect } from "react-router-dom";
 import { Login, Signup } from "./components/AuthForm";
 import Home from "./components/Home";
-import { me } from "./store";
 
 /////////////////////// COMPONENTS  /////////////////////
 import Brands from "./components/Brands/Brands";
@@ -14,10 +13,19 @@ import SingleProduct from "./components/Products/SingleProduct";
 import Cart from "./components/User/Cart";
 import Settings from "./components/User/Settings/Settings";
 
-import AdminProducts from "./components/admin/AdminProducts";
-import AdminUsers from "./components/admin/AdminUsers";
-import PastOrders from "./components/User/PastOrders/Table";
+import AdminDashboard from "./components/Admin/Dashboard";
+import ProductUpdateForm from "./components/Admin/Products/ProductUpdateForm";
+import ProductCreateForm from "./components/Admin/Products/ProductCreateForm";
+
+///////////////// STORE ////////////////////////
+import { fetchCart, fetchOrders, me } from "./store";
+import AdminProducts from "./components/Admin/Products/AdminProductsTable";
+import AdminUsers from "./components/Admin/Users/AdminUsersTable";
+import PastOrders from "./components/User/orderHistory/Table";
 import Checkout from "./components/User/Checkout/Checkout";
+import Success from "./components/User/Checkout/Success";
+// import Settings from './components/Settings'
+// import auth from "./store/auth";
 
 ///////////////// STORE ////////////////////////
 import { fetchCart } from "./store";
@@ -31,6 +39,7 @@ const Routes = () => {
   useEffect(() => {
     dispatch(me());
     dispatch(fetchCart());
+    dispatch(fetchOrders())
   }, [isLoggedIn]);
 
   return (
@@ -47,14 +56,22 @@ const Routes = () => {
             <Route exact path="/cart" component={Cart} />
             <Route exact path="/orders" component={PastOrders} />
             <Route exact path="/checkout" component={Checkout} />
-            {
-              !!isAdmin && (
-                <>
-                  <Route exact path='/admin' component={AdminProducts} />
-                  <Route path="/admin/users" component={AdminUsers} />
-                </>
-              )
-            }
+            <Route exact path="/checkout/success" component={Success} />
+            {!!isAdmin && (
+              <>
+                <Route exact path="/admin" component={AdminDashboard} />
+                <Route exact path="/admin/products" component={AdminProducts} />
+                <Route
+                  path="/admin/products/create"
+                  component={ProductCreateForm}
+                />
+                <Route
+                  path="/admin/products/:productId/update"
+                  component={ProductUpdateForm}
+                />
+                <Route path="/admin/users" component={AdminUsers} />
+              </>
+            )}
             <Redirect to="/home" />
           </Switch>
         </>

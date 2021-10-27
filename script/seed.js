@@ -110,10 +110,10 @@ async function seed() {
   brands.forEach((brand) => brand.save());
 
   //Testing orders
-  const order1 = await Order.create({ userId: users[0].id });
-  const order2 = await Order.create({ userId: users[0].id });
-  const order3 = await Order.create({ userId: users[1].id });
-  const order4 = await Order.create({ userId: users[1].id });
+  const order1 = await Order.create({ userId: users[0].id, shippingName: 'John Diesel', shippingAddress: "489 E 142nd St Bronx, NY 10454" });
+  const order2 = await Order.create({ userId: users[0].id, shippingName: 'Prof', shippingAddress: "300 5th Ave New York, NY 10001" });
+  const order3 = await Order.create({ userId: users[1].id, shippingName: 'Jason Williams', shippingAddress: "25 Cypress Rd Burlington, NJ 08016" });
+  const order4 = await Order.create({ userId: users[1].id, shippingName: 'Stanley', shippingAddress: "100 Willis St Penns Grove, NJ 08069" });
 
   await OrderItem.create({ orderId: 1, productId: 1, quantity: 4 });
   await OrderItem.create({ orderId: 2, productId: 2, quantity: 6 });

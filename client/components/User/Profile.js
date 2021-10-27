@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Avatar, Divider, IconButton, ListItemIcon, Menu, MenuItem, Tooltip, Typography } from "@mui/material"
+import { Avatar, Divider, Grid, IconButton, ListItemIcon, Menu, MenuItem, Tooltip, Typography } from "@mui/material"
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 
 
@@ -7,7 +7,6 @@ import { Settings, Logout, History } from '@mui/icons-material';
 import { useDispatch, useSelector } from 'react-redux';
 import { logout } from '../../store';
 
-import { FaUserEdit } from 'react-icons/fa'
 import { Link } from 'react-router-dom';
 
 const Profile = () => {
@@ -32,10 +31,10 @@ const Profile = () => {
 
     return (
         <>
-            <Tooltip title="User settings">
+            <Tooltip title="User profile">
                 <IconButton onClick={handleMenu}>
                     <Avatar src={user.avatar}>{user.username.charAt(0).toUpperCase()}</Avatar>
-                    <ArrowDropDownIcon />
+                    <ArrowDropDownIcon size='small' color="primary" />
                 </IconButton>
             </Tooltip>
             <Typography>
@@ -75,17 +74,17 @@ const Profile = () => {
                 transformOrigin={{ horizontal: 'right', vertical: 'top' }}
                 anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
             >
-                <MenuItem>
+                {/* <MenuItem>
                     <ListItemIcon>
                         <FaUserEdit size='1.5rem' />
                     </ListItemIcon>
                     Edit Profile
-                </MenuItem>
+                </MenuItem> */}
                 <MenuItem component={Link} to='/orders'>
                     <ListItemIcon>
                         <History />
                     </ListItemIcon>
-                    Past Orders
+                    Order History
                 </MenuItem>
                 <MenuItem component={Link} to='/settings'>
                     <ListItemIcon>

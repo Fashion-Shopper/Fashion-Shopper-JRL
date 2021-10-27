@@ -1,10 +1,12 @@
+const path = require('path');
+
 module.exports = {
   entry: [
     './client/index.js'
   ],
   output: {
     path: __dirname,
-    filename: './public/bundle.js'
+    filename: './public/bundle.js',
   },
   devtool: 'source-map',
   module: {
@@ -17,6 +19,13 @@ module.exports = {
           presets: [
             '@babel/preset-react'
           ]
+        },
+      },
+      {
+        test: /\.(jpe?g|png|gif|svg)$/i,
+        loader: 'file-loader',
+        options: {
+          name: '/public/logo/[name].[ext]'
         }
       }
     ]

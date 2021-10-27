@@ -1,99 +1,48 @@
-import * as React from 'react';
+import React, { Fragment } from 'react';
 import Typography from '@mui/material/Typography';
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemText from '@mui/material/ListItemText';
-import Grid from '@mui/material/Grid';
-import { useSelector } from 'react-redux';
+import LoadSpinner from '../../Materialui/LoadSpinner';
+import { Avatar, Divider } from '@mui/material';
 
-// const products = [
-//     {
-//         name: 'Product 1',
-//         desc: 'A nice thing',
-//         price: '$9.99',
-//     },
-//     {
-//         name: 'Product 2',
-//         desc: 'Another thing',
-//         price: '$3.45',
-//     },
-//     {
-//         name: 'Product 3',
-//         desc: 'Something else',
-//         price: '$6.51',
-//     },
-//     {
-//         name: 'Product 4',
-//         desc: 'Best thing of all',
-//         price: '$14.11',
-//     },
-//     { name: 'Shipping', desc: '', price: 'Free' },
-// ];
+////////////// to convert to currency ////////////////
+import currency from 'numeral'
+currency.defaultFormat('$0,0.00');
 
-const addresses = ['1 MUI Drive', 'Reactville', 'Anytown', '99999', 'USA'];
-const payments = [
-    { name: 'Card type', detail: 'Visa' },
-    { name: 'Card holder', detail: 'Mr John Smith' },
-    { name: 'Card number', detail: 'xxxx-xxxx-xxxx-1234' },
-    { name: 'Expiry date', detail: '04/2024' },
-];
+export default function Review({ userCart, orderitems, total }) {
 
-export default function Review() {
-    const { userCart } = useSelector(state => state)
-    const { orderitems } = userCart;
-
-    let total = 0;
-    if (orderitems) {
-        total = orderitems.reduce((acc, { product, quantity }) => acc + (product.price * quantity), 0)
+    if (!orderitems) {
+        return (
+            <LoadSpinner />
+        )
     }
-
-
     return (
-        <React.Fragment>
+        <>
+            <Typography variant="body1" color="text.secondary" align='center' sx={{ textDecoration: 'underline' }} gutterBottom>
+                Review Your Order
+            </Typography>
             <Typography variant="h6" gutterBottom>
-                Order summary
+                Order # {userCart.id}
             </Typography>
             <List disablePadding>
                 {orderitems.map(({ product, quantity }) => (
-                    <ListItem key={product.name} sx={{ py: 1, px: 0 }}>
-                        <ListItemText primary={product.name} secondary={`QTY: ${quantity}`} />
-                        <Typography variant="body2">${(product.price * (quantity * 1)).toFixed(2)}</Typography>
-                    </ListItem>
+                    <Fragment key={product.id}>
+                        <ListItem sx={{ py: 1, px: 0 }}>
+                            <Avatar variant="square" src={product.imageURL} sx={{ mx: 2, width: 70, height: 70 }} />
+                            <ListItemText primary={product.name} secondary={`QTY: ${quantity}`} />
+                            <Typography variant="body2">{currency((product.price * (quantity * 1)).toFixed(2)).format()}</Typography>
+                        </ListItem>
+                        <Divider />
+                    </Fragment >
                 ))}
-
                 <ListItem sx={{ py: 1, px: 0 }}>
-                    <ListItemText primary="Total" />
+                    <ListItemText primary="TOTAL:" />
                     <Typography variant="subtitle1" sx={{ fontWeight: 700 }}>
-                        ${total.toFixed(2)}
+                        {currency(total.toFixed(2)).format()}
                     </Typography>
                 </ListItem>
             </List>
-            <Grid container spacing={2}>
-                <Grid item xs={12} sm={6}>
-                    <Typography variant="h6" gutterBottom sx={{ mt: 2 }}>
-                        Shipping
-                    </Typography>
-                    <Typography gutterBottom>John Smith</Typography>
-                    <Typography gutterBottom>{addresses.join(', ')}</Typography>
-                </Grid>
-                <Grid item container direction="column" xs={12} sm={6}>
-                    <Typography variant="h6" gutterBottom sx={{ mt: 2 }}>
-                        Payment details
-                    </Typography>
-                    <Grid container>
-                        {payments.map((payment) => (
-                            <React.Fragment key={payment.name}>
-                                <Grid item xs={6}>
-                                    <Typography gutterBottom>{payment.name}</Typography>
-                                </Grid>
-                                <Grid item xs={6}>
-                                    <Typography gutterBottom>{payment.detail}</Typography>
-                                </Grid>
-                            </React.Fragment>
-                        ))}
-                    </Grid>
-                </Grid>
-            </Grid>
-        </React.Fragment>
+        </>
     );
 }

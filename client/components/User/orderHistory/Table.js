@@ -10,9 +10,11 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 
+import { History } from '@mui/icons-material';
+
 
 import LoadSpinner from '../../Materialui/LoadSpinner'
-import { Container } from '@mui/material';
+import { Container, Typography } from '@mui/material';
 import Row from './Row';
 
 const PastOrders = () => {
@@ -32,6 +34,9 @@ const PastOrders = () => {
 
     return (
         <Container sx={{ mt: 3 }}>
+            <Typography variant='h3' gutterBottom align='center' sx={{ mt: 5 }}>
+                <History fontSize="large" /> Order History
+            </Typography>
             <TableContainer component={Paper}>
                 <Table aria-label="collapsible table">
                     <TableHead>
