@@ -75,6 +75,7 @@ const Routes = () => {
             <Route path="/brands/:brandId" component={SingleBrand} />
             <Route exact path="/products" component={Products} />
             <Route path="/products/:productId" component={SingleProduct} />
+            <Route exact path="/cart" component={Cart} />
           </Switch>
         </>
       )}

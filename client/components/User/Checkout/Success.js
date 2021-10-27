@@ -22,17 +22,21 @@ const Success = () => {
             }
             fetchSession();
 
-            if (session.payment_status === 'paid') {
+            const processPayment = async () => {
                 const orderId = session.client_reference_id;
                 const shippingName = session.shipping.name
                 const { line1, line2, city, state, postal_code } = session.shipping.address;
                 const shippingAddress = `${line1} ${city}, ${state} ${postal_code}`
-
                 const orderInfo = { orderId, shippingName, shippingAddress }
 
-                dispatch(successOrder(orderInfo))
+                await dispatch(successOrder(orderInfo))
+                await dispatch(fetchCart())
             }
-            dispatch(fetchCart())
+
+            if (session.payment_status === 'paid') {
+                processPayment()
+            }
+
         }
         catch (err) {
             console.log(err)
