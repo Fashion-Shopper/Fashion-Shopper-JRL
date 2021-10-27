@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Avatar, Divider, IconButton, ListItemIcon, Menu, MenuItem, Tooltip, Typography } from "@mui/material"
+import { Avatar, Divider, Grid, IconButton, ListItemIcon, Menu, MenuItem, Tooltip, Typography } from "@mui/material"
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 
 
@@ -33,8 +33,8 @@ const Profile = () => {
         <>
             <Tooltip title="User profile">
                 <IconButton onClick={handleMenu}>
-                    <ArrowDropDownIcon size='small' color="secondary" />
                     <Avatar src={user.avatar}>{user.username.charAt(0).toUpperCase()}</Avatar>
+                    <ArrowDropDownIcon size='small' color="primary" />
                 </IconButton>
             </Tooltip>
             <Typography>

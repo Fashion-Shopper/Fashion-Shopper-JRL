@@ -1,10 +1,12 @@
+const path = require('path');
+
 module.exports = {
   entry: [
     './client/index.js'
   ],
   output: {
     path: __dirname,
-    filename: './public/bundle.js'
+    filename: './public/bundle.js',
   },
   devtool: 'source-map',
   module: {
@@ -23,7 +25,7 @@ module.exports = {
         test: /\.(jpe?g|png|gif|svg)$/i,
         loader: 'file-loader',
         options: {
-          name: 'public/icons/[name].[ext]'
+          name: '/public/logo/[name].[ext]'
         }
       }
     ]

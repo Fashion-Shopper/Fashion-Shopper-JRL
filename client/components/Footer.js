@@ -13,7 +13,6 @@ const Copyright = () => {
         </Typography>
     );
 }
-
 const Footer = () => {
     return (
         <Paper square sx={{
@@ -37,5 +36,4 @@ const Footer = () => {
         </Paper>
     )
 }
-
 export default Footer

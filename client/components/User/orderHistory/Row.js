@@ -1,5 +1,4 @@
 import React, { useState } from 'react'
-import dateFormatter from 'dayjs'
 
 import Box from '@mui/material/Box';
 import Collapse from '@mui/material/Collapse';
@@ -10,9 +9,15 @@ import TableCell from '@mui/material/TableCell';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Typography from '@mui/material/Typography';
-import Paper from '@mui/material/Paper';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
+
+///////////////// DATES FORMATTER PACKAGE /////////////
+import dateFormatter from 'dayjs'
+
+////////////// TO CONVERT TO CURRENCY ////////////////
+import currency from 'numeral'
+currency.defaultFormat('$0,0.00');
 
 function Row(props) {
     const { order } = props;
@@ -45,7 +50,7 @@ function Row(props) {
                 </TableCell>
                 <TableCell align="center">{dateFormatter(order.updatedAt).format('MM/DD/YYYY')}</TableCell>
                 <TableCell align="center">{orderStatus}</TableCell>
-                <TableCell align="center">${total.toFixed(2)}</TableCell>
+                <TableCell align="center">{currency(total.toFixed(2)).format()}</TableCell>
             </TableRow>
             <TableRow>
                 <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={6}>
@@ -78,7 +83,7 @@ function Row(props) {
                                                 {product.name}
                                             </TableCell>
                                             <TableCell align='center'>{quantity}</TableCell>
-                                            <TableCell align='center'>${product.price}</TableCell>
+                                            <TableCell align='center'>{currency(product.price).format()}</TableCell>
                                         </TableRow>
                                     ))}
                                 </TableBody>
