@@ -35,8 +35,7 @@ const ProductsTable = (props) => {
   function descendingComparator(a, b, orderBy) {
     if (b[orderBy] < a[orderBy]) {
       return -1;
-    }
-    if (b[orderBy] > a[orderBy]) {
+    } else if (b[orderBy] > a[orderBy]) {
       return 1;
     }
     return 0;
@@ -52,7 +51,9 @@ const ProductsTable = (props) => {
     const stabilizedRowArr = rowArr.map((el, idx) => [el, idx]);
     stabilizedRowArr.sort((a, b) => {
       const order = comparator(a[0], b[0]);
-      if (order !== 0) return order;
+      if (order !== 0) {
+        return order;
+      }
       return a[1] - b[1];
     });
     return stabilizedRowArr.map((el) => el[0]);

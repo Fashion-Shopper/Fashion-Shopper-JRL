@@ -34,7 +34,13 @@ const ProductsTableHeader = (props) => {
           </TableSortLabel>
         </TableCell>
         <TableCell key="brand" align="center">
-          <TableSortLabel>Brand</TableSortLabel>
+          <TableSortLabel
+            active={valueToOrderBy === "brand"}
+            direction={valueToOrderBy === "brand" ? orderDirection : "asc"}
+            onClick={createSortHandler("brand")}
+          >
+            Brand
+          </TableSortLabel>
         </TableCell>
         <TableCell key="category" align="center">
           <TableSortLabel>Category</TableSortLabel>
@@ -43,7 +49,13 @@ const ProductsTableHeader = (props) => {
           <TableSortLabel>Size</TableSortLabel>
         </TableCell>
         <TableCell key="price" align="center">
-          <TableSortLabel>Price</TableSortLabel>
+          <TableSortLabel
+            active={valueToOrderBy === "price"}
+            direction={valueToOrderBy === "price" ? orderDirection : "asc"}
+            onClick={createSortHandler("price")}
+          >
+            Price
+          </TableSortLabel>
         </TableCell>
         <TableCell align="center">Action: Update</TableCell>
         <TableCell align="center">Action: Delete</TableCell>
