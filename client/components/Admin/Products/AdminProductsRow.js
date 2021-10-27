@@ -8,7 +8,7 @@ import DeleteIcon from "@mui/icons-material/Delete";
 
 import { destroyProduct } from "../../../store";
 
-function Row(props) {
+function AdminProductRow(props) {
   const { id, imageURL, name, brandName, category, size, price } =
     props.product;
 
@@ -72,4 +72,4 @@ function Row(props) {
   );
 }
 
-export default Row;
+export default AdminProductRow;

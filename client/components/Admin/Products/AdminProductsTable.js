@@ -17,7 +17,7 @@ import Paper from "@mui/material/Paper";
 
 import LoadSpinner from "../../Materialui/LoadSpinner";
 import { Container, Button } from "@mui/material";
-import Row from "./AdminProductsRow";
+import AdminProductRow from "./AdminProductsRow";
 
 const ProductsTable = (props) => {
   const dispatch = useDispatch();
@@ -86,12 +86,12 @@ const ProductsTable = (props) => {
               products,
               getComparator(orderDirection, valueToOrderBy)
             ).map((product, idx) => (
-              <Row key={idx} product={product} />
+              <AdminProductRow key={idx} product={product} />
             ))}
           </TableBody>
           {/* <TableBody>
             {products.map((product) => (
-              <Row key={product.id} product={product} />
+              <AdminProductRow key={product.id} product={product} />
             ))}
           </TableBody> */}
         </Table>
