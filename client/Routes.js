@@ -11,6 +11,8 @@ import SingleBrand from "./components/Brands/SingleBrand";
 import Products from "./components/Products/Products";
 import SingleProduct from "./components/Products/SingleProduct";
 import Cart from "./components/User/Cart";
+import Settings from "./components/User/Settings/Settings";
+
 import AdminDashboard from "./components/Admin/Dashboard";
 import ProductUpdateForm from "./components/Admin/Products/ProductUpdateForm";
 import ProductCreateForm from "./components/Admin/Products/ProductCreateForm";
@@ -25,11 +27,9 @@ import Success from "./components/User/Checkout/Success";
 // import Settings from './components/Settings'
 // import auth from "./store/auth";
 
-// const Admin = () => {
-//   return (
-//     <div> TODO Add Admin Component </div>
-//   )
-// }
+///////////////// STORE ////////////////////////
+import { fetchCart } from "./store";
+import auth from "./store/auth";
 
 const Routes = () => {
   const dispatch = useDispatch();
@@ -52,6 +52,7 @@ const Routes = () => {
             <Route path="/brands/:brandId" component={SingleBrand} />
             <Route exact path="/products" component={Products} />
             <Route path="/products/:productId" component={SingleProduct} />
+            <Route exact path="/settings" component={Settings} />
             <Route exact path="/cart" component={Cart} />
             <Route exact path="/orders" component={PastOrders} />
             <Route exact path="/checkout" component={Checkout} />
@@ -88,9 +89,6 @@ const Routes = () => {
           </Switch>
         </>
       )}
-      {/* {isAdmin ? (
-
-        ) */}
     </div>
   );
 };

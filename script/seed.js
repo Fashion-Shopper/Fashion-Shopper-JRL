@@ -3,7 +3,7 @@ const productSeedData = require("./product-seed-data.json");
 
 const {
   db,
-  models: { User, Product, Brand },
+  models: { User, Product, Brand, Address },
 } = require("../server/db");
 const Order = require("../server/db/models/Order");
 
@@ -12,19 +12,19 @@ const path = require("path");
 const fs = require("fs");
 const OrderItem = require("../server/db/models/OrderItem");
 
-//To Work On Later
-// const loadImage = (imagePath) =>{
-//   return new Promise((res, rej)=> {
-//     fs.readFile(imagePath, 'base64', (err,data)=>{
-//     if(err){
-//       rej(err);
-//     }
-//     else{
-//       res(`data:image/png;base64,${data.toString()}`); //?
-//     }
-//   })
-// })
-// }
+
+const loadImage = (imagePath) =>{
+  return new Promise((res, rej)=> {
+    fs.readFile(imagePath, 'base64', (err,data)=>{
+    if(err){
+      rej(err);
+    }
+    else{
+      res(`data:image/png;base64,${data.toString()}`); //?
+    }
+  })
+})
+}
 
 /**
  * seed - this function clears the database, updates tables to
@@ -124,6 +124,18 @@ async function seed() {
   await order2.update({ isCart: false })
   await order3.update({ isCart: false })
 
+  // Creating Addresses...
+
+  // const address1 = await Address.create({ userId: users[0].id });
+  // const address2 = await Address.create({ userId: users[0].id });
+  // const address3 = await Address.create({ userId: users[1].id });
+  // const address4 = await Address.create({ userId: users[1].id });
+
+  await Address.create({ place: "Central Park, New York" , userId: users[0].id });
+  await Address.create({ place: "White Mountains, Virginia" , userId: users[0].id });
+  await Address.create({ place: "Sunset Blvd, Hollywood, LA" ,userId: users[1].id });
+  await Address.create({ place: "Riverside, NJ", userId: users[1].id });
+  
   console.log(`seeded successfully`);
   return {
     users: {

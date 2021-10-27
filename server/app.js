@@ -4,6 +4,8 @@ const morgan = require('morgan')
 const cors = require('cors')
 const app = express()
 
+
+app.engine('html',require('ejs').renderFile) //render engine
 module.exports = app
 
 // logging middleware
@@ -19,7 +21,10 @@ app.use(cors())
 app.use('/auth', require('./auth'))
 app.use('/api', require('./api'))
 
-app.get('/', (req, res) => res.sendFile(path.join(__dirname, '..', 'public/index.html')));
+
+// app.get('/', (req, res)=> res.sendFile(path.join(__dirname, '..', 'public/index.html')));
+app.get('/', (req, res)=> res.render(path.join(__dirname, '..', 'public/index.html'), {GOOGLE_KEY:process.env.GOOGLE_KEY}));
+
 
 // static file-serving middleware
 app.use(express.static(path.join(__dirname, '..', 'public')))
@@ -37,9 +42,11 @@ app.use((req, res, next) => {
 })
 
 // sends index.html
-app.use('*', (req, res) => {
-  res.sendFile(path.join(__dirname, '..', 'public/index.html'));
-})
+// app.use('*', (req, res) => {
+//   res.sendFile(path.join(__dirname, '..', 'public/index.html'));
+// })
+app.get('*', (req, res)=> res.render(path.join(__dirname, '..', 'public/index.html'), {GOOGLE_KEY:process.env.GOOGLE_KEY}));
+
 
 // error handling endware
 app.use((err, req, res, next) => {
