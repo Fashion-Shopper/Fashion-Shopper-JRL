@@ -23,7 +23,6 @@ const UsersTableHeader = (props) => {
             Id
           </TableSortLabel>
         </TableCell>
-        <TableCell align="center">Image</TableCell>
         <TableCell key="username" align="center">
           <TableSortLabel
             active={valueToOrderBy === "username"}
