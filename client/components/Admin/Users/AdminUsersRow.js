@@ -1,11 +1,20 @@
 import React from "react";
+import { useDispatch } from "react-redux";
 import TableCell from "@mui/material/TableCell";
 import TableRow from "@mui/material/TableRow";
 import { Button } from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";
 
+import { destroyUser } from "../../../store/admin/users.js";
+
 function AdminUsersRow(props) {
   const { id, username, isAdmin } = props.user;
+
+  const dispatch = useDispatch();
+
+  const handleDelete = (productId) => {
+    dispatch(destroyUser(productId));
+  };
 
   return (
     <TableRow>
