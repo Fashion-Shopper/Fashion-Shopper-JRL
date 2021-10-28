@@ -17,6 +17,8 @@ import dateFormatter from 'dayjs'
 
 ////////////// TO CONVERT TO CURRENCY ////////////////
 import currency from 'numeral'
+import { Stack } from '@mui/material';
+import { Link } from 'react-router-dom';
 currency.defaultFormat('$0,0.00');
 
 function Row(props) {
@@ -28,29 +30,45 @@ function Row(props) {
         total = order.orderitems.reduce((acc, { product, quantity }) => acc + (product.price * quantity), 0)
     }
 
-    let orderStatus = 'Complete'
-    if (order.isCart) {
-        orderStatus = 'Pending'
+    let totalQty = 0;
+    if (order.orderitems) {
+        totalQty = order.orderitems.reduce((acc, { quantity }) => acc += quantity, 0)
     }
 
     return (
         <>
             <TableRow>
+                <TableCell scope="row" align='center'>
+                    <Typography variant='h4'>
+                        Order #{order.id}
+                    </Typography>
+                </TableCell>
+                <TableCell align="center">
+                    <Typography color='text.secondary'>
+                        Date: {dateFormatter(order.updatedAt).format('MM/DD/YYYY')}
+                    </Typography>
+                </TableCell>
+                <TableCell align="center">
+                    <Typography color='text.secondary'>
+                        Total Qty: {totalQty}
+                    </Typography>
+                </TableCell>
+                <TableCell align="center">
+                    <Typography color="text.secondary">
+                        Total Price: {currency(total.toFixed(2)).format()}
+                    </Typography>
+                </TableCell>
                 <TableCell align='center'>
                     <IconButton
                         aria-label="expand row"
                         size="small"
                         onClick={() => setOpen(!open)}
                     >
-                        {open ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
+                        <Typography color='primary'>
+                            View Details {open ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
+                        </Typography>
                     </IconButton>
                 </TableCell>
-                <TableCell scope="row" align='center'>
-                    {order.id}
-                </TableCell>
-                <TableCell align="center">{dateFormatter(order.updatedAt).format('MM/DD/YYYY')}</TableCell>
-                <TableCell align="center">{orderStatus}</TableCell>
-                <TableCell align="center">{currency(total.toFixed(2)).format()}</TableCell>
             </TableRow>
             <TableRow>
                 <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={6}>
@@ -59,31 +77,69 @@ function Row(props) {
                             <Typography variant="h6" align='center' fontWeight='700' gutterBottom component="div">
                                 Order Details
                             </Typography>
-                            <Typography variant="body1" gutterBottom component="div" sx={{ textDecoration: 'underline' }}>
-                                Shipping Information
-                            </Typography>
-                            <Typography variant="body1" gutterBottom component="div">
-                                Name: {order.shippingName}
-                            </Typography>
-                            <Typography variant="body1" gutterBottom component="div">
-                                Address: {order.shippingAddress}
-                            </Typography>
                             <Table size="small" aria-label="details">
                                 <TableHead>
                                     <TableRow>
-                                        <TableCell>Item(s)</TableCell>
-                                        <TableCell align='center'>Quantity</TableCell>
-                                        <TableCell align='center'>Unit Price</TableCell>
+                                        <TableCell padding='none'>
+                                            Shipping Information
+                                        </TableCell>
+                                        <TableCell align="center" padding='none'>
+                                            Product
+                                        </TableCell>
+                                        <TableCell align="right" padding='none'>
+                                            Price&nbsp;($)
+                                        </TableCell>
                                     </TableRow>
                                 </TableHead>
                                 <TableBody>
-                                    {order.orderitems.map(({ id, product, quantity }) => (
-                                        <TableRow key={id}>
-                                            <TableCell component="th" scope="row">
-                                                {product.name}
+                                    {order.orderitems.map(({ id, product, quantity }, idx) => (
+                                        <TableRow key={id || idx}>
+                                            <TableCell>
+                                                <Box sx={{ width: 150 }}>
+                                                    <Typography variant="body1">
+                                                        Name: {order.shippingName}
+                                                    </Typography>
+                                                    <Typography variant="body1">
+                                                        Address: {order.shippingAddress}
+                                                    </Typography>
+                                                </Box>
                                             </TableCell>
-                                            <TableCell align='center'>{quantity}</TableCell>
-                                            <TableCell align='center'>{currency(product.price).format()}</TableCell>
+                                            <TableCell padding='none' sx={{ height: 100, width: '100%' }}>
+                                                <Stack direction='row' spacing={1} justifyContent='center' sx={{ '@media screen and (max-width: 860px)': { flexDirection: 'column' } }}>
+                                                    <Stack component={Link} to={`/products/${product.id}`}>
+                                                        <img src={product.imageURL} width='150' />
+                                                    </Stack>
+                                                    <Stack justifyContent='space-around'>
+                                                        <Box component={Link} to={`/products/${product.id}`} sx={{ color: 'inherit' }}>
+                                                            <Typography variant="subtitle1" color="text.secondary" component="div">
+                                                                {product.brandName}
+                                                            </Typography>
+                                                            <Typography component="div" variant="h5">
+                                                                {product.name}
+                                                            </Typography>
+                                                            <Typography variant="h6" color="text.secondary" component="div">
+                                                                {product.category} / Size: {product.size}
+                                                            </Typography>
+                                                        </Box>
+                                                        <Box>
+                                                            <Typography>
+                                                                Qty: {quantity}
+                                                            </Typography>
+                                                        </Box>
+                                                    </Stack>
+                                                </Stack>
+                                            </TableCell>
+                                            <TableCell padding='none' sx={{ height: 100, width: '100%' }} >
+                                                <Stack
+                                                    justifyContent="space-between"
+                                                    alignItems="flex-end"
+                                                    sx={{ height: '100%' }}
+                                                >
+                                                    <Typography variant="h6" color="text.secondary" component="div">
+                                                        {currency(product.price).format()}
+                                                    </Typography>
+                                                </Stack>
+                                            </TableCell>
                                         </TableRow>
                                     ))}
                                 </TableBody>

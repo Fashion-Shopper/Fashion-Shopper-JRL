@@ -42,7 +42,7 @@ const SlideShow = () => {
                             Shop Now!
                         </Button>
                     </Box>
-                    <img src={slide.image} style={{ display: "block", maxHeight: 650, height: 'auto', height: 'auto' }} />
+                    <img src={slide.image} style={{ display: "block", maxHeight: 700, height: 'auto', height: 'auto' }} />
                 </div>
             ))}
         </Carousel>
