@@ -33,21 +33,12 @@ const PastOrders = () => {
     }
 
     return (
-        <Container sx={{ mt: 3 }}>
+        <Container sx={{ mt: 3, mb: 15 }}>
             <Typography variant='h3' gutterBottom align='center' sx={{ mt: 5 }}>
                 <History fontSize="large" /> Order History
             </Typography>
             <TableContainer component={Paper}>
                 <Table aria-label="collapsible table">
-                    <TableHead>
-                        <TableRow>
-                            <TableCell align='center'> View Details </TableCell>
-                            <TableCell align='center'>Oder #</TableCell>
-                            <TableCell align='center'>Date</TableCell>
-                            <TableCell align='center'>Order Status</TableCell>
-                            <TableCell align='center'>Total</TableCell>
-                        </TableRow>
-                    </TableHead>
                     <TableBody>
                         {orders.map((order) => (
                             <Row key={order.id} order={order} />
