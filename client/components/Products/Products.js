@@ -7,7 +7,7 @@ import { useSelector } from "react-redux";
 import ProductCard from "./ProductCard";
 
 /////////////// MATERIAL UI //////////////////////
-import { CircularProgress, Grid, Typography } from "@mui/material";
+import { CircularProgress, Grid, Slide, Typography } from "@mui/material";
 import { Box } from "@mui/system";
 import LoadSpinner from "../Materialui/LoadSpinner";
 
@@ -27,17 +27,19 @@ const Products = () => {
   }
 
   return (
-    <Grid container>
-      <Grid item xs={false} sm={2} />
-      <Grid container item xs={12} sm={8} spacing={4} sx={{ m: 0, mb: 18 }}>
-        {products.map((product) => (
-          <Grid xs={11} sm={6} md={6} lg={4} item key={product.id}>
-            <ProductCard product={product} />
-          </Grid>
-        ))}
-      </Grid>
-      <Grid item xs={false} sm={2} />
-    </Grid >
+    <Slide in={true} direction='right' timeout={500} mountOnEnter unmountOnExit>
+      <Grid container>
+        <Grid item xs={false} sm={2} />
+        <Grid container item xs={12} sm={8} spacing={4} sx={{ m: 0, mb: 18 }}>
+          {products.map((product) => (
+            <Grid xs={11} sm={6} md={6} lg={4} item key={product.id}>
+              <ProductCard product={product} />
+            </Grid>
+          ))}
+        </Grid>
+        <Grid item xs={false} sm={2} />
+      </Grid >
+    </Slide>
   );
 };
 

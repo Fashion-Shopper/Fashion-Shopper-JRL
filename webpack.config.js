@@ -27,7 +27,11 @@ module.exports = {
         options: {
           name: '/public/logo/[name].[ext]'
         }
-      }
+      },
+      {
+        test: /\.css$/i,
+        use: ["style-loader", "css-loader"],
+      },
     ]
   }
 }

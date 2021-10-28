@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 
 ////////////////////////// MATERIAL UI ///////////////////////////////////////
-import { Button, Container, Divider, FormControl, Grid, InputLabel, MenuItem, Select, Stack, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Typography } from '@mui/material'
+import { Button, Container, Divider, FormControl, Grid, InputLabel, MenuItem, Select, Slide, Stack, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Typography } from '@mui/material'
 import { Box } from '@mui/system';
 import DeleteIcon from '@mui/icons-material/Delete';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
@@ -71,118 +71,120 @@ const Cart = () => {
     }
 
     return (
-        <Container maxWidth="xl">
-            <Typography variant='h3' gutterBottom align='center' sx={{ mt: 5 }}>
-                Cart <ShoppingCartIcon fontSize="large" />
-            </Typography>
-            <Grid container sx={{ pb: 12, '@media screen and (max-width: 600px)': { flexDirection: 'column-reverse' } }}>
-                <Grid container item xs={12} sm={8} md={8}>
-                    <TableContainer sx={{ p: 8 }}>
-                        <Table>
-                            <TableHead>
-                                <TableRow>
-                                    <TableCell align="center" padding='none'>
-                                        Product
-                                    </TableCell>
-                                    <TableCell align="right" padding='none'>
-                                        Price&nbsp;($)
-                                    </TableCell>
-                                </TableRow>
-                            </TableHead>
-                            <TableBody>
-                                {userCart.orderitems.map(({ id, product, quantity }, idx) => (
-                                    <TableRow key={id || idx}>
-                                        <TableCell padding='none' sx={{ height: 100, width: '100%' }}>
-                                            <Stack direction='row' spacing={4} sx={{ '@media screen and (max-width: 860px)': { flexDirection: 'column' } }}>
-                                                <Stack component={Link} to={`/products/${product.id}`}>
-                                                    <img src={product.imageURL} width='200' />
-                                                </Stack>
-                                                <Stack justifyContent='space-between'>
-                                                    <Box component={Link} to={`/products/${product.id}`} sx={{ color: 'inherit' }}>
-                                                        <Typography variant="subtitle1" color="text.secondary" component="div">
-                                                            {product.brandName}
-                                                        </Typography>
-                                                        <Typography component="div" variant="h5">
-                                                            {product.name}
-                                                        </Typography>
-                                                        <Typography variant="h6" color="text.secondary" component="div">
-                                                            {product.category} / Size: {product.size}
-                                                        </Typography>
-                                                    </Box>
-                                                    <Box>
-                                                        <FormControl sx={{ width: 150, pb: 2 }} >
-                                                            <InputLabel>QTY</InputLabel>
-                                                            <Select
-                                                                label="QTY"
-                                                                variant='outlined'
-                                                                name="quantity"
-                                                                value={quantity}
-                                                                color='primary'
-                                                                onChange={(evt) => handleChange(evt, id, product.id)}
-                                                            >
-                                                                <MenuItem value={1}>1</MenuItem>
-                                                                <MenuItem value={2}>2</MenuItem>
-                                                                <MenuItem value={3}>3</MenuItem>
-                                                                <MenuItem value={4}>4</MenuItem>
-                                                                <MenuItem value={5}>5</MenuItem>
-                                                                <MenuItem value={6}>6</MenuItem>
-                                                                <MenuItem value={7}>7</MenuItem>
-                                                                <MenuItem value={8}>8</MenuItem>
-                                                            </Select>
-                                                        </FormControl>
-                                                    </Box>
-                                                </Stack>
-                                            </Stack>
+        <Slide direction="right" in={true} timeout={500}>
+            <Container maxWidth="xl">
+                <Typography variant='h3' gutterBottom align='center' sx={{ mt: 5 }}>
+                    Cart <ShoppingCartIcon fontSize="large" />
+                </Typography>
+                <Grid container sx={{ pb: 12, '@media screen and (max-width: 600px)': { flexDirection: 'column-reverse' } }}>
+                    <Grid container item xs={12} sm={8} md={8}>
+                        <TableContainer sx={{ p: 8 }}>
+                            <Table>
+                                <TableHead>
+                                    <TableRow>
+                                        <TableCell align="center" padding='none'>
+                                            Product
                                         </TableCell>
-                                        <TableCell padding='none' sx={{ height: 100, width: '100%' }} >
-                                            <Stack
-                                                justifyContent="space-between"
-                                                alignItems="flex-end"
-                                                sx={{ height: '100%' }}
-                                            >
-                                                <Typography variant="h6" color="text.secondary" component="div">
-                                                    {currency(product.price).format()}
-                                                </Typography>
-                                                <Button sx={{ textDecoration: 'underline', p: 2 }} color='error' onClick={() => handleRemove(id, product.id)} startIcon={<DeleteIcon />}>
-                                                    Remove
-                                                </Button>
-                                            </Stack>
+                                        <TableCell align="right" padding='none'>
+                                            Price&nbsp;($)
                                         </TableCell>
                                     </TableRow>
-                                ))}
-                            </TableBody>
-                        </Table>
-                    </TableContainer>
-                </Grid>
-                <Grid item container xs={12} sm={4} md={4}>
-                    <Grid item xs={12} sx={{ p: 2 }} >
-                        <Grid container direction="column" justifyContent="center" alignItems="center">
-                            <Typography variant="h5" align='center'>
-                                Order Summary
-                            </Typography>
-                            <Typography variant="h6" align='center' color='text.secondary'>
-                                Subtotal: &nbsp;{currency(total.toFixed(2)).format()}
-                            </Typography>
-                            {isLoggedIn ? (
-                                <Button component={Link} to='/checkout' variant='contained' sx={{ mt: 2, width: '75%' }}>
-                                    Checkout
-                                </Button>
-                            ) : (
-                                <>
-                                    <Button component={Link} to='/login' variant='contained' sx={{ mt: 2, width: '75%' }}>
-                                        Login
+                                </TableHead>
+                                <TableBody>
+                                    {userCart.orderitems.map(({ id, product, quantity }, idx) => (
+                                        <TableRow key={id || idx}>
+                                            <TableCell padding='none' sx={{ height: 100, width: '100%' }}>
+                                                <Stack direction='row' spacing={4} sx={{ '@media screen and (max-width: 860px)': { flexDirection: 'column' } }}>
+                                                    <Stack component={Link} to={`/products/${product.id}`}>
+                                                        <img src={product.imageURL} width='200' />
+                                                    </Stack>
+                                                    <Stack justifyContent='space-between'>
+                                                        <Box component={Link} to={`/products/${product.id}`} sx={{ color: 'inherit' }}>
+                                                            <Typography variant="subtitle1" color="text.secondary" component="div">
+                                                                {product.brandName}
+                                                            </Typography>
+                                                            <Typography component="div" variant="h5">
+                                                                {product.name}
+                                                            </Typography>
+                                                            <Typography variant="h6" color="text.secondary" component="div">
+                                                                {product.category} / Size: {product.size}
+                                                            </Typography>
+                                                        </Box>
+                                                        <Box>
+                                                            <FormControl sx={{ width: 150, pb: 2 }} >
+                                                                <InputLabel>QTY</InputLabel>
+                                                                <Select
+                                                                    label="QTY"
+                                                                    variant='outlined'
+                                                                    name="quantity"
+                                                                    value={quantity}
+                                                                    color='primary'
+                                                                    onChange={(evt) => handleChange(evt, id, product.id)}
+                                                                >
+                                                                    <MenuItem value={1}>1</MenuItem>
+                                                                    <MenuItem value={2}>2</MenuItem>
+                                                                    <MenuItem value={3}>3</MenuItem>
+                                                                    <MenuItem value={4}>4</MenuItem>
+                                                                    <MenuItem value={5}>5</MenuItem>
+                                                                    <MenuItem value={6}>6</MenuItem>
+                                                                    <MenuItem value={7}>7</MenuItem>
+                                                                    <MenuItem value={8}>8</MenuItem>
+                                                                </Select>
+                                                            </FormControl>
+                                                        </Box>
+                                                    </Stack>
+                                                </Stack>
+                                            </TableCell>
+                                            <TableCell padding='none' sx={{ height: 100, width: '100%' }} >
+                                                <Stack
+                                                    justifyContent="space-between"
+                                                    alignItems="flex-end"
+                                                    sx={{ height: '100%' }}
+                                                >
+                                                    <Typography variant="h6" color="text.secondary" component="div">
+                                                        {currency(product.price).format()}
+                                                    </Typography>
+                                                    <Button sx={{ textDecoration: 'underline', p: 2 }} color='error' onClick={() => handleRemove(id, product.id)} startIcon={<DeleteIcon />}>
+                                                        Remove
+                                                    </Button>
+                                                </Stack>
+                                            </TableCell>
+                                        </TableRow>
+                                    ))}
+                                </TableBody>
+                            </Table>
+                        </TableContainer>
+                    </Grid>
+                    <Grid item container xs={12} sm={4} md={4}>
+                        <Grid item xs={12} sx={{ p: 2 }} >
+                            <Grid container direction="column" justifyContent="center" alignItems="center">
+                                <Typography variant="h5" align='center'>
+                                    Order Summary
+                                </Typography>
+                                <Typography variant="h6" align='center' color='text.secondary'>
+                                    Subtotal: &nbsp;{currency(total.toFixed(2)).format()}
+                                </Typography>
+                                {isLoggedIn ? (
+                                    <Button component={Link} to='/checkout' variant='contained' sx={{ mt: 2, width: '75%' }}>
+                                        Checkout
                                     </Button>
-                                    <Typography variant="h6" align='center' color='text.secondary'>
-                                        Please Login to checkout!
-                                    </Typography>
-                                </>
-                            )}
+                                ) : (
+                                    <>
+                                        <Button component={Link} to='/login' variant='contained' sx={{ mt: 2, width: '75%' }}>
+                                            Login
+                                        </Button>
+                                        <Typography variant="h6" align='center' color='text.secondary'>
+                                            Please Login to checkout!
+                                        </Typography>
+                                    </>
+                                )}
 
+                            </Grid>
                         </Grid>
                     </Grid>
-                </Grid>
-            </Grid >
-        </Container>
+                </Grid >
+            </Container>
+        </Slide>
     )
 }
 
