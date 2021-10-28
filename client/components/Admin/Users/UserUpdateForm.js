@@ -47,6 +47,7 @@ class UserUpdateForm extends Component {
           <div>
             <label>Id</label>
             <input
+              readOnly="true"
               name="id"
               type="text"
               value={this.state.id}

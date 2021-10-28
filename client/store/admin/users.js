@@ -68,7 +68,7 @@ export const updateUser = (userInfo, history) => {
         userInfo
       );
       dispatch(_updateUser(data));
-      history.push("/admin/products");
+      history.push("/admin/users");
     } catch (err) {
       console.log(err);
     }
