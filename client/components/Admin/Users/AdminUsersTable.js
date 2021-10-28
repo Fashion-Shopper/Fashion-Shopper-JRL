@@ -32,7 +32,7 @@ import Paper from "@mui/material/Paper";
 
 import LoadSpinner from "../../Materialui/LoadSpinner";
 import { Container } from "@mui/material";
-import Row from "./AdminUsersRow";
+import AdminUsersRow from "./AdminUsersRow";
 
 const UsersTable = () => {
   const dispatch = useDispatch();
@@ -62,7 +62,7 @@ const UsersTable = () => {
           </TableHead>
           <TableBody>
             {users.map((user) => (
-              <Row key={user.id} user={user} />
+              <AdminUsersRow key={user.id} user={user} />
             ))}
           </TableBody>
         </Table>
