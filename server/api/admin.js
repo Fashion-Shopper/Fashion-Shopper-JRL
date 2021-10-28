@@ -78,6 +78,23 @@ Object.entries(obj).forEach((entry) => {
       next(err);
     }
   });
+  router.get(`/${_path}/:id`, async (req, res, next) => {
+    try {
+      res.send(await model.findByPk(req.params.id));
+    } catch (err) {
+      next(err);
+    }
+  });
+  router.put(`/${_path}/:id`, async (req, res, next) => {
+    try {
+      const item = await model.findByPk(req.params.id);
+      console.log(item);
+      await item.update(req.body);
+      res.send(item);
+    } catch (err) {
+      next(err);
+    }
+  });
   router.delete(
     `/${_path}/:id`,
     isLoggedIn,

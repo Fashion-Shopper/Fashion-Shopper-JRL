@@ -13,10 +13,12 @@ import SingleProduct from "./components/Products/SingleProduct";
 import Cart from "./components/User/Cart";
 import Settings from "./components/User/Settings/Settings";
 import AdminDashboard from "./components/Admin/Dashboard";
+import AdminProducts from "./components/Admin/Products/AdminProductsTable";
 import ProductCreateForm from "./components/Admin/Products/ProductCreateForm";
 import ProductUpdateForm from "./components/Admin/Products/ProductUpdateForm";
-import AdminProducts from "./components/Admin/Products/AdminProductsTable";
 import AdminUsers from "./components/Admin/Users/AdminUsersTable";
+import UserCreateForm from "./components/Admin/Users/UserCreateForm";
+import UserUpdateForm from "./components/Admin/Users/UserUpdateForm";
 import PastOrders from "./components/User/orderHistory/Table";
 import Checkout from "./components/User/Checkout/Checkout";
 import Success from "./components/User/Checkout/Success";
@@ -34,8 +36,8 @@ const Routes = () => {
     dispatch(fetchCart());
 
     if (isLoggedIn) {
-      dispatch(fetchOrders())
-      dispatch(consolidateCart())
+      dispatch(fetchOrders());
+      dispatch(consolidateCart());
     }
   }, [isLoggedIn]);
 
@@ -66,7 +68,12 @@ const Routes = () => {
                   path="/admin/products/:productId/update"
                   component={ProductUpdateForm}
                 />
-                <Route path="/admin/users" component={AdminUsers} />
+                <Route exact path="/admin/users" component={AdminUsers} />
+                {/* <Route path="/admin/users/create" component={UserCreateForm} /> */}
+                <Route
+                  path="/admin/users/:userId/update"
+                  component={UserUpdateForm}
+                />
               </>
             )}
             <Redirect to="/home" />
