@@ -28,12 +28,12 @@ const ProductsTable = (props) => {
     return <LoadSpinner />;
   }
 
-  ///////////////////// SECTION: SORTING FUNCTIONALTY /////////////////////
+  ///////////////////// SECTION: SORTING FUNCTIONALTY ///
 
   const [orderDirection, setOrderDirection] = React.useState("asc");
   const [valueToOrderBy, setValueToOrderBy] = React.useState("id");
   const [page, setPage] = React.useState(0);
-  const [rowsPerPage, setRowsPerPage] = React.useState(1);
+  const [rowsPerPage, setRowsPerPage] = React.useState(5);
 
   function descendingComparator(a, b, orderBy) {
     // console.log(
@@ -79,13 +79,31 @@ const ProductsTable = (props) => {
     setValueToOrderBy(property);
   };
 
-  ///////////////////// SECTION: PAGINATION FUNCTIONALTY /////////////////////
+  ///////////////////// SECTION: PAGINATION FUNCTIONALTY ///
+
+  const handleChangePage = (event, newPage) => {
+    setPage(newPage);
+  };
+
+  const handleChangeRowsPerPage = (event) => {
+    setRowsPerPage(parseInt(event.target.value), 10);
+    setPage(0);
+  };
 
   return (
     <Container sx={{ mt: 3 }}>
       <Button variant="outlined" component={Link} to={`/admin/products/create`}>
         Create New Product
       </Button>
+      <TablePagination
+        rowsPerPageOptions={[5, 10, 20, 50, 100]}
+        component="div"
+        count={products.length}
+        page={page}
+        rowsPerPage={rowsPerPage}
+        onChangePage={handleChangePage}
+        onChangeRowsPerPage={handleChangeRowsPerPage}
+      />
       <TableContainer component={Paper}>
         <Table aria-label="collapsible table">
           <AdminProductHeader
@@ -97,21 +115,14 @@ const ProductsTable = (props) => {
             {sortedRowInfo(
               products,
               getComparator(orderDirection, valueToOrderBy)
-            ).map((product, idx) => (
-              <AdminProductRow key={idx} product={product} />
-            ))}
+            )
+              .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+              .map((product, idx) => (
+                <AdminProductRow key={idx} product={product} />
+              ))}
           </TableBody>
         </Table>
       </TableContainer>
-      <TablePagination
-        rowsPerPageOptions={[1, 2]}
-        component="div"
-        count={products.length}
-        page={page}
-        rowsPerPage={rowsPerPage}
-        onChangePage={handleChangePage}
-        onChangeRowsPerPage={onChangeRowsPerPage}
-      />
     </Container>
   );
 };
