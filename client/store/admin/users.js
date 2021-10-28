@@ -61,10 +61,9 @@ export const createUser = (user) => {
 
 export const updateUser = (userInfo, history) => {
   return async (dispatch) => {
-    console.log(userInfo);
     try {
       const { data } = await axios.put(
-        `/api/admin/users/${userInfo.id}`,
+        `/api/admin/users/${userInfo.id * 1}`,
         userInfo
       );
       dispatch(_updateUser(data));
