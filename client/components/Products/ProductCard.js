@@ -63,15 +63,6 @@ function ProductCard(props) {
             </Typography>
           </CardContent>
           <CardActions sx={{ display: "flex", flexDirection: "column" }}>
-            {!!isAdmin && (
-              <Button
-                onClick={() => handleDelete(id)}
-                variant="outlined"
-                startIcon={<DeleteIcon />}
-              >
-                Delete
-              </Button>
-            )}
           </CardActions>
         </Card>
       </Box>
