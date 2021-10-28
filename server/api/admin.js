@@ -90,7 +90,7 @@ Object.entries(obj).forEach((entry) => {
       const item = await model.findByPk(req.params.id);
       console.log(item);
       await item.update(req.body);
-      res.send(user);
+      res.send(item);
     } catch (err) {
       next(err);
     }
