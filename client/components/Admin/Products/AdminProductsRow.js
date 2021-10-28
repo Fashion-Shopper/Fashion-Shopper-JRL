@@ -8,7 +8,7 @@ import DeleteIcon from "@mui/icons-material/Delete";
 
 import { destroyProduct } from "../../../store";
 
-function Row(props) {
+function AdminProductRow(props) {
   const { id, imageURL, name, brandName, category, size, price } =
     props.product;
 
@@ -19,57 +19,55 @@ function Row(props) {
   };
 
   return (
-    <>
-      <TableRow>
-        <TableCell scope="row" align="center">
-          {id}
-        </TableCell>
-        <TableCell scope="row" align="center">
-          <CardMedia
-            component="img"
-            sx={{ maxWidth: 150, p: 3 }}
-            image={imageURL}
-            alt={name}
-          />{" "}
-        </TableCell>
-        <TableCell scope="row" align="center">
-          {name}
-        </TableCell>
-        <TableCell scope="row" align="center">
-          {brandName}
-        </TableCell>
-        <TableCell scope="row" align="center">
-          {category}
-        </TableCell>
-        <TableCell scope="row" align="center">
-          {size}
-        </TableCell>
-        <TableCell scope="row" align="center">
-          {price}
-        </TableCell>
-        <TableCell scope="row" align="center">
-          <Button
-            variant="outlined"
-            component={Link}
-            to={`/admin/products/${id}/update`}
-          >
-            Update
-          </Button>
-        </TableCell>
-        <TableCell scope="row" align="center">
-          <Button
-            scope="row"
-            align="center"
-            onClick={() => handleDelete(id)}
-            variant="outlined"
-            startIcon={<DeleteIcon />}
-          >
-            Delete
-          </Button>
-        </TableCell>
-      </TableRow>
-    </>
+    <TableRow>
+      <TableCell scope="row" align="center">
+        {id}
+      </TableCell>
+      <TableCell scope="row" align="center">
+        <CardMedia
+          component="img"
+          sx={{ maxWidth: 150, p: 3 }}
+          image={imageURL}
+          alt={name}
+        />
+      </TableCell>
+      <TableCell scope="row" align="center">
+        {name}
+      </TableCell>
+      <TableCell scope="row" align="center">
+        {brandName}
+      </TableCell>
+      <TableCell scope="row" align="center">
+        {category}
+      </TableCell>
+      <TableCell scope="row" align="center">
+        {size}
+      </TableCell>
+      <TableCell scope="row" align="center">
+        {price}
+      </TableCell>
+      <TableCell scope="row" align="center">
+        <Button
+          variant="outlined"
+          component={Link}
+          to={`/admin/products/${id}/update`}
+        >
+          Update
+        </Button>
+      </TableCell>
+      <TableCell scope="row" align="center">
+        <Button
+          scope="row"
+          align="center"
+          onClick={() => handleDelete(id)}
+          variant="outlined"
+          startIcon={<DeleteIcon />}
+        >
+          Delete
+        </Button>
+      </TableCell>
+    </TableRow>
   );
 }
 
-export default Row;
+export default AdminProductRow;
