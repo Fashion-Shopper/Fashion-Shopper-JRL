@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { fetchAdminUsers } from "../../../store/admin/adminUsers";
+import { fetchUsers } from "../../../store/admin/adminUsers";
 
 import AdminUsersHeader from "./AdminUsersHeader";
 
@@ -21,7 +21,7 @@ const UsersTable = (props) => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(fetchAdminUsers());
+    dispatch(fetchUsers());
   }, []);
 
   const users = useSelector((state) => state.adminUsers);

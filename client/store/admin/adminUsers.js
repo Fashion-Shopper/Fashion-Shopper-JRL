@@ -35,7 +35,7 @@ const _updateUser = (user) => {
 };
 
 ///////////////////// THUNK CREATOR ///////////////////////
-export const fetchAdminUsers = () => {
+export const fetchUsers = () => {
   return async (dispatch) => {
     const token = window.localStorage.getItem(TOKEN);
     const { data } = await axios.get("/api/admin/users", {
