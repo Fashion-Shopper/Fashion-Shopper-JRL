@@ -53,11 +53,11 @@ const UsersTable = () => {
         <Table aria-label="collapsible table">
           <TableHead>
             <TableRow>
-              <TableCell align="center"> View Details </TableCell>
-              <TableCell align="center">Oder #</TableCell>
-              <TableCell align="center">Date</TableCell>
-              <TableCell align="center">Order Status</TableCell>
-              <TableCell align="center">Total</TableCell>
+              <TableCell align="center"> Id </TableCell>
+              <TableCell align="center"> Username </TableCell>
+              <TableCell align="center"> Admin </TableCell>
+              <TableCell align="center">Action: Update </TableCell>
+              <TableCell align="center">Action: Delete </TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
