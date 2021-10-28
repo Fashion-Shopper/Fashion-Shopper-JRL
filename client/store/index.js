@@ -7,7 +7,6 @@ import productsReducer from "./products";
 // import singleProductReducer from "./singleProduct"; // This is not needed. Just filter from all products
 import ordersReducer from "./orders";
 import cartReducer from './cart'
-import adminProductsReducer from './admin/adminProducts'
 import adminUsersReducer from './admin/adminUsers'
 import addressesReducer from './address'
 
@@ -17,7 +16,6 @@ const reducer = combineReducers({
   // singleProduct: singleProductReducer, // this is not needed. Just filter from all products
   userOrders: ordersReducer,
   userCart: cartReducer,
-  adminProducts: adminProductsReducer,
   adminUsers: adminUsersReducer,
   addresses: addressesReducer
 });
