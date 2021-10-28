@@ -9,28 +9,20 @@ class UserUpdateForm extends Component {
     this.state = {
       id: 0,
       username: "",
-      password: "",
       isAdmin: "",
-      avatar: "",
     };
     this.onChange = this.onChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
   }
 
   async componentDidMount() {
-    const product = (
-      await axios.get(`/api/admin/users/${this.props.match.params.productId * 1}`)
+    const user = (
+      await axios.get(`/api/admin/users/${this.props.match.params.userId * 1}`)
     ).data;
     this.setState({
-      id: product.id,
-      name: product.name,
-      brandName: product.brandName,
-      imageURL: product.imageURL,
-      price: product.price,
-      category: product.category,
-      size: product.size,
-      rating: product.rating,
-      description: product.description,
+      id: user.id,
+      username: user.username,
+      isAdmin: user.isAdmin,
     });
   }
 
@@ -40,76 +32,42 @@ class UserUpdateForm extends Component {
 
   onSubmit(evt) {
     evt.preventDefault();
-    const updatedProduct = {
+    const updatedUser = {
       id: this.state.id,
-      name: this.state.name,
-      brandName: this.state.brandName,
-      imageURL: this.state.imageURL,
-      price: this.state.price,
-      category: this.state.category,
-      size: this.state.size,
-      rating: this.state.rating,
-      description: this.state.description,
+      username: this.state.username,
+      isAdmin: this.state.isAdmin,
     };
-    this.props.update(updatedProduct);
+    this.props.update(updatedUser);
   }
 
   render() {
     return (
       <div>
-        <form className="campus-update-form">
+        <form className="user-update-form">
           <div>
-            <label>Name</label>
+            <label>Id</label>
             <input
-              name="name"
+              name="id"
               type="text"
-              value={this.state.name}
+              value={this.state.id}
               onChange={this.onChange}
             />
-            <label>Brand</label>
+            <label>Username</label>
             <input
-              name="brandName"
+              name="username"
               type="text"
-              value={this.state.brandName}
+              value={this.state.username}
               onChange={this.onChange}
             />
-            <label>Image URL</label>
+            <label>isAdmin</label>
             <input
-              name="imageURL"
+              name="isAdmin"
               type="text"
-              value={this.state.imageURL}
-              onChange={this.onChange}
-            />
-            <label>Price</label>
-            <input
-              name="price"
-              type="text"
-              value={this.state.price}
-              onChange={this.onChange}
-            />
-            <label>Category</label>
-            <input
-              name="category"
-              type="text"
-              value={this.state.category}
-              onChange={this.onChange}
-            />
-            <label>Size</label>
-            <input
-              name="size"
-              type="text"
-              value={this.state.size}
-              onChange={this.onChange}
-            />
-            <label>Description</label>
-            <input
-              name="description"
-              type="text"
-              value={this.state.description}
+              value={this.state.isAdmin}
               onChange={this.onChange}
             />
             <button type="submit" onClick={this.onSubmit}>
-              Update Product
+              Update User
             </button>
           </div>
         </form>
@@ -120,8 +78,8 @@ class UserUpdateForm extends Component {
 
 const mapDispatchToProps = (dispatch, { history }) => {
   return {
-    update: (productInfo) => {
-      dispatch(updateProduct(productInfo, history));
+    update: (userInfo) => {
+      dispatch(updateUser(userInfo, history));
     },
   };
 };

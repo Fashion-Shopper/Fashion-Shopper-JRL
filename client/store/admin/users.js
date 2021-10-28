@@ -59,14 +59,19 @@ export const createUser = (user) => {
   };
 };
 
-export const updateUser = (userId, user) => {
+export const updateUser = (userInfo, history) => {
   return async (dispatch) => {
     try {
       const token = window.localStorage.getItem(TOKEN);
-      const { data } = await axios.put(`/api/admin/users/${userId}`, user, {
-        headers: { authorization: token },
-      });
+      const { data } = await axios.put(
+        `/api/admin/users/${userInfo.id}`,
+        userInfo,
+        {
+          headers: { authorization: token },
+        }
+      );
       dispatch(_updateUser(data));
+      history.push("/admin/products");
     } catch (err) {
       console.log(err);
     }
