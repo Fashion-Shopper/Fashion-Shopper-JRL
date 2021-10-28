@@ -11,7 +11,7 @@ function AdminUsersRow(props) {
     <TableRow>
       <TableCell scope="row" align="center">
         {id}
-      </TableCell>t
+      </TableCell>
       <TableCell scope="row" align="center">
         {username}
       </TableCell>
