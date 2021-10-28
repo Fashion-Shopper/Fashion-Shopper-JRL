@@ -28,12 +28,12 @@ const ProductsTable = (props) => {
     return <LoadSpinner />;
   }
 
-  ///////////////////// SECTION: SORTING FUNCTIONALTY ///
-
   const [orderDirection, setOrderDirection] = React.useState("asc");
   const [valueToOrderBy, setValueToOrderBy] = React.useState("id");
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
+
+  ///////////////////// SECTION: SORTING FUNCTIONALTY ///
 
   function descendingComparator(a, b, orderBy) {
     // console.log(
@@ -86,7 +86,7 @@ const ProductsTable = (props) => {
   };
 
   const handleChangeRowsPerPage = (event) => {
-    setRowsPerPage(parseInt(event.target.value), 10);
+    setRowsPerPage(parseInt(event.target.value, 10));
     setPage(0);
   };
 
@@ -96,13 +96,13 @@ const ProductsTable = (props) => {
         Create New Product
       </Button>
       <TablePagination
-        rowsPerPageOptions={[5, 10, 20, 50, 100]}
+        rowsPerPageOptions={[5, 10, 25]}
         component="div"
         count={products.length}
-        page={page}
         rowsPerPage={rowsPerPage}
-        onChangePage={handleChangePage}
-        onChangeRowsPerPage={handleChangeRowsPerPage}
+        page={page}
+        onPageChange={handleChangePage}
+        onRowsPerPageChange={handleChangeRowsPerPage}
       />
       <TableContainer component={Paper}>
         <Table aria-label="collapsible table">
