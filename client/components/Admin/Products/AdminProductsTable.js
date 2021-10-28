@@ -9,6 +9,7 @@ import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TableContainer from "@mui/material/TableContainer";
 import Paper from "@mui/material/Paper";
+import TablePagination from "@mui/material/TablePagination";
 
 import LoadSpinner from "../../Materialui/LoadSpinner";
 import { Container, Button } from "@mui/material";
@@ -26,6 +27,8 @@ const ProductsTable = (props) => {
   if (!products) {
     return <LoadSpinner />;
   }
+
+  ///////////////////// SECTION: SORTING FUNCTIONALTY /////////////////////
 
   const [orderDirection, setOrderDirection] = React.useState("asc");
   const [valueToOrderBy, setValueToOrderBy] = React.useState("id");
@@ -76,6 +79,8 @@ const ProductsTable = (props) => {
     setValueToOrderBy(property);
   };
 
+  ///////////////////// SECTION: PAGINATION FUNCTIONALTY /////////////////////
+
   return (
     <Container sx={{ mt: 3 }}>
       <Button variant="outlined" component={Link} to={`/admin/products/create`}>
@@ -98,6 +103,15 @@ const ProductsTable = (props) => {
           </TableBody>
         </Table>
       </TableContainer>
+      <TablePagination
+        rowsPerPageOptions={[1, 2]}
+        component="div"
+        count={products.length}
+        page={page}
+        rowsPerPage={rowsPerPage}
+        onChangePage={handleChangePage}
+        onChangeRowsPerPage={onChangeRowsPerPage}
+      />
     </Container>
   );
 };
