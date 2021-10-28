@@ -39,7 +39,6 @@
     "npm-check-updates": "^11.8.5",
     "numeral": "^2.0.6",
     "pg": "^8.7.1",
-    "react-material-ui-carousel": "^2.3.5",
     "react-stripe-checkout": "^2.6.3",
     "sequelize": "^6.7.0",
     "stripe": "^8.184.0"

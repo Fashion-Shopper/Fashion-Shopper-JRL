@@ -1,6 +1,9 @@
 import React, { useState } from 'react'
-import { Avatar, Divider, Grid, IconButton, ListItemIcon, Menu, MenuItem, Tooltip, Typography } from "@mui/material"
+import { Avatar, Divider, IconButton, ListItemIcon, Menu, MenuItem, Tooltip, Typography } from "@mui/material"
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
+import SupervisorAccountIcon from '@mui/icons-material/SupervisorAccount';
+import EditOffIcon from '@mui/icons-material/EditOff';
+import DashboardIcon from '@mui/icons-material/Dashboard';
 
 
 import { Settings, Logout, History } from '@mui/icons-material';
@@ -12,6 +15,7 @@ import { Link } from 'react-router-dom';
 const Profile = () => {
 
     const user = useSelector(state => state.auth) || {};
+    const { isAdmin } = useSelector((state) => state.auth);
 
     const [menu, setMenu] = useState(null);
     const open = Boolean(menu);
@@ -74,12 +78,6 @@ const Profile = () => {
                 transformOrigin={{ horizontal: 'right', vertical: 'top' }}
                 anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
             >
-                {/* <MenuItem>
-                    <ListItemIcon>
-                        <FaUserEdit size='1.5rem' />
-                    </ListItemIcon>
-                    Edit Profile
-                </MenuItem> */}
                 <MenuItem component={Link} to='/orders'>
                     <ListItemIcon>
                         <History />
@@ -92,6 +90,32 @@ const Profile = () => {
                     </ListItemIcon>
                     Settings
                 </MenuItem>
+                {isAdmin && (
+                    <div>
+                        <Divider />
+                        <Typography align='center' sx={{ textDecoration: 'underline', textTransform: 'uppercase', mt: 1 }}>
+                            Admin Only
+                        </Typography>
+                        <MenuItem component={Link} to='/admin'>
+                            <ListItemIcon>
+                                <DashboardIcon fontSize="small" />
+                            </ListItemIcon>
+                            Dashboard
+                        </MenuItem>
+                        <MenuItem component={Link} to='/admin/users'>
+                            <ListItemIcon>
+                                <SupervisorAccountIcon fontSize="small" />
+                            </ListItemIcon>
+                            Users Admin
+                        </MenuItem>
+                        <MenuItem component={Link} to='/admin/products'>
+                            <ListItemIcon>
+                                <EditOffIcon fontSize="small" />
+                            </ListItemIcon>
+                            Products Admin
+                        </MenuItem>
+                    </div>
+                )}
                 <Divider />
                 <MenuItem onClick={handleLogout}>
                     <ListItemIcon>
