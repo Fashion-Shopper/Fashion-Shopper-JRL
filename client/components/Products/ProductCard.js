@@ -19,6 +19,7 @@ import { destroyProduct } from "../../store";
 
 ////////////// to convert to currency ////////////////
 import currency from 'numeral'
+import { Box } from "@mui/system";
 currency.defaultFormat('$0,0.00');
 
 function ProductCard(props) {
@@ -45,42 +46,35 @@ function ProductCard(props) {
   };
 
   return (
-    <Slide in={true} direction='right' timeout={1000} mountOnEnter unmountOnExit>
-      <Card sx={{ maxWidth: 350 }}>
-        <IconButton aria-label="add to favorites">
-          <FavoriteIcon />
-        </IconButton>
-        <CardMedia component="img" height="350" image={imageURL} />
-        <CardContent sx={{ textAlign: "center" }}>
-          <Typography variant="body1" color="text.secondary">
-            {name}
-          </Typography>
-          <Typography variant="body2" color="text.secondary">
-            {brandName}
-          </Typography>
-          {/* <Typography variant="body2" color="text.secondary"> */}
-          {/* Rating: {} */}
-          <Rating name="half-rating-read" defaultValue={rating * 1} precision={0.5} readOnly />
-          {/* </Typography> */}
-          <Typography variant="body2" color="text.secondary">
-            Price: {currency(price).format()}
-          </Typography>
-        </CardContent>
-        <CardActions sx={{ display: "flex", flexDirection: "column" }}>
-          <Button variant="outlined" component={Link} to={`/products/${id}`}>
-            VIEW ITEM
-          </Button>
-          {!!isAdmin && (
-            <Button
-              onClick={() => handleDelete(id)}
-              variant="outlined"
-              startIcon={<DeleteIcon />}
-            >
-              Delete
-            </Button>
-          )}
-        </CardActions>
-      </Card>
+    <Slide in={true} direction='right' timeout={500} mountOnEnter unmountOnExit>
+      <Box component={Link} to={`/products/${id}`} >
+        <Card raised sx={{ maxWidth: 350, boxShadow: 'none', '&:hover': { boxShadow: '0px 5px 5px -3px rgb(0 0 0 / 20%), 0px 8px 10px 1px rgb(0 0 0 / 14%), 0px 3px 14px 2px rgb(0 0 0 / 12%)' } }}>
+          <CardMedia component="img" height="400" image={imageURL} sx={{ p: 1 }} />
+          <CardContent sx={{ textAlign: "center" }}>
+            <Typography variant="body2" color="text.secondary">
+              {brandName}
+            </Typography>
+            <Typography variant="h6">
+              {name}
+            </Typography>
+            <Rating name="half-rating-read" defaultValue={rating * 1} precision={0.5} readOnly />
+            <Typography variant="body2" color="text.secondary">
+              Price: {currency(price).format()}
+            </Typography>
+          </CardContent>
+          <CardActions sx={{ display: "flex", flexDirection: "column" }}>
+            {!!isAdmin && (
+              <Button
+                onClick={() => handleDelete(id)}
+                variant="outlined"
+                startIcon={<DeleteIcon />}
+              >
+                Delete
+              </Button>
+            )}
+          </CardActions>
+        </Card>
+      </Box>
     </Slide>
   );
 }

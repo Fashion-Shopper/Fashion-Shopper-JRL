@@ -3,8 +3,8 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Route, Switch, Redirect } from "react-router-dom";
 
-/////////////////////// COMPONENT PAGES  /////////////////////
-import Home from "./components/Home";
+/////////////////////// COMPONENT AND PAGES  /////////////////////
+import Home from "./components/Home/Home";
 import { Login, Signup } from "./components/AuthForm";
 import Brands from "./components/Brands/Brands";
 import SingleBrand from "./components/Brands/SingleBrand";

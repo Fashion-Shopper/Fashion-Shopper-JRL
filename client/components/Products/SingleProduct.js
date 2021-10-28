@@ -79,7 +79,7 @@ const SingleProduct = (props) => {
   }
 
   return (
-    <Slide direction="left" in={true} timeout={1000}>
+    <Slide direction="right" in={true} timeout={500}>
       <Container>
         <Grid container sx={{ mt: 3 }}>
           <Grid item xs={12} sm={6} sx={{ p: 4, textAlign: 'center' }}>
