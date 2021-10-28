@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { fetchProducts } from "../../../store";
 
-import AdminProductHeader from "./AdminProductHeader";
+import AdminProductsHeader from "./AdminProductsHeader";
 
 import Table from "@mui/material/Table";
 import TableCell from "@mui/material/TableCell";
@@ -108,7 +108,7 @@ const ProductsTable = (props) => {
       />
       <TableContainer component={Paper}>
         <Table aria-label="collapsible table">
-          <AdminProductHeader
+          <AdminProductsHeader
             orderDirection={orderDirection}
             valueToOrderBy={valueToOrderBy}
             handleRequestSort={handleRequestSort}
