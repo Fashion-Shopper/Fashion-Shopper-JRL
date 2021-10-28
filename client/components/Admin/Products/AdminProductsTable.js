@@ -3,9 +3,11 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { fetchProducts } from "../../../store";
 
-import AdminProductHeader from "./AdminProductHeader";
+import AdminProductsHeader from "./AdminProductsHeader";
 
 import Table from "@mui/material/Table";
+import TableCell from "@mui/material/TableCell";
+import TableRow from "@mui/material/TableRow";
 import TableBody from "@mui/material/TableBody";
 import TableContainer from "@mui/material/TableContainer";
 import Paper from "@mui/material/Paper";
@@ -36,10 +38,6 @@ const ProductsTable = (props) => {
   ///////////////////// SECTION: SORTING FUNCTIONALTY ///
 
   function descendingComparator(a, b, orderBy) {
-    // console.log(
-    //   `via descendingComparator: a=${a[orderBy]}, b= ${b[orderBy]}, orderBy= ${orderBy}`
-    // );
-
     if (orderBy === "price") {
       if (b[orderBy].length < a[orderBy].length) return -1;
       if (b[orderBy].length > a[orderBy].length) return 1;
@@ -55,7 +53,6 @@ const ProductsTable = (props) => {
   }
 
   function getComparator(order, orderBy) {
-    // console.log(`order: ${order}, orderBy: ${orderBy}`);
     return order === "desc"
       ? (a, b) => descendingComparator(a, b, orderBy)
       : (a, b) => -descendingComparator(a, b, orderBy);
@@ -90,6 +87,11 @@ const ProductsTable = (props) => {
     setPage(0);
   };
 
+  const emptyRows =
+    rowsPerPage - Math.min(rowsPerPage, products.length - page * rowsPerPage);
+
+  /////////////////////
+
   return (
     <Container sx={{ mt: 3 }}>
       <Button variant="outlined" component={Link} to={`/admin/products/create`}>
@@ -106,7 +108,7 @@ const ProductsTable = (props) => {
       />
       <TableContainer component={Paper}>
         <Table aria-label="collapsible table">
-          <AdminProductHeader
+          <AdminProductsHeader
             orderDirection={orderDirection}
             valueToOrderBy={valueToOrderBy}
             handleRequestSort={handleRequestSort}
@@ -120,6 +122,11 @@ const ProductsTable = (props) => {
               .map((product, idx) => (
                 <AdminProductRow key={idx} product={product} />
               ))}
+            {emptyRows > 0 && (
+              <TableRow style={{ height: 53 * emptyRows }}>
+                <TableCell colSpan={6} />
+              </TableRow>
+            )}
           </TableBody>
         </Table>
       </TableContainer>
