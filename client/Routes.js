@@ -69,11 +69,11 @@ const Routes = () => {
                   component={ProductUpdateForm}
                 />
                 <Route exact path="/admin/users" component={AdminUsers} />
-                {/* <Route path="/admin/users/create" component={UserCreateForm} />
+                {/* <Route path="/admin/users/create" component={UserCreateForm} /> */}
                 <Route
                   path="/admin/users/:userId/update"
                   component={UserUpdateForm}
-                /> */}
+                />
               </>
             )}
             <Redirect to="/home" />

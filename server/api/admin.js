@@ -78,7 +78,7 @@ Object.entries(obj).forEach((entry) => {
       next(err);
     }
   });
-  router.get("/${_path}/:id", async (req, res, next) => {
+  router.get(`/${_path}/:id`, async (req, res, next) => {
     try {
       res.send(await model.findByPk(req.params.id));
     } catch (err) {
