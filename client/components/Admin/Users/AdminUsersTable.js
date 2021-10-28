@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { fetchUsers } from "../../../store/admin/adminUsers";
+import { fetchUsers } from "../../../store/admin/users";
 
 import AdminUsersHeader from "./AdminUsersHeader";
 

@@ -6,9 +6,9 @@ import auth from "./auth";
 import productsReducer from "./products";
 // import singleProductReducer from "./singleProduct"; // This is not needed. Just filter from all products
 import ordersReducer from "./orders";
-import cartReducer from './cart'
-import adminUsersReducer from './admin/adminUsers'
-import addressesReducer from './address'
+import cartReducer from "./cart";
+import usersReducer from "./admin/users";
+import addressesReducer from "./address";
 
 const reducer = combineReducers({
   auth,
@@ -16,8 +16,8 @@ const reducer = combineReducers({
   // singleProduct: singleProductReducer, // this is not needed. Just filter from all products
   userOrders: ordersReducer,
   userCart: cartReducer,
-  adminUsers: adminUsersReducer,
-  addresses: addressesReducer
+  adminUsers: usersReducer,
+  addresses: addressesReducer,
 });
 
 const middleware = composeWithDevTools(
@@ -27,6 +27,6 @@ const store = createStore(reducer, middleware);
 
 export default store;
 export * from "./auth";
-export * from './products'
-export * from './orders'
-export * from './cart'
+export * from "./products";
+export * from "./orders";
+export * from "./cart";
