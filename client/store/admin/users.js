@@ -61,14 +61,11 @@ export const createUser = (user) => {
 
 export const updateUser = (userInfo, history) => {
   return async (dispatch) => {
+    console.log(userInfo);
     try {
-      const token = window.localStorage.getItem(TOKEN);
       const { data } = await axios.put(
         `/api/admin/users/${userInfo.id}`,
-        userInfo,
-        {
-          headers: { authorization: token },
-        }
+        userInfo
       );
       dispatch(_updateUser(data));
       history.push("/admin/products");

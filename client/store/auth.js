@@ -1,48 +1,60 @@
-import axios from 'axios'
-import history from '../history'
+import axios from "axios";
+import history from "../history";
 
-const TOKEN = 'token'
+const TOKEN = "token";
 
 /**
  * ACTION TYPES
  */
-const SET_AUTH = 'SET_AUTH'
+const SET_AUTH = "SET_AUTH";
 
 /**
  * ACTION CREATORS
  */
-const setAuth = auth => ({ type: SET_AUTH, auth })
+const setAuth = (auth) => ({ type: SET_AUTH, auth });
 
-export const updateAuthAvatar = (avatar) => { //update the user info
-  return async (dispatch) => { // getState（）safest way to get the state
-    const token = window.localStorage.getItem(TOKEN)
+export const updateAuthAvatar = (avatar) => {
+  //update the user info
+  return async (dispatch) => {
+    // getState（）safest way to get the state
+    const token = window.localStorage.getItem(TOKEN);
     if (token) {
-      const res = await axios.put('/api/users', { avatar }, {
-        headers: {
-          authorization: token
+      const res = await axios.put(
+        "/api/users",
+        { avatar },
+        {
+          headers: {
+            authorization: token,
+          },
         }
-      })
-      return dispatch(setAuth(res.data))
+      );
+      return dispatch(setAuth(res.data));
     }
-  }
-}
+  };
+};
 
-export const updateAuthName = (username) => { //update the user info
-  return async (dispatch) => { // getState（）safest way to get the state
-    const token = window.localStorage.getItem(TOKEN)
+export const updateAuthName = (username) => {
+  //update the user info
+  return async (dispatch) => {
+    // getState（）safest way to get the state
+    const token = window.localStorage.getItem(TOKEN);
     if (token) {
-      const res = await axios.put('/api/users', { username }, {
-        headers: {
-          authorization: token
+      const res = await axios.put(
+        "/api/users",
+        { username },
+        {
+          headers: {
+            authorization: token,
+          },
         }
-      })
-      return dispatch(setAuth(res.data))
+      );
+      return dispatch(setAuth(res.data));
     }
-  }
-}
+  };
+};
 
 // how prof did this
-// export const updateAuthName = (username) => { 
+// export const updateAuthName = (username) => {
 //   return async (dispatch, getState) => { //safest way to get the state
 //     const user = { ...getState().auth, username };
 //     const token = window.localStorage.getItem(TOKEN)
@@ -58,38 +70,39 @@ export const updateAuthName = (username) => { //update the user info
 /**
  * THUNK CREATORS
  */
-export const me = () => async dispatch => {
-  const token = window.localStorage.getItem(TOKEN)
+export const me = () => async (dispatch) => {
+  const token = window.localStorage.getItem(TOKEN);
   if (token) {
-    const res = await axios.get('/auth/me', {
+    const res = await axios.get("/auth/me", {
       headers: {
-        authorization: token
-      }
-    })
-    return dispatch(setAuth(res.data))
+        authorization: token,
+      },
+    });
+    return dispatch(setAuth(res.data));
   }
-}
+};
 
-export const authenticate = (username, password, method) => async dispatch => {
-  try {
-    const res = await axios.post(`/auth/${method}`, { username, password })
-    window.localStorage.setItem(TOKEN, res.data.token)
-    history.goBack();
-    dispatch(me())
-  } catch (authError) {
-    return dispatch(setAuth({ error: authError }))
-  }
-}
+export const authenticate =
+  (username, password, method) => async (dispatch) => {
+    try {
+      const res = await axios.post(`/auth/${method}`, { username, password });
+      window.localStorage.setItem(TOKEN, res.data.token);
+      history.goBack();
+      dispatch(me());
+    } catch (authError) {
+      return dispatch(setAuth({ error: authError }));
+    }
+  };
 
 export const logout = () => {
-  window.localStorage.removeItem(TOKEN)
-  console.log(history)
-  history.push('/home')
+  window.localStorage.removeItem(TOKEN);
+  console.log(history);
+  history.push("/home");
   return {
     type: SET_AUTH,
-    auth: {}
-  }
-}
+    auth: {},
+  };
+};
 
 /**
  * REDUCER
@@ -97,8 +110,8 @@ export const logout = () => {
 export default function (state = {}, action) {
   switch (action.type) {
     case SET_AUTH:
-      return action.auth
+      return action.auth;
     default:
-      return state
+      return state;
   }
 }
