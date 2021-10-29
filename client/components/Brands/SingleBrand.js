@@ -1,60 +1,63 @@
-import React, { Component } from "react";
-import { connect } from "react-redux";
-// import { fetchSingleBrand } from "../../store/singleBrand";
-// import ProductCard from "../Products/ProductCard";
-// import { Grid } from "@mui/material";
+import React from "react";
+import { useSelector } from "react-redux";
+import ProductCard from "../Products/ProductCard";
+import {
+  Grid,
+  Slide,
+  Typography,
+  Container,
+} from "@mui/material";
 
-class SingleBrand extends Component {
-  // componentDidMount() {
-  //   try {
-  //     const brandId = this.props.match.params.brandId * 1;
-  //     this.props.loadSingleBrand(brandId);
-  //   } catch (err) {
-  //     console.error(err);
-  //   }
-  // }
+const SingleBrand = (props) => {
+  const { brandId } = props.match.params;
+  const brands = useSelector((state) => state.brands);
+  const singleBrand = brands.find((brand) => brand.id === brandId * 1);
+  const brandName = brands[brandId];
 
-  render() {
-    const singleBrand = this.props.brand;
+  const products = useSelector((state) => state.products);
+  const productsOfBrand = products.filter(
+    (product) => product.brandName === singleBrand.name
+  );
 
-    if (!singleBrand.products) {
-      return (<h1>...loading</h1>);
-    }
-    const singleBrandProducts = this.props.brand.products;
-
-    return (
-      <div>
-        <div id="singleBrand">
-          <h1>{singleBrand.name}</h1>
-          <p>{singleBrand.description}</p>
-          {/* You should be good to go now. I made a few changes - Jonathan */}
-          {/* ATTENTION: Cannot access properties from products array. The following code was used to test things out. */}
-          <pre>{`${JSON.stringify(singleBrand, null, 2)}`}</pre>
-        </div>
-        {/* {singleBrandProducts.map((product) => (
-          <div key={product.id}>
-            <div className="student row">
-              <p>{product.name}</p>
-            </div>
-          </div>
-        ))} */}
-      </div>
-    );
-  }
-}
-
-const mapStateToProps = (state, otherProps) => {
-  const brandId = otherProps.match.params.brandId * 1; //otherProps include the browser window info
-  const brand = state.brands.find(item => item.id === brandId) || {}
-  return {
-    brand
+  const getBrandName = () => {
+    const brandNames = brands.map((brand) => brand.name)[brandId - 1];
+    return brandNames;
   };
+
+  const getBrandDesc = () => {
+    const brandDescs = brands.map((brand) => brand.description);
+    return brandDescs[brandId - 1];
+  };
+  
+  return (
+    <Container>
+      <Typography variant="h3" gutterBottom align="center" sx={{ mt: 5 }}>
+        {getBrandName()}
+      </Typography>
+      <Typography variant="body1" gutterBottom align="center" sx={{ mt: 2 }}>
+        {getBrandDesc()}
+      </Typography>
+      <Slide
+        in={true}
+        direction="right"
+        timeout={500}
+        mountOnEnter
+        unmountOnExit
+      >
+        <Grid container>
+          <Grid item xs={false} sm={2} />
+          <Grid container item xs={12} sm={8} spacing={4} sx={{ m: 0, mb: 18 }}>
+            {productsOfBrand.map((product) => (
+              <Grid xs={11} sm={6} md={6} lg={4} item key={product.id}>
+                <ProductCard product={product} />
+              </Grid>
+            ))}
+          </Grid>
+          <Grid item xs={false} sm={2} />
+        </Grid>
+      </Slide>
+    </Container>
+  );
 };
 
-// const mapDispatchToProps = (dispatch) => {
-//   return {
-//     loadSingleBrand: (brandId) => dispatch(fetchSingleBrand(brandId)),
-//   };
-// };
-
-export default connect(mapStateToProps)(SingleBrand);
+export default SingleBrand;
