@@ -45,14 +45,12 @@ export const fetchUsers = () => {
   };
 };
 
-export const createUser = (user) => {
+export const createUser = (userInfo, history) => {
   return async (dispatch) => {
     try {
-      const token = window.localStorage.getItem(TOKEN);
-      const { data } = await axios.post("/api/admin/users", user, {
-        headers: { authorization: token },
-      });
+      const { data } = await axios.post("/api/admin/users", userInfo);
       dispatch(_createUser(data));
+      history.push("/admin/users");
     } catch (err) {
       console.log(err);
     }
