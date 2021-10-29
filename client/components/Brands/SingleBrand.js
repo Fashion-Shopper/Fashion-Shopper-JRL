@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { useDispatch, useSelector } from "react-redux";
-import { fetchSingleBrand } from "../../store/singleBrand";
+import { useSelector } from "react-redux";
+// import { fetchSingleBrand } from "../../store/singleBrand";
 import ProductCard from "../Products/ProductCard";
 import { Grid } from "@mui/material";
 import { fetchBrands } from "../../store/brands";
@@ -61,13 +61,14 @@ import { fetchBrands } from "../../store/brands";
 ////////////////////////////////////////////////////
 
 const SingleBrand = (props) => {
-  const dispatch = useDispatch();
-  const loadSingleBrand = () => {
-    dispatch(fetchSingleBrand(brandId));
-  };
-  const brands = useSelector((state) => state.brands);
   const { brandId } = props.match.params;
-  console.log(brands);
+  const brands = useSelector((state) => state.brands);
+  const singleBrand = brands.find((brand) => brand.id === brandId * 1);
+
+  const products = useSelector((state) => state.products);
+  const productsOfBrand = products.filter(
+    (product) => product.brandName === singleBrand.name
+  );
 
   return (
     <div>
