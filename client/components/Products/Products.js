@@ -1,8 +1,8 @@
 /////////////// REACT / REDUX ///////////////////////
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 // import { Link } from "react-router-dom";
-import filterForm from "./filterForm";
+import FilterForm from "./FilterForm";
 
 ///////////////// COMPONENT ///////////////////////
 import ProductCard from "./ProductCard";
@@ -28,15 +28,37 @@ const Products = () => {
     window.scrollTo(0, 0);
   }, []);
 
-  const handleFilters = (filters, brands) => {};
+  ///////////////////// SECTION: FILTERING ///
+
+  const [filters, setFilters] = useState({
+    brands: [],
+    category: [],
+    size: [],
+  });
+
+  const handleFilters = (filters, brands) => {
+    console.log(filters);
+
+    const newFilters = { ...filters };
+    newFilters[category] = filters;
+
+    if (category === "category") {
+    }
+
+    showFilteredResults(newFilters);
+    setFilters(newFilters);
+  };
+
+  /////////////////////
 
   return (
     <>
       <Typography variant="h3" gutterBottom align="center" sx={{ mt: 5 }}>
         All Products
       </Typography>
-      <filterForm
+      <FilterForm
         handleFilters={(filters) => handleFilters(filters, "brands")}
+        products={products}
       />
       <Slide
         in={true}
