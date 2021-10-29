@@ -4,20 +4,20 @@ import thunkMiddleware from "redux-thunk";
 import { composeWithDevTools } from "redux-devtools-extension";
 import auth from "./auth";
 import productsReducer from "./products";
-// import singleProductReducer from "./singleProduct"; // This is not needed. Just filter from all products
 import ordersReducer from "./orders";
 import cartReducer from "./cart";
 import usersReducer from "./admin/users";
 import addressesReducer from "./address";
+import brandsReducer from "./brands";
 
 const reducer = combineReducers({
   auth,
   products: productsReducer,
-  // singleProduct: singleProductReducer, // this is not needed. Just filter from all products
   userOrders: ordersReducer,
   userCart: cartReducer,
   adminUsers: usersReducer,
   addresses: addressesReducer,
+  brands: brandsReducer
 });
 
 const middleware = composeWithDevTools(
@@ -30,3 +30,4 @@ export * from "./auth";
 export * from "./products";
 export * from "./orders";
 export * from "./cart";
+export * from "./brands";

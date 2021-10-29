@@ -54,13 +54,10 @@ const Success = () => {
         <Container component="main" maxWidth='md' sx={{ mb: 10 }}>
             <Paper variant="outlined" sx={{ my: { xs: 3, md: 6 }, p: { xs: 2, md: 3 }, textAlign: 'center' }}>
                 <Typography component="h1" variant="h4" align='center'>
-                    Checkout
+                    Thank you for your order!
                 </Typography>
                 <Typography variant="body1" color="text.secondary" align='center' sx={{ textDecoration: 'underline' }} gutterBottom>
                     Confirmation
-                </Typography>
-                <Typography variant="h5" gutterBottom align='left'>
-                    Thank you for your order.
                 </Typography>
                 <Typography variant="subtitle1" align='left'>
                     Your order confirmation number is #{session.client_reference_id}. We have emailed your order

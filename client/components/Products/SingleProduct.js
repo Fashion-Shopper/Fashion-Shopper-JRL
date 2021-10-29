@@ -80,7 +80,7 @@ const SingleProduct = (props) => {
 
   return (
     <Slide direction="right" in={true} timeout={500}>
-      <Container>
+      <Container sx={{ mb: 15 }}>
         <Grid container sx={{ mt: 3 }}>
           <Grid item xs={12} sm={6} sx={{ p: 4, textAlign: 'center' }}>
             <img loading='lazy' src={singleProduct.imageURL} width='70%' />
