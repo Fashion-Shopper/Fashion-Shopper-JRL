@@ -23,7 +23,8 @@ router.get("/", isLoggedIn, async (req, res, next) => {
             },
             where: {
                 userId: user.id
-            }
+            },
+            order: [["updatedAt", "DESC"]],
         });
         res.json(orders);
     }
@@ -107,7 +108,6 @@ router.put("/", isLoggedIn, async (req, res, next) => {
                     model: OrderItem
                 }
             })
-            // console.log(newOrderCart)
             res.json(newOrderCart);
         }
 

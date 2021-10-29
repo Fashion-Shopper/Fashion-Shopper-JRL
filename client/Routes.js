@@ -57,7 +57,7 @@ const Routes = () => {
             <Route exact path="/cart" component={Cart} />
             <Route exact path="/orders" component={PastOrders} />
             <Route exact path="/checkout" component={Checkout} />
-            <Route exact path="/checkout/success" component={Success} />
+            <Route path="/checkout/success" component={Success} />
             {!!isAdmin && (
               <>
                 <Route exact path="/admin" component={AdminDashboard} />
@@ -78,7 +78,7 @@ const Routes = () => {
                 />
               </>
             )}
-            {/* <Redirect to="/home" /> */}
+            <Redirect to="/home" />
           </Switch>
         </>
       ) : (
@@ -92,7 +92,7 @@ const Routes = () => {
             <Route path="/brands/:brandId" component={SingleBrand} />
             <Route exact path="/products" component={Products} />
             <Route path="/products/:productId" component={SingleProduct} />
-            <Route path="/products/category/:category" component={Category} />
+            <Route path="/category/:category" component={Category} />
             <Route exact path="/cart" component={Cart} />
             {/* <Redirect to="/home" /> */}
           </Switch>

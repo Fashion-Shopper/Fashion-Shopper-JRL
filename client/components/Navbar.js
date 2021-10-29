@@ -152,12 +152,11 @@ const Navbar = () => {
           anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
         >
           {categories.map(category => (
-            < MenuItem component={Link} to={`/products/category/${category}`} key={category}>
+            < MenuItem component={Link} to={`/category/${category}`} key={category}>
               {category}
             </MenuItem>
           ))}
         </Menu>
-
 
 
         <Box sx={{ flexGrow: 1, textAlign: 'right' }}>
@@ -174,7 +173,7 @@ const Navbar = () => {
           </>
         ) : (
           <>
-            <Box sx={{ flexGrow: 1, textAlign: 'right' }}>
+            <Box sx={{ textAlign: 'right' }}>
               <Button component={Link} to="/login" color="inherit">Login</Button>
               <Button component={Link} to="/signup" color="inherit">Sign Up</Button>
             </Box>

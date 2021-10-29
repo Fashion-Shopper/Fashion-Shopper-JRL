@@ -1,14 +1,12 @@
 import { CircularProgress } from "@mui/material";
-import React from "react";
+import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-
-//import {}
 
 const Brands = () => {
   const brands = useSelector((state) => state.brands);
 
-  if (!brands) {
+  if (!brands || brands.length === 0) {
     return <CircularProgress />;
   }
 
