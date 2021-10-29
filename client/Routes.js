@@ -52,7 +52,7 @@ const Routes = () => {
             <Route path="/brands/:brandId" component={SingleBrand} />
             <Route exact path="/products" component={Products} />
             <Route path="/products/:productId" component={SingleProduct} />
-            <Route path="/products/category/:category" component={Category} />
+            <Route path="/category/:category" component={Category} />
             <Route exact path="/settings" component={Settings} />
             <Route exact path="/cart" component={Cart} />
             <Route exact path="/orders" component={PastOrders} />
@@ -92,6 +92,7 @@ const Routes = () => {
             <Route path="/brands/:brandId" component={SingleBrand} />
             <Route exact path="/products" component={Products} />
             <Route path="/products/:productId" component={SingleProduct} />
+            <Route path="/products/category/:category" component={Category} />
             <Route exact path="/cart" component={Cart} />
           </Switch>
         </>
