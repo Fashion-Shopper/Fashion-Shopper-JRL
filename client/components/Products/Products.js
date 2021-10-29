@@ -31,21 +31,18 @@ const Products = () => {
   ///////////////////// SECTION: FILTERING ///
 
   const [filters, setFilters] = useState({
-    brands: [],
+    brand: [],
     category: [],
     size: [],
   });
 
-  const handleFilters = (filters, brands) => {
+  const handleFilters = (filters, type) => {
     console.log(filters);
 
     const newFilters = { ...filters };
-    newFilters[category] = filters;
+    newFilters[type] = filters;
 
-    if (category === "category") {
-    }
-
-    showFilteredResults(newFilters);
+    // showFilteredResults(newFilters);
     setFilters(newFilters);
   };
 
