@@ -93,20 +93,11 @@ const ProductsTable = (props) => {
   /////////////////////
 
   return (
-    <Container sx={{ mt: 3 }}>
+    <Container sx={{ mt: 3, marginBottom: 15 }}>
       <Button variant="outlined" component={Link} to={`/admin/products/create`}>
         Create New Product
       </Button>
-      <TablePagination
-        rowsPerPageOptions={[5, 10, 25]}
-        component="div"
-        count={products.length}
-        rowsPerPage={rowsPerPage}
-        page={page}
-        onPageChange={handleChangePage}
-        onRowsPerPageChange={handleChangeRowsPerPage}
-      />
-      <TableContainer component={Paper}>
+      <TableContainer component={Paper} sx={{ mt: 5 }}>
         <Table aria-label="collapsible table">
           <AdminProductsHeader
             orderDirection={orderDirection}
@@ -130,6 +121,15 @@ const ProductsTable = (props) => {
           </TableBody>
         </Table>
       </TableContainer>
+      <TablePagination
+        rowsPerPageOptions={[5, 10, 25]}
+        component="div"
+        count={products.length}
+        rowsPerPage={rowsPerPage}
+        page={page}
+        onPageChange={handleChangePage}
+        onRowsPerPageChange={handleChangeRowsPerPage}
+      />
     </Container>
   );
 };

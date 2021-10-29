@@ -28,9 +28,7 @@ const SingleBrand = (props) => {
     const brandDescs = brands.map((brand) => brand.description);
     return brandDescs[brandId - 1];
   };
-
-  console.log(getBrandName());
-
+  
   return (
     <Container>
       <Typography variant="h3" gutterBottom align="center" sx={{ mt: 5 }}>

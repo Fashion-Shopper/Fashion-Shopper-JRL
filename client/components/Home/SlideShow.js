@@ -30,23 +30,21 @@ const slides = [
 const SlideShow = () => {
 
     return (
-        // <Box sx={{ height: 3 }}>
         <Carousel showThumbs={false} showStatus={false} infiniteLoop autoPlay stopOnHover={false} interval={2000}>
-            {slides.map(slide => (
-                <div>
-                    <Box sx={{ bgcolor: 'rgba(0, 0, 0, 0.8)', height: 120, width: '100%', position: 'absolute', bottom: 0 }}>
+            {slides.map((slide, idx) => (
+                <div key={idx}>
+                    <Box sx={{ display: 'flex', justifyContent: 'space-around', alignItems: 'center', bgcolor: 'rgba(0, 0, 0, 0.8)', height: 120, width: '100%', position: 'absolute', bottom: 0 }}>
                         <Typography variant='h4' sx={{ zIndex: '2', color: 'white' }}>
                             {slide.description}
                         </Typography>
-                        <Button component={Link} to={slide.link} variant='outlined' color='secondary' sx={{ width: '20%', m: 1 }}>
+                        <Button component={Link} to={slide.link} variant='contained' color='secondary' sx={{ width: '15%' }} >
                             Shop Now!
                         </Button>
                     </Box>
-                    <img src={slide.image} style={{ display: "block", maxHeight: 700, height: 'auto', height: 'auto' }} />
+                    <img src={slide.image} style={{ display: "block", height: 'auto', height: 'auto' }} />
                 </div>
             ))}
         </Carousel>
-        // </Box>
     );
 }
 

@@ -41,9 +41,9 @@ const Profile = () => {
                     <ArrowDropDownIcon size='small' color="primary" />
                 </IconButton>
             </Tooltip>
-            <Typography>
+            {/* <Typography>
                 Hi, {user.username.charAt(0).toUpperCase() + user.username.slice(1)}
-            </Typography>
+            </Typography> */}
             <Menu
                 anchorEl={menu}
                 open={open}

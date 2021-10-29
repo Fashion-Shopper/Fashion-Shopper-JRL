@@ -78,7 +78,7 @@ const Routes = () => {
                 />
               </>
             )}
-            <Redirect to="/home" />
+            {/* <Redirect to="/home" /> */}
           </Switch>
         </>
       ) : (
@@ -94,6 +94,7 @@ const Routes = () => {
             <Route path="/products/:productId" component={SingleProduct} />
             <Route path="/products/category/:category" component={Category} />
             <Route exact path="/cart" component={Cart} />
+            {/* <Redirect to="/home" /> */}
           </Switch>
         </>
       )}
