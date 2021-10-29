@@ -93,20 +93,11 @@ const UsersTable = (props) => {
   /////////////////////
 
   return (
-    <Container sx={{ mt: 3 }}>
+    <Container sx={{ mt: 3, mb: 30 }}>
       <Button variant="outlined" component={Link} to={`/admin/users/create`}>
         Create New User
       </Button>
-      <TablePagination
-        rowsPerPageOptions={[5, 10, 25]}
-        component="div"
-        count={users.length}
-        rowsPerPage={rowsPerPage}
-        page={page}
-        onPageChange={handleChangePage}
-        onRowsPerPageChange={handleChangeRowsPerPage}
-      />
-      <TableContainer component={Paper}>
+      <TableContainer component={Paper} sx={{ mt: 5 }}>
         <Table aria-label="collapsible table">
           <AdminUsersHeader
             orderDirection={orderDirection}
@@ -127,6 +118,15 @@ const UsersTable = (props) => {
           </TableBody>
         </Table>
       </TableContainer>
+      <TablePagination
+        rowsPerPageOptions={[5, 10, 25]}
+        component="div"
+        count={users.length}
+        rowsPerPage={rowsPerPage}
+        page={page}
+        onPageChange={handleChangePage}
+        onRowsPerPageChange={handleChangeRowsPerPage}
+      />
     </Container>
   );
 };
