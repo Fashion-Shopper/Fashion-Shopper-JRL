@@ -1,14 +1,9 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import ProductCard from "../Products/ProductCard";
-import {
-  Grid,
-  Slide,
-  Typography,
-  Container,
-} from "@mui/material";
+import { Grid, Slide, Typography, Container } from "@mui/material";
 
-const SingleBrand = (props) => {
+const Category = (props) => {
   const { brandId } = props.match.params;
   const brands = useSelector((state) => state.brands);
   const singleBrand = brands.find((brand) => brand.id === brandId * 1);
@@ -62,4 +57,4 @@ const SingleBrand = (props) => {
   );
 };
 
-export default SingleBrand;
+export default Category;

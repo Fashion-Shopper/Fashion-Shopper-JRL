@@ -10,6 +10,7 @@ import Brands from "./components/Brands/Brands";
 import SingleBrand from "./components/Brands/SingleBrand";
 import Products from "./components/Products/Products";
 import SingleProduct from "./components/Products/SingleProduct";
+import Category from "./components/Category/Category";
 import Cart from "./components/User/Cart";
 import Settings from "./components/User/Settings/Settings";
 import AdminDashboard from "./components/Admin/Dashboard";
@@ -51,6 +52,7 @@ const Routes = () => {
             <Route path="/brands/:brandId" component={SingleBrand} />
             <Route exact path="/products" component={Products} />
             <Route path="/products/:productId" component={SingleProduct} />
+            <Route path="/products/category/:category" component={Category} />
             <Route exact path="/settings" component={Settings} />
             <Route exact path="/cart" component={Cart} />
             <Route exact path="/orders" component={PastOrders} />
