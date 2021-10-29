@@ -5,6 +5,7 @@ import { useSelector } from 'react-redux'
 
 ///////////// COMPONENTS //////////////////
 import Profile from './User/Profile';
+import { Login, Signup } from "./AuthForm";
 
 ////////////////// LOGO ////////////////
 const logo = '/logo/JRL-Logo.png'
@@ -12,7 +13,7 @@ const logo = '/logo/JRL-Logo.png'
 ////////////// STORE ///////////////////
 
 /////////////////// MATERIAL UI ///////////////////////////
-import { AppBar, Toolbar, Typography, Button, Badge, IconButton, FormControl, InputLabel, NativeSelect, Tooltip, MenuItem, Menu } from '@mui/material';
+import { AppBar, Toolbar, Typography, Button, Badge, IconButton, FormControl, InputLabel, NativeSelect, Tooltip, MenuItem, Menu, Dialog } from '@mui/material';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import { Box } from '@mui/system';
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
@@ -26,6 +27,24 @@ const Navbar = () => {
   let quantity = 0;
   if (cart.orderitems) {
     quantity = cart.orderitems.reduce((acc, item) => acc + item.quantity, quantity)
+  }
+
+  //////////////// Login / Sigup Forms /////////////////////
+  const [openLogin, setopenLogin] = useState(false);
+  const [loginForm, setloginForm] = useState(true);
+
+  const handleChangeForm = () => {
+    setloginForm(!loginForm)
+  }
+
+  const handleLoginClose = () => {
+    setopenLogin(false)
+    setloginForm(true)
+
+  }
+
+  const handleLoginOpen = () => {
+    setopenLogin(true)
   }
 
 
@@ -174,9 +193,13 @@ const Navbar = () => {
         ) : (
           <>
             <Box sx={{ textAlign: 'right' }}>
-              <Button component={Link} to="/login" color="inherit">Login</Button>
-              <Button component={Link} to="/signup" color="inherit">Sign Up</Button>
+              <Button onClick={handleLoginOpen} color="inherit">Login</Button>
             </Box>
+            <Dialog open={openLogin} onClose={handleLoginClose}>
+              {loginForm ? (
+                <Login handleChangeForm={handleChangeForm} loginForm={loginForm} />
+              ) : (<Signup handleChangeForm={handleChangeForm} loginForm={loginForm} />)}
+            </Dialog>
           </>
         )}
       </Toolbar>
