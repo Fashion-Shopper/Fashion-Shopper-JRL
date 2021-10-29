@@ -76,7 +76,6 @@ const updateGuestCart = (productId, quantity) => {
 }
 
 export const consolidateCart = () => {
-    console.log('consolidate')
     return async (dispatch) => {
         const cart = getGuestCart();
 
