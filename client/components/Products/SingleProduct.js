@@ -19,41 +19,9 @@ import { capitalize } from "inflection";
 
 ////////////// TO CONVERT TO CURRENCY ////////////////
 import currency from 'numeral'
+import NewArrivals from "../Home/NewArrivals";
 currency.defaultFormat('$0,0.00');
 
-
-// class SingleProduct extends Component {
-//   constructor(props) {
-//     super(props);
-
-//     this.state = {
-//       productId: this.props.match.params.productId * 1,
-//       quantity: '1',
-//     };
-//     this.onChange = this.onChange.bind(this);
-//     this.onSubmit = this.onSubmit.bind(this);
-//   }
-
-
-// onChange(evt) {
-//   this.setState({ [evt.target.name]: evt.target.value });
-// }
-
-// onSubmit(evt) {
-//   evt.preventDefault();
-//   this.props.addToCart(this.state)
-
-
-//   if (Object.values(orderItem).includes(0)) {
-//     alert(`Please complete all required fields before submitting.`);
-//   } else {
-//     // ATTENTION (Riv): Change dispatch name if changes made in mapDiscpatchToProps.
-//     this.props.addToOrder(orderItem);
-//     this.setState({ quantity: 0 });
-//   }
-// }
-
-// render() 
 const SingleProduct = (props) => {
   const dispatch = useDispatch()
   const products = useSelector(state => state.products)
@@ -71,6 +39,9 @@ const SingleProduct = (props) => {
     dispatch(addToCart(singleProduct, input.quantity))
   }
 
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [])
 
   if (!singleProduct) {
     return (
@@ -126,6 +97,7 @@ const SingleProduct = (props) => {
           </Grid>
         </Grid >
         <Divider />
+        <NewArrivals title={'Recommended for You'} />
       </Container>
     </Slide>
   );

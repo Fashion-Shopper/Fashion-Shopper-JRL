@@ -93,7 +93,6 @@ export const consolidateCart = () => {
     }
 }
 
-// const changeProductQuantity = cart =>  ({ type: CHANGE_PRODUCT_QUANTITY, cart })
 
 ///////////////////// THUNK CREATORS //////////////////
 ///////////////////// FETCH USER CART //////////////////////

@@ -11,10 +11,9 @@ const Category = (props) => {
     (product) => product.category === category
   );
 
-  console.log(category);
 
   return (
-    <Container>
+    <Container maxWidth="xl">
       <Typography variant="h3" gutterBottom align="center" sx={{ mt: 5 }}>
         Product Category: {category}
       </Typography>

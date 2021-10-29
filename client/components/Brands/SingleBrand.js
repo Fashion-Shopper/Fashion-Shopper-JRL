@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
 import ProductCard from "../Products/ProductCard";
 import {
@@ -28,9 +28,13 @@ const SingleBrand = (props) => {
     const brandDescs = brands.map((brand) => brand.description);
     return brandDescs[brandId - 1];
   };
-  
+
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [])
+
   return (
-    <Container>
+    <Container maxWidth='xl'>
       <Typography variant="h3" gutterBottom align="center" sx={{ mt: 5 }}>
         {getBrandName()}
       </Typography>

@@ -70,12 +70,10 @@ export default function (state = initialState, action) {
         case SUCCESS_USER_ORDER:
             const success = state.find(order => order.isCart === true)
             if (success.id === action.order.id) {
-                // console.log(state)
                 return state
             }
             state = state.filter(order => order.isCart === false)
-            // console.log([...state, { ...success, isCart: false }, action.order])
-            return [...state, { ...success, isCart: false }, action.order]
+            return [{ ...success, isCart: false }, ...state, action.order]
         default:
             return state
     }

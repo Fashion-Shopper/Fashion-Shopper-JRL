@@ -103,7 +103,7 @@ const Cart = () => {
                                                             <Typography variant="subtitle1" color="text.secondary" component="div">
                                                                 {product.brandName}
                                                             </Typography>
-                                                            <Typography component="div" variant="h5">
+                                                            <Typography component="div" variant="h5" sx={{ '&:hover': { textDecoration: 'underline' } }}>
                                                                 {product.name}
                                                             </Typography>
                                                             <Typography variant="h6" color="text.secondary" component="div">
