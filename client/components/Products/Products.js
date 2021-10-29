@@ -2,6 +2,7 @@
 import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
 // import { Link } from "react-router-dom";
+import filterForm from "./filterForm";
 
 ///////////////// COMPONENT ///////////////////////
 import ProductCard from "./ProductCard";
@@ -27,15 +28,16 @@ const Products = () => {
     window.scrollTo(0, 0);
   }, []);
 
-  const useFilter = () => {
-    return "this";
-  };
+  const handleFilters = (filters, brands) => {};
 
   return (
     <>
       <Typography variant="h3" gutterBottom align="center" sx={{ mt: 5 }}>
         All Products
       </Typography>
+      <filterForm
+        handleFilters={(filters) => handleFilters(filters, "brands")}
+      />
       <Slide
         in={true}
         direction="right"

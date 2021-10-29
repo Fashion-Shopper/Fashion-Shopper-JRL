@@ -1,124 +1,51 @@
-import React from "react";
-import PropTypes from "prop-types";
-import { withStyles } from "@material-ui/core/styles";
-import FormLabel from "@material-ui/core/FormLabel";
-import FormControl from "@material-ui/core/FormControl";
-import FormGroup from "@material-ui/core/FormGroup";
-import FormControlLabel from "@material-ui/core/FormControlLabel";
-import FormHelperText from "@material-ui/core/FormHelperText";
-import Checkbox from "@material-ui/core/Checkbox";
+import React, { useState } from 'react'
+import { Checkbox, Collapse } from 'antd';
 
-const styles = (theme) => ({
-  root: {
-    display: "flex",
-  },
-  formControl: {
-    margin: theme.spacing.unit * 3,
-  },
-});
+const { Panel } = Collapse
 
-class CheckboxesGroup extends React.Component {
-  state = {
-    gilad: true,
-    jason: false,
-    antoine: false,
-  };
 
-  handleChange = (name) => (event) => {
-    this.setState({ [name]: event.target.checked });
-  };
+function filterForm(props) {
 
-  render() {
-    const { classes } = this.props;
-    const { gilad, jason, antoine } = this.state;
-    const error = [gilad, jason, antoine].filter((v) => v).length !== 2;
+    const [Checked, setChecked] = useState([])
+    const products = useSelector((state) => state.products);
+
+
+    const handleToggle = (value) => {
+
+        const currentIndex = Checked.indexOf(value);
+        const newChecked = [...Checked];
+
+        if (currentIndex === -1) {
+            newChecked.push(value)
+        } else {
+            newChecked.splice(currentIndex, 1)
+        }
+
+        setChecked(newChecked)
+        props.handleFilters(newChecked)
+
+    }
+
+    const renderCheckboxLists = () => props.list && props.list.map((value, index) => (
+        <React.Fragment key={index}>
+            <Checkbox
+                onChange={() => handleToggle(value._id)}
+                type="checkbox"
+                checked={Checked.indexOf(value._id) === -1 ? false : true}
+            />&nbsp;&nbsp;
+            <span>{value.name}</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </React.Fragment>
+    ))
 
     return (
-      <div className={classes.root}>
-        <FormControl component="fieldset" className={classes.formControl}>
-          <FormLabel component="legend">Assign responsibility</FormLabel>
-          <FormGroup>
-            <FormControlLabel
-              control={
-                <Checkbox
-                  checked={gilad}
-                  onChange={this.handleChange("gilad")}
-                  value="gilad"
-                />
-              }
-              label="Gilad Gray"
-            />
-            <FormControlLabel
-              control={
-                <Checkbox
-                  checked={jason}
-                  onChange={this.handleChange("jason")}
-                  value="jason"
-                />
-              }
-              label="Jason Killian"
-            />
-            <FormControlLabel
-              control={
-                <Checkbox
-                  checked={antoine}
-                  onChange={this.handleChange("antoine")}
-                  value="antoine"
-                />
-              }
-              label="Antoine Llorca"
-            />
-          </FormGroup>
-          <FormHelperText>Be careful</FormHelperText>
-        </FormControl>
-        <FormControl
-          required
-          error={error}
-          component="fieldset"
-          className={classes.formControl}
-        >
-          <FormLabel component="legend">Pick two</FormLabel>
-          <FormGroup>
-            <FormControlLabel
-              control={
-                <Checkbox
-                  checked={gilad}
-                  onChange={this.handleChange("gilad")}
-                  value="gilad"
-                />
-              }
-              label="Gilad Gray"
-            />
-            <FormControlLabel
-              control={
-                <Checkbox
-                  checked={jason}
-                  onChange={this.handleChange("jason")}
-                  value="jason"
-                />
-              }
-              label="Jason Killian"
-            />
-            <FormControlLabel
-              control={
-                <Checkbox
-                  checked={antoine}
-                  onChange={this.handleChange("antoine")}
-                  value="antoine"
-                />
-              }
-              label="Antoine Llorca"
-            />
-          </FormGroup>
-          <FormHelperText>You can display an error</FormHelperText>
-        </FormControl>
-      </div>
-    );
-  }
+        <div>
+            <Collapse defaultActiveKey={['0']} >
+                <Panel header="Continents" key="1">
+                    {renderCheckboxLists()}
+                </Panel>
+            </Collapse>
+        </div>
+    )
 }
 
-CheckboxesGroup.propTypes = {
-  classes: PropTypes.object.isRequired,
-};
-
-export default withStyles(styles)(CheckboxesGroup);
+export default filterForm 

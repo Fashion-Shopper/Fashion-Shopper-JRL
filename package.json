@@ -24,6 +24,7 @@
     "@mui/icons-material": "^5.0.3",
     "@stripe/react-stripe-js": "^1.6.0",
     "@stripe/stripe-js": "^1.20.3",
+    "antd": "^4.16.13",
     "axios": "^0.23.0",
     "bcrypt": "^5.0.1",
     "compression": "^1.7.4",
