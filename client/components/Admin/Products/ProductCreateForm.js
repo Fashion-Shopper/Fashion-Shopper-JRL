@@ -42,7 +42,7 @@ class ProductCreateForm extends Component {
   render() {
     return (
       <div>
-        <form className="campus-create-form">
+        <form className="product-create-form">
           <div>
             <label>Name</label>
             <input

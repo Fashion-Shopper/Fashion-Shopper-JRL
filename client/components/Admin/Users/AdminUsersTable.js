@@ -95,7 +95,7 @@ const UsersTable = (props) => {
   return (
     <Container sx={{ mt: 3 }}>
       <Button variant="outlined" component={Link} to={`/admin/users/create`}>
-        Create New Product
+        Create New User
       </Button>
       <TablePagination
         rowsPerPageOptions={[5, 10, 25]}

@@ -95,6 +95,18 @@ Object.entries(obj).forEach((entry) => {
       next(err);
     }
   });
+  router.post(`/users`, async (req, res, next) => {
+    try {
+      const user = await User.create(req.body);
+      res.send({ token: await user.generateToken() });
+    } catch (err) {
+      if (err.name === "SequelizeUniqueConstraintError") {
+        res.status(401).send("User already exists");
+      } else {
+        next(err);
+      }
+    }
+  });
   router.delete(
     `/${_path}/:id`,
     isLoggedIn,
