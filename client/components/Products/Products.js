@@ -65,7 +65,7 @@ const Products = () => {
         mountOnEnter
         unmountOnExit
       >
-        <Grid container>
+        <Grid container sx={{ mb: 15 }}>
           <Grid item xs={false} sm={2} >
             <Typography align='center'>
               Filters

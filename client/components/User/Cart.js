@@ -76,7 +76,7 @@ const Cart = () => {
                 <Typography variant='h3' gutterBottom align='center' sx={{ mt: 5 }}>
                     Cart <ShoppingCartIcon fontSize="large" />
                 </Typography>
-                <Grid container sx={{ pb: 12, '@media screen and (max-width: 600px)': { flexDirection: 'column-reverse' } }}>
+                <Grid container sx={{ pb: 12, mb: 15, '@media screen and (max-width: 600px)': { flexDirection: 'column-reverse' } }}>
                     <Grid container item xs={12} sm={8} md={8}>
                         <TableContainer sx={{ p: 8 }}>
                             <Table>

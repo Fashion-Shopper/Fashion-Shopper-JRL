@@ -31,7 +31,7 @@ export default function Checkout() {
     }
 
     return (
-        <Container component="main" sx={{ mb: 15 }}>
+        <Container component="main" sx={{ mb: 35 }}>
             <Paper variant="outlined" sx={{ my: { xs: 3, md: 6 }, p: { xs: 2, md: 3 } }}>
                 <Typography variant="h4" align="center">
                     Checkout

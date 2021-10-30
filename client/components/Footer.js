@@ -1,15 +1,15 @@
-import { Container, Paper, Typography, Link } from "@mui/material";
 import React from "react";
+import { Paper, Typography, Link, IconButton } from "@mui/material";
+import GitHubIcon from '@mui/icons-material/GitHub';
 
 const Copyright = () => {
     return (
-        <Typography variant="body2" color="text.secondary" align='center'>
+        <Typography variant="body1" align='center'>
             {'Copyright © '}
-            <Link color="inherit" href="https://github.com/Fashion-Shopper/Fashion-Shopper-JRL">
-                Fashion-JRL
+            <Link color="inherit" href="https://github.com/Fashion-Shopper/Fashion-Shopper-JRL" target="_blank">
+                JRL ARCHIVES
             </Link>{' '}
             {new Date().getFullYear()}
-            {'.'}
         </Typography>
     );
 }
@@ -18,6 +18,7 @@ const Footer = () => {
         <Paper square sx={{
             display: 'flex',
             flexDirection: 'column',
+            alignItems: 'center',
             position: 'fixed',
             left: "0",
             bottom: "0",
@@ -27,12 +28,16 @@ const Footer = () => {
             px: 2,
             borderTop: 'solid 2px black'
         }}>
-            <Container>
-                <Typography variant='body1' align='center'>
-                    Developed by Riviere, Luna & Jonathan - Fullstack Academy
-                </Typography>
+            <IconButton color='primary' href="https://github.com/Fashion-Shopper/Fashion-Shopper-JRL" target="_blank">
+                <GitHubIcon sx={{ height: 30, width: 30 }} />
+            </IconButton>
+            <Typography sx={{ mt: 1 }}>
+                Developed By: Riviere, Luna & Jonathan
+            </Typography>
+            <Typography color='text.secondary' align='center'>
                 <Copyright />
-            </Container>
+                Fullstack Academy
+            </Typography>
         </Paper>
     )
 }

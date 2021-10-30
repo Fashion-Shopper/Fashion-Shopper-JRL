@@ -101,13 +101,13 @@ const Profile = (props) => {
                             <ListItemIcon>
                                 <SupervisorAccountIcon fontSize="small" />
                             </ListItemIcon>
-                            Users Admin
+                            Users
                         </MenuItem>
                         <MenuItem component={Link} to='/admin/products'>
                             <ListItemIcon>
                                 <EditOffIcon fontSize="small" />
                             </ListItemIcon>
-                            Products Admin
+                            Products
                         </MenuItem>
                     </div>
                 )}

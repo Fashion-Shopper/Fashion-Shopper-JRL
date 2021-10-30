@@ -93,7 +93,7 @@ const UsersTable = (props) => {
   /////////////////////
 
   return (
-    <Container sx={{ mt: 3, marginBottom: 15 }}>
+    <Container sx={{ mt: 3, marginBottom: 25 }}>
       <Button variant="outlined" component={Link} to={`/admin/users/create`}>
         Create New User
       </Button>
