@@ -64,7 +64,7 @@ const NewArrivals = (props) => {
             </Box>
 
             <Box textAlign="center">
-                <Button component={Link} to='/products' sx={{ bgcolor: 'black', color: 'white', width: '30%' }} >View All</Button>
+                <Button component={Link} to='/products' sx={{ bgcolor: 'black', color: 'white', width: '30%', mt: 2 }} >View All</Button>
             </Box>
         </>
     )

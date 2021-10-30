@@ -9,7 +9,7 @@ const Home = () => {
 
   return (
     <Slide direction="right" in={true} timeout={500}>
-      <Box sx={{ mb: 15 }}>
+      <Box sx={{ mb: 25 }}>
         <SlideShow />
         <NewArrivals title={"Featuring"} />
         <ShopBrand />

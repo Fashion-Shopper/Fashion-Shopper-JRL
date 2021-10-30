@@ -13,7 +13,7 @@ const Category = (props) => {
 
 
   return (
-    <Container maxWidth="xl">
+    <Container maxWidth="xl" sx={{ mb: 15 }}>
       <Typography variant="h3" gutterBottom align="center" sx={{ mt: 5 }}>
         Product Category: {category}
       </Typography>
