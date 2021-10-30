@@ -12,19 +12,17 @@ const path = require("path");
 const fs = require("fs");
 const OrderItem = require("../server/db/models/OrderItem");
 
-
-const loadImage = (imagePath) =>{
-  return new Promise((res, rej)=> {
-    fs.readFile(imagePath, 'base64', (err,data)=>{
-    if(err){
-      rej(err);
-    }
-    else{
-      res(`data:image/png;base64,${data.toString()}`); //?
-    }
-  })
-})
-}
+const loadImage = (imagePath) => {
+  return new Promise((res, rej) => {
+    fs.readFile(imagePath, "base64", (err, data) => {
+      if (err) {
+        rej(err);
+      } else {
+        res(`data:image/png;base64,${data.toString()}`); //?
+      }
+    });
+  });
+};
 
 /**
  * seed - this function clears the database, updates tables to
@@ -36,8 +34,12 @@ async function seed() {
 
   // Creating Users...
   const users = await Promise.all([
-    User.create({ username: "cody", password: "123" }),
-    User.create({ username: "murphy", password: "123", isAdmin: true }),
+    User.create({ username: "prof", password: "123" }),
+    User.create({ username: "stanley", password: "123" }),
+    User.create({ username: "jason", password: "123" }),
+    User.create({ username: "luna", password: "123", isAdmin: true }),
+    User.create({ username: "jonathan", password: "123", isAdmin: true }),
+    User.create({ username: "riv", password: "123", isAdmin: true }),
   ]);
 
   // const cody = users[0]
@@ -110,19 +112,35 @@ async function seed() {
   brands.forEach((brand) => brand.save());
 
   //Testing orders
-  const order1 = await Order.create({ userId: users[0].id, shippingName: 'John Diesel', shippingAddress: "489 E 142nd St Bronx, NY 10454" });
-  const order2 = await Order.create({ userId: users[0].id, shippingName: 'Prof', shippingAddress: "300 5th Ave New York, NY 10001" });
-  const order3 = await Order.create({ userId: users[1].id, shippingName: 'Jason Williams', shippingAddress: "25 Cypress Rd Burlington, NJ 08016" });
-  const order4 = await Order.create({ userId: users[1].id, shippingName: 'Stanley', shippingAddress: "100 Willis St Penns Grove, NJ 08069" });
+  const order1 = await Order.create({
+    userId: users[0].id,
+    shippingName: "John Diesel",
+    shippingAddress: "489 E 142nd St Bronx, NY 10454",
+  });
+  const order2 = await Order.create({
+    userId: users[0].id,
+    shippingName: "Prof",
+    shippingAddress: "300 5th Ave New York, NY 10001",
+  });
+  const order3 = await Order.create({
+    userId: users[1].id,
+    shippingName: "Jason Williams",
+    shippingAddress: "25 Cypress Rd Burlington, NJ 08016",
+  });
+  const order4 = await Order.create({
+    userId: users[1].id,
+    shippingName: "Stanley",
+    shippingAddress: "100 Willis St Penns Grove, NJ 08069",
+  });
 
   await OrderItem.create({ orderId: 1, productId: 1, quantity: 4 });
   await OrderItem.create({ orderId: 2, productId: 2, quantity: 6 });
   await OrderItem.create({ orderId: 3, productId: 3, quantity: 7 });
   await OrderItem.create({ orderId: 4, productId: 4, quantity: 2 });
 
-  await order1.update({ isCart: false })
-  await order2.update({ isCart: false })
-  await order3.update({ isCart: false })
+  await order1.update({ isCart: false });
+  await order2.update({ isCart: false });
+  await order3.update({ isCart: false });
 
   // Creating Addresses...
 
@@ -131,11 +149,20 @@ async function seed() {
   // const address3 = await Address.create({ userId: users[1].id });
   // const address4 = await Address.create({ userId: users[1].id });
 
-  await Address.create({ place: "Central Park, New York" , userId: users[0].id });
-  await Address.create({ place: "White Mountains, Virginia" , userId: users[0].id });
-  await Address.create({ place: "Sunset Blvd, Hollywood, LA" ,userId: users[1].id });
+  await Address.create({
+    place: "Central Park, New York",
+    userId: users[0].id,
+  });
+  await Address.create({
+    place: "White Mountains, Virginia",
+    userId: users[0].id,
+  });
+  await Address.create({
+    place: "Sunset Blvd, Hollywood, LA",
+    userId: users[1].id,
+  });
   await Address.create({ place: "Riverside, NJ", userId: users[1].id });
-  
+
   console.log(`seeded successfully`);
   return {
     users: {
