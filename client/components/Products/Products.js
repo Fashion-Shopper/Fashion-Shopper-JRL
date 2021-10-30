@@ -41,7 +41,7 @@ const Products = () => {
     const newFilters = { ...filters };
     newFilters[type] = filters;
 
-    console.log(filters);
+    // console.log(filters);
     console.log(newFilters);
     // showFilteredResults(newFilters);
 
@@ -67,6 +67,9 @@ const Products = () => {
       >
         <Grid container>
           <Grid item xs={false} sm={2} >
+            <Typography align='center'>
+              Filters
+            </Typography>
             <FilterForm
               handleFilters={(filters) => handleFilters(filters, "brands")}
               products={products}

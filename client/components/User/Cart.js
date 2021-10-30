@@ -170,8 +170,8 @@ const Cart = () => {
                                     </Button>
                                 ) : (
                                     <>
-                                        <Button component={Link} to='/login' variant='contained' sx={{ mt: 2, width: '75%' }}>
-                                            Login
+                                        <Button disabled variant='contained' sx={{ mt: 2, width: '75%' }}>
+                                            Checkout
                                         </Button>
                                         <Typography variant="h6" align='center' color='text.secondary'>
                                             Please Login to checkout!
