@@ -58,10 +58,6 @@ const Products = () => {
       <Typography variant="h3" gutterBottom align="center" sx={{ mt: 5 }}>
         All Products
       </Typography>
-      <FilterForm
-        handleFilters={(filters) => handleFilters(filters, "brands")}
-        products={products}
-      />
       <Slide
         in={true}
         direction="right"
@@ -70,7 +66,12 @@ const Products = () => {
         unmountOnExit
       >
         <Grid container>
-          <Grid item xs={false} sm={2} />
+          <Grid item xs={false} sm={2} >
+            <FilterForm
+              handleFilters={(filters) => handleFilters(filters, "brands")}
+              products={products}
+            />
+          </Grid>
           <Grid container item xs={12} sm={8} spacing={4} sx={{ m: 0, mb: 18 }}>
             {products.map((product) => (
               <Grid xs={11} sm={6} md={6} lg={4} item key={product.id}>
