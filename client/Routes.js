@@ -12,7 +12,6 @@ import SingleProduct from "./components/Products/SingleProduct";
 import Category from "./components/Category/Category";
 import Cart from "./components/User/Cart";
 import Settings from "./components/User/Settings/Settings";
-import AdminDashboard from "./components/Admin/Dashboard";
 import AdminProducts from "./components/Admin/Products/AdminProductsTable";
 import ProductCreateForm from "./components/Admin/Products/ProductCreateForm";
 import ProductUpdateForm from "./components/Admin/Products/ProductUpdateForm";
@@ -60,7 +59,6 @@ const Routes = () => {
             <Route path="/checkout/success" component={Success} />
             {!!isAdmin && (
               <>
-                <Route exact path="/admin" component={AdminDashboard} />
                 <Route exact path="/admin/products" component={AdminProducts} />
                 <Route
                   path="/admin/products/create"
