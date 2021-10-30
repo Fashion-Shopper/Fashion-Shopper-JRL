@@ -9,7 +9,7 @@ const Home = () => {
   return (
     <Box sx={{ mb: 15 }}>
       <SlideShow />
-      <NewArrivals title={"New Arrivals"} />
+      <NewArrivals title={"Featuring"} />
       <ShopBrand />
     </Box>
   )

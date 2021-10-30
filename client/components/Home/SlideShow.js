@@ -9,7 +9,7 @@ import { Link } from "react-router-dom";
 const slides = [
     {
         name: "Comme des Garcons",
-        description: "Browsing products by Comme des Garcons by Kendrick",
+        description: "New Arrivals",
         image: "/slideshow/slide-03-view-comme-des-garcons.png",
         link: '/products'
     },
@@ -17,20 +17,20 @@ const slides = [
         name: "Hat",
         description: "View all accessories",
         image: "/slideshow/slide-01-view-accesories.png",
-        link: '/products'
+        link: '/category/accessory'
     },
     {
         name: "Yellow Sweater",
-        description: "View this specific product",
+        description: "New Trends - Layered Sweater",
         image: "/slideshow/slide-02-new-product.png",
-        link: '/products'
+        link: '/products/3'
     },
 ]
 
 const SlideShow = () => {
 
     return (
-        <Carousel showThumbs={false} showStatus={false} infiniteLoop autoPlay stopOnHover={false} interval={2000}>
+        <Carousel showThumbs={false} showStatus={false} infiniteLoop autoPlay stopOnHover={false} interval={3000}>
             {slides.map((slide, idx) => (
                 <div key={idx}>
                     <Box sx={{ display: 'flex', justifyContent: 'space-around', alignItems: 'center', bgcolor: 'rgba(0, 0, 0, 0.8)', height: 120, width: '100%', position: 'absolute', bottom: 0 }}>
