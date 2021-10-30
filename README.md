@@ -2,23 +2,22 @@
 
 JRL Archives is a FullStack vintage fashion e-commerce website where authenticated USERS can browse and select vintage clothing, add the items to a cart, checkout and leave reviews; and ADMINS can add, delete and update the information of products and users.
 
-## Team Members
-Jonathan, Riviere, Luna
+Team Members: Jonathan Martinez, Riviere Fougy, Luna Fang
 
 ## Featured Functionality 
 * Checkout (implemented with Stripe API)
 * Order History 
 * Guest Cart
 * User Settings 
-* Browse by Brands 
+* Browse Products by Brands 
 * Admin-Only Users & Products Table, with Sorting and Pagination
 
-## Design Highlights -- Implemented with Material UI (documentation)
+## Design Highlights (Implemented with Material UI)
 * Product Grid and Product Cards
 * NavBar Drop-down Menu
 * Home Page Slide show
 
-### Tech Stacks:
+## Tech Stacks
 * Node
 * Express
 * React/Redux
@@ -31,25 +30,25 @@ Jonathan, Riviere, Luna
 * Google Map API
 
 ## Lessons Learned:
-### TEAMWORK 
+### Teamwork
 * Discuss together  — UI/UX design, High-level system design / files structure, having a mock early on is super useful
 * Each Teammate work on the Vertical change of a single component
 * Using Trello
 
-### ERROR HANDLING and CLEANING CODE 
-* To prevent errors in deployment 
+### Error Handling and Clean Code 
+* Use error handling To prevent errors in deployment 
 * Making Dynamic Routes—> More efficient coding
 
-### LEARNING WHILE CODING
-We learnt: Stripe API, MUI (Table, Grid, Slide Show, Drop-down Menu), Google Map
-
+### Leanring with Coding
+We learnt a few new Tech stacks: Stripe API, MUI (Table, Grid, Slide Show, Drop-down Menu), Google Map
 
 ## Future Improvements:
-* Filtering/Sorting/Pagination for Products Page
-* Searching for Products 
+* Filtering / Sorting / Pagination for Products Page
+* Searching for Products / Users
 * Responsive Design for Mobile Devices 
 
-============================================================
+
+## Deployment Instructions
 
 ### Heroku
 
