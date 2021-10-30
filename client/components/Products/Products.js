@@ -30,26 +30,38 @@ const Products = () => {
 
   ///////////////////// SECTION: FILTERING ///
 
-  const [filters, setFilters] = useState({
-    brand: [],
-    category: [],
-    size: [],
-  });
-  const [filteredProducts, setFilteredProducts] = useState(products);
+  // const [filterState, setFilters] = useState({
+  //   filters: [],
+  // });
 
-  const handleFilters = (filters, type) => {
-    const newFilters = { ...filters };
-    newFilters[type] = filters;
+  // const filteredProductsFunc = (product) => {
+  //   for (let key in product) {
+  //     let currProductVal = product[key];
+  //     for (let i = 0; i < filterState.filters.length; i++) {
+  //       let currFilter = filterState.filters[i];
+  //       if (currProductVal === currFilter) return true;
+  //     }
+  //   }
+  // };
 
-    // console.log(filters);
-    console.log(newFilters);
-    // showFilteredResults(newFilters);
+  // const filteredProducts = () => {
+  //   if (!filterState.filters.length) {
+  //     return products;
+  //   }
+  //   const newFilteredProducts = products.filter((product) =>
+  //     filteredProductsFunc(product)
+  //   );
 
-    const newFilteredProducts = products.filter((products) => "PLACEHOLDER");
+  //   console.log(newFilteredProducts);
+  //   return newFilteredProducts;
+  // };
 
-    // setFiltereProducts(newFilteredProducts);
-    setFilters(newFilters);
-  };
+  // const handleFilters = (filters, type) => {
+  //   const newFilters = { ...filterState };
+  //   newFilters[type] = filters;
+
+  //   setFilters(newFilters);
+  // };
 
   /////////////////////
 
@@ -66,14 +78,12 @@ const Products = () => {
         unmountOnExit
       >
         <Grid container sx={{ mb: 15 }}>
-          <Grid item xs={false} sm={2} >
-            <Typography align='center'>
-              Filters
-            </Typography>
+          <Grid item xs={false} sm={2}>
+            {/* <Typography align="center">Filters</Typography>
             <FilterForm
-              handleFilters={(filters) => handleFilters(filters, "brands")}
+              handleFilters={(filters) => handleFilters(filters, "filters")}
               products={products}
-            />
+            /> */}
           </Grid>
           <Grid container item xs={12} sm={8} spacing={4} sx={{ m: 0, mb: 18 }}>
             {products.map((product) => (
