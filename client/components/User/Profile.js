@@ -11,7 +11,8 @@ import { logout } from '../../store';
 
 import { Link } from 'react-router-dom';
 
-const Profile = () => {
+const Profile = (props) => {
+    const { handleLoginClose } = props
 
     const user = useSelector(state => state.auth) || {};
     const { isAdmin } = useSelector((state) => state.auth);
@@ -29,6 +30,7 @@ const Profile = () => {
     };
 
     const handleLogout = () => {
+        handleLoginClose()
         dispatch(logout())
     }
 

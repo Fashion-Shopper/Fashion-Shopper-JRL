@@ -6,7 +6,7 @@ import { authenticate } from "../store";
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 
 const AuthForm = (props) => {
-  const { name, displayName, handleSubmit, error, handleChangeForm, loginForm } = props;
+  const { name, displayName, handleSubmit, error, handleChangeForm, loginForm, handleLoginClose } = props;
 
   let errorMessage = ''
   if (error && error.response) {
@@ -97,7 +97,6 @@ const mapDispatch = (dispatch) => {
   return {
     handleSubmit(evt) {
       evt.preventDefault();
-      // console.log(evt.target.name)
       const formName = evt.target.name;
       const username = evt.target.username.value;
       const password = evt.target.password.value;
