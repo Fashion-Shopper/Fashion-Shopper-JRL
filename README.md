@@ -29,28 +29,28 @@ Team Members: Jonathan Martinez, Riviere Fougy, Luna Fang
 * Stripe API
 * Google Map API
 
-## Lessons Learned:
+## Lessons Learned
 ### Teamwork
 * Discuss together  — UI/UX design, High-level system design / files structure, having a mock early on is super useful
 * Each Teammate work on the Vertical change of a single component
 * Using Trello
 
 ### Error Handling and Clean Code 
-* Use error handling To prevent errors in deployment 
-* Making Dynamic Routes—> More efficient coding
+* Use error handling to prevent errors in deployment 
+* Making Dynamic Routes for more efficient coding
+* Using GitHub, frequently pushing, merging, & resolving merge conflicts
 
-### Leanring with Coding
-We learnt a few new Tech stacks: Stripe API, MUI (Table, Grid, Slide Show, Drop-down Menu), Google Map
+### Learning while Coding
+We have learnt a few new Tech stacks: Stripe API, MUI (Table, Grid, Slide Show, Drop-down Menu), Google Map API
 
-## Future Improvements:
+## Future Improvements
 * Filtering / Sorting / Pagination for Products Page
 * Searching for Products / Users
 * Responsive Design for Mobile Devices 
 
-
 ## Deployment Instructions
 
-### Heroku
+#### Heroku
 
 1.  Set up the [Heroku command line tools][heroku-cli]
 2.  `heroku login`
@@ -64,7 +64,7 @@ We learnt a few new Tech stacks: Stripe API, MUI (Table, Grid, Slide Show, Drop-
       name in mind.
   2.  `heroku config:set JWT=<your secret here!>` to set a secret for JWT signing
 
-Database Setup
+#### Database Setup
 
   3.  `heroku addons:create heroku-postgresql:hobby-dev` to add
       ("provision") a postgres database to your heroku dyno (This creates your production database)
