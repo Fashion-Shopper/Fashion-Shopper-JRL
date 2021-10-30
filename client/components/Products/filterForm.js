@@ -60,12 +60,12 @@ const FilterForm = (props) => {
   const [Checked, setChecked] = useState([]);
 
   //Handling on/off toggling and changing state accordingly
-  const handleToggle = (value) => {
-    const currentIndex = Checked.indexOf(value);
+  const handleToggle = (valueName) => {
+    const currentIndex = Checked.indexOf(valueName);
     const newChecked = [...Checked];
 
     if (currentIndex === -1) {
-      newChecked.push(value);
+      newChecked.push(valueName);
     } else {
       newChecked.splice(currentIndex, 1);
     }
@@ -82,8 +82,8 @@ const FilterForm = (props) => {
           key={index}
           control={
             <Checkbox
-              checked={Checked.indexOf(value.id) === -1 ? false : true}
-              onChange={() => handleToggle(value.id)}
+              checked={Checked.indexOf(value.name) === -1 ? false : true}
+              onChange={() => handleToggle(value.name)}
               name={value.name}
             />
           }

@@ -30,24 +30,36 @@ const Products = () => {
 
   ///////////////////// SECTION: FILTERING ///
 
-  const [filters, setFilters] = useState({
-    brand: [],
-    category: [],
-    size: [],
+  const [filterState, setFilters] = useState({
+    filters: [],
   });
-  const [filteredProducts, setFilteredProducts] = useState(products);
+
+  const filteredProductsFunc = (product) => {
+    for (let key in product) {
+      let currProductVal = product[key];
+      for (let i = 0; i < filterState.filters.length; i++) {
+        let currFilter = filterState.filters[i];
+        if (currProductVal === currFilter) return true;
+      }
+    }
+  };
+
+  const filteredProducts = () => {
+    if (!filterState.filters.length) {
+      return products;
+    }
+    const newFilteredProducts = products.filter((product) =>
+      filteredProductsFunc(product)
+    );
+
+    console.log(newFilteredProducts);
+    return newFilteredProducts;
+  };
 
   const handleFilters = (filters, type) => {
-    const newFilters = { ...filters };
+    const newFilters = { ...filterState };
     newFilters[type] = filters;
 
-    // console.log(filters);
-    console.log(newFilters);
-    // showFilteredResults(newFilters);
-
-    const newFilteredProducts = products.filter((products) => "PLACEHOLDER");
-
-    // setFiltereProducts(newFilteredProducts);
     setFilters(newFilters);
   };
 
@@ -70,13 +82,13 @@ const Products = () => {
             <Typography align='center'>
               Filters
             </Typography>
-            <FilterForm
-              handleFilters={(filters) => handleFilters(filters, "brands")}
+           <FilterForm
+              handleFilters={(filters) => handleFilters(filters, "filters")}
               products={products}
             />
           </Grid>
           <Grid container item xs={12} sm={8} spacing={4} sx={{ m: 0, mb: 18 }}>
-            {products.map((product) => (
+            {filteredProducts().map((product) => (
               <Grid xs={11} sm={6} md={6} lg={4} item key={product.id}>
                 <ProductCard product={product} />
               </Grid>
