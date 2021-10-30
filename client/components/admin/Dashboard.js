@@ -12,7 +12,9 @@ const AdminProducts = () => {
 
   const adminproducts = useSelector((state) => state.adminProducts);
 
-  return <pre>{JSON.stringify(adminproducts, null, 2)}</pre>;
+  return (
+    <h1>Dashboard</h1>
+  );
 };
 
 export default AdminProducts;

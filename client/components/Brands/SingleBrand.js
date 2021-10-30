@@ -12,6 +12,7 @@ const SingleBrand = (props) => {
   const { brandId } = props.match.params;
   const brands = useSelector((state) => state.brands);
   const singleBrand = brands.find((brand) => brand.id === brandId * 1);
+
   const brandName = brands[brandId];
 
   const products = useSelector((state) => state.products);
@@ -20,8 +21,8 @@ const SingleBrand = (props) => {
   );
 
   const getBrandName = () => {
-    const brandNames = brands.map((brand) => brand.name)[brandId - 1];
-    return brandNames;
+    const brandNames = brands.map((brand) => brand.name);
+    return brandNames[brandId - 1];
   };
 
   const getBrandDesc = () => {
