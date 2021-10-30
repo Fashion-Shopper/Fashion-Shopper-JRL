@@ -52,7 +52,7 @@ const FilterForm = (props) => {
     return obj;
   });
 
-  console.log(filterList);
+  // console.log(filterList);
 
   ///////////////////// SECTION: CHECKBOX FUNCTIONALIY ///
 

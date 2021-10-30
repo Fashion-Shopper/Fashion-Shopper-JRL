@@ -60,10 +60,6 @@ const Products = () => {
     const newFilters = { ...filterState };
     newFilters[type] = filters;
 
-    // console.log(filters);
-    // console.log(newFilters);
-
-    // setFiltereProducts(newFilteredProducts);
     setFilters(newFilters);
   };
 
@@ -82,8 +78,11 @@ const Products = () => {
         unmountOnExit
       >
         <Grid container>
-          <Grid item xs={false} sm={2}>
-            <FilterForm
+          <Grid item xs={false} sm={2} >
+            <Typography align='center'>
+              Filters
+            </Typography>
+           <FilterForm
               handleFilters={(filters) => handleFilters(filters, "filters")}
               products={products}
             />

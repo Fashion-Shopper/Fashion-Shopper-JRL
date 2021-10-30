@@ -7,40 +7,31 @@ import {
   Typography,
   Container,
 } from "@mui/material";
+import LoadSpinner from '../Materialui/LoadSpinner'
 
 const SingleBrand = (props) => {
-  const { brandId } = props.match.params;
-  const brands = useSelector((state) => state.brands);
-  const singleBrand = brands.find((brand) => brand.id === brandId * 1);
-
-  const brandName = brands[brandId];
-
-  const products = useSelector((state) => state.products);
-  const productsOfBrand = products.filter(
-    (product) => product.brandName === singleBrand.name
-  );
-
-  const getBrandName = () => {
-    const brandNames = brands.map((brand) => brand.name);
-    return brandNames[brandId - 1];
-  };
-
-  const getBrandDesc = () => {
-    const brandDescs = brands.map((brand) => brand.description);
-    return brandDescs[brandId - 1];
-  };
 
   useEffect(() => {
     window.scrollTo(0, 0)
   }, [])
 
+  const brandId = props.match.params.brandId * 1;
+  const brands = useSelector((state) => state.brands);
+  const singleBrand = brands.find((brand) => brand.id === brandId);
+
+  if (!singleBrand) {
+    return (
+      <LoadSpinner />
+    )
+  }
+
   return (
     <Container maxWidth='xl'>
       <Typography variant="h3" gutterBottom align="center" sx={{ mt: 5 }}>
-        {getBrandName()}
+        {singleBrand.name}
       </Typography>
       <Typography variant="body1" gutterBottom align="center" sx={{ mt: 2 }}>
-        {getBrandDesc()}
+        {singleBrand.description}
       </Typography>
       <Slide
         in={true}
@@ -52,7 +43,7 @@ const SingleBrand = (props) => {
         <Grid container>
           <Grid item xs={false} sm={2} />
           <Grid container item xs={12} sm={8} spacing={4} sx={{ m: 0, mb: 18 }}>
-            {productsOfBrand.map((product) => (
+            {singleBrand.products.map((product) => (
               <Grid xs={11} sm={6} md={6} lg={4} item key={product.id}>
                 <ProductCard product={product} />
               </Grid>

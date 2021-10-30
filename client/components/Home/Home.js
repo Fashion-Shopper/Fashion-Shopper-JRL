@@ -3,15 +3,18 @@ import React from 'react'
 import SlideShow from './SlideShow'
 import NewArrivals from './NewArrivals'
 import ShopBrand from './ShopBrand'
+import { Slide } from '@mui/material'
 
 const Home = () => {
 
   return (
-    <Box sx={{ mb: 15 }}>
-      <SlideShow />
-      <NewArrivals title={"Featuring"} />
-      <ShopBrand />
-    </Box>
+    <Slide direction="right" in={true} timeout={500}>
+      <Box sx={{ mb: 15 }}>
+        <SlideShow />
+        <NewArrivals title={"Featuring"} />
+        <ShopBrand />
+      </Box>
+    </Slide>
   )
 }
 

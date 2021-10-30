@@ -31,16 +31,15 @@ const Navbar = () => {
 
   //////////////// Login / Sigup Forms /////////////////////
   const [openLogin, setopenLogin] = useState(false);
-  const [loginForm, setloginForm] = useState(true);
+  const [loginForm, setloginForm] = useState(false);
 
   const handleChangeForm = () => {
     setloginForm(!loginForm)
   }
 
   const handleLoginClose = () => {
+    setloginForm(false)
     setopenLogin(false)
-    setloginForm(true)
-
   }
 
   const handleLoginOpen = () => {
@@ -188,7 +187,7 @@ const Navbar = () => {
 
         {isLoggedIn ? (
           <>
-            <Profile />
+            <Profile handleLoginClose={handleLoginClose} />
           </>
         ) : (
           <>
@@ -197,8 +196,10 @@ const Navbar = () => {
             </Box>
             <Dialog open={openLogin} onClose={handleLoginClose}>
               {loginForm ? (
+                <Signup handleChangeForm={handleChangeForm} loginForm={loginForm} />
+              ) : (
                 <Login handleChangeForm={handleChangeForm} loginForm={loginForm} />
-              ) : (<Signup handleChangeForm={handleChangeForm} loginForm={loginForm} />)}
+              )}
             </Dialog>
           </>
         )}
