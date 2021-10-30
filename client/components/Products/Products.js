@@ -35,14 +35,19 @@ const Products = () => {
     category: [],
     size: [],
   });
+  const [filteredProducts, setFilteredProducts] = useState(products);
 
   const handleFilters = (filters, type) => {
-    console.log(filters);
-
     const newFilters = { ...filters };
     newFilters[type] = filters;
 
+    console.log(filters);
+    console.log(newFilters);
     // showFilteredResults(newFilters);
+
+    const newFilteredProducts = products.filter((products) => "PLACEHOLDER");
+
+    // setFiltereProducts(newFilteredProducts);
     setFilters(newFilters);
   };
 

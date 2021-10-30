@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
-// import { Checkbox, Collapse } from "antd";
 
 import Box from "@mui/material/Box";
 import FormLabel from "@mui/material/FormLabel";
@@ -8,8 +7,6 @@ import FormControl from "@mui/material/FormControl";
 import FormGroup from "@mui/material/FormGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Checkbox from "@mui/material/Checkbox";
-
-// const { Panel } = Collapse;
 
 const FilterForm = (props) => {
   ///////////////////// SECTION: CREATING LIST OF FILTER OPTIONS ///
@@ -54,6 +51,8 @@ const FilterForm = (props) => {
     }
     return obj;
   });
+
+  console.log(filterList);
 
   ///////////////////// SECTION: CHECKBOX FUNCTIONALIY ///
 
