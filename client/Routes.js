@@ -5,7 +5,6 @@ import { Route, Switch, Redirect } from "react-router-dom";
 
 /////////////////////// COMPONENT AND PAGES  /////////////////////
 import Home from "./components/Home/Home";
-import { Login, Signup } from "./components/AuthForm";
 import Brands from "./components/Brands/Brands";
 import SingleBrand from "./components/Brands/SingleBrand";
 import Products from "./components/Products/Products";
@@ -87,15 +86,12 @@ const Routes = () => {
           <Switch>
             <Route path="/home" component={Home} />
             <Route exact path="/" component={Home} />
-            <Route path="/login" component={Login} />
-            <Route path="/signup" component={Signup} />
             <Route exact path="/brands" component={Brands} />
             <Route path="/brands/:brandId" component={SingleBrand} />
             <Route exact path="/products" component={Products} />
             <Route path="/products/:productId" component={SingleProduct} />
             <Route path="/category/:category" component={Category} />
             <Route exact path="/cart" component={Cart} />
-            {/* <Redirect to="/home" /> */}
           </Switch>
         </>
       )}
