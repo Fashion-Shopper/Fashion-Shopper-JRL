@@ -31,6 +31,14 @@ else {
   winPC = '';
 }
 
-const db = new Sequelize(process.env.DATABASE_URL || `postgres://${winPC}localhost:5432/${databaseName}`, config)
+const db = new Sequelize(process.env.DATABASE_URL || `postgres://${winPC}localhost:5432/${databaseName}`, {
+  logging: false,
+  dialect: 'postgres',
+  dialectOptions: {
+    ssl: {
+      require: true,
+      rejectUnauthorized: false
+    }
+  })
 
 module.exports = db
