@@ -3,7 +3,6 @@ import { Avatar, Divider, IconButton, ListItemIcon, Menu, MenuItem, Tooltip, Typ
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 import SupervisorAccountIcon from '@mui/icons-material/SupervisorAccount';
 import EditOffIcon from '@mui/icons-material/EditOff';
-import DashboardIcon from '@mui/icons-material/Dashboard';
 
 
 import { Settings, Logout, History } from '@mui/icons-material';
@@ -96,12 +95,6 @@ const Profile = () => {
                         <Typography align='center' sx={{ textDecoration: 'underline', textTransform: 'uppercase', mt: 1 }}>
                             Admin Only
                         </Typography>
-                        <MenuItem component={Link} to='/admin'>
-                            <ListItemIcon>
-                                <DashboardIcon fontSize="small" />
-                            </ListItemIcon>
-                            Dashboard
-                        </MenuItem>
                         <MenuItem component={Link} to='/admin/users'>
                             <ListItemIcon>
                                 <SupervisorAccountIcon fontSize="small" />
