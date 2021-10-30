@@ -1,7 +1,8 @@
 /////////////// REACT / REDUX ///////////////////////
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 // import { Link } from "react-router-dom";
+import FilterForm from "./FilterForm";
 
 ///////////////// COMPONENT ///////////////////////
 import ProductCard from "./ProductCard";
@@ -16,26 +17,58 @@ import LoadSpinner from "../Materialui/LoadSpinner";
 //import DeleteProduct from './DeleteProduct';
 //import brand from '../store/brand';
 
-
 const Products = () => {
   const products = useSelector((state) => state.products);
 
   if (!products) {
-    return (
-      <LoadSpinner />
-    );
+    return <LoadSpinner />;
   }
 
   useEffect(() => {
-    window.scrollTo(0, 0)
-  }, [])
+    window.scrollTo(0, 0);
+  }, []);
+
+  ///////////////////// SECTION: FILTERING ///
+
+  const [filters, setFilters] = useState({
+    brand: [],
+    category: [],
+    size: [],
+  });
+  const [filteredProducts, setFilteredProducts] = useState(products);
+
+  const handleFilters = (filters, type) => {
+    const newFilters = { ...filters };
+    newFilters[type] = filters;
+
+    console.log(filters);
+    console.log(newFilters);
+    // showFilteredResults(newFilters);
+
+    const newFilteredProducts = products.filter((products) => "PLACEHOLDER");
+
+    // setFiltereProducts(newFilteredProducts);
+    setFilters(newFilters);
+  };
+
+  /////////////////////
 
   return (
     <>
       <Typography variant="h3" gutterBottom align="center" sx={{ mt: 5 }}>
         All Products
       </Typography>
-      <Slide in={true} direction='right' timeout={500} mountOnEnter unmountOnExit>
+      <FilterForm
+        handleFilters={(filters) => handleFilters(filters, "brands")}
+        products={products}
+      />
+      <Slide
+        in={true}
+        direction="right"
+        timeout={500}
+        mountOnEnter
+        unmountOnExit
+      >
         <Grid container>
           <Grid item xs={false} sm={2} />
           <Grid container item xs={12} sm={8} spacing={4} sx={{ m: 0, mb: 18 }}>
@@ -46,7 +79,7 @@ const Products = () => {
             ))}
           </Grid>
           <Grid item xs={false} sm={2} />
-        </Grid >
+        </Grid>
       </Slide>
     </>
   );
