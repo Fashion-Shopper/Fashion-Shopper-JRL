@@ -1,5 +1,7 @@
 # JRL ARCHIVES
 
+[Live Site](https://jrl-archives.herokuapp.com/)
+
 JRL Archives is a FullStack vintage fashion e-commerce website where authenticated USERS can browse and select vintage clothing, add the items to a cart, checkout and leave reviews; and ADMINS can add, delete and update the information of products and users.
 
 Team Members: Jonathan Martinez, Riviere Fougy, Luna Fang
