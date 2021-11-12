@@ -39,7 +39,7 @@ function Row(props) {
         <>
             <TableRow>
                 <TableCell scope="row" align='center'>
-                    <Typography variant='h4'>
+                    <Typography variant='h6'>
                         Order #{order.id}
                     </Typography>
                 </TableCell>

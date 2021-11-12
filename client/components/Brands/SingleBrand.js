@@ -24,9 +24,8 @@ const SingleBrand = (props) => {
       <LoadSpinner />
     )
   }
-
   return (
-    <Container maxWidth='xl' sx={{ mb: 15 }}>
+    <Container maxWidth='xl' sx={{ pb: 10 }}>
       <Typography variant="h3" gutterBottom align="center" sx={{ mt: 5 }}>
         {singleBrand.name}
       </Typography>

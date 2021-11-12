@@ -51,12 +51,12 @@ const SingleProduct = (props) => {
 
   return (
     <Slide direction="right" in={true} timeout={500}>
-      <Container sx={{ mb: 25 }}>
+      <Container sx={{ pb: 25 }}>
         <Grid container sx={{ mt: 3 }}>
-          <Grid item xs={12} sm={6} sx={{ p: 4, textAlign: 'center' }}>
+          <Grid item xs={12} sm={6} sx={{ px: 4, textAlign: 'center', '@media screen and (max-width: 600px)': { p: 0 } }}>
             <img loading='lazy' src={singleProduct.imageURL} width='70%' />
           </Grid>
-          <Grid item xs={12} sm={6} sx={{ p: 4, textAlign: 'right' }}>
+          <Grid item xs={12} sm={6} sx={{ px: 4, textAlign: 'right' }}>
             <Typography variant="subtitle1" color="text.secondary">
               {singleProduct.brandName}
             </Typography>
@@ -69,7 +69,7 @@ const SingleProduct = (props) => {
             <Typography variant='body1' color="text.secondary">
               {currency(singleProduct.price).format()}
             </Typography>
-            <FormControl sx={{ justifyContent: 'flex-end' }}>
+            <FormControl sx={{ justifyContent: 'flex-end', '@media screen and (max-width: 600px)': { flexDirection: 'row' } }}>
               <InputLabel sx={{ m: 1 }}>QTY</InputLabel>
               <Select
                 name='quantity'

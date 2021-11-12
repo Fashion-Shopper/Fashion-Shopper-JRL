@@ -9,7 +9,6 @@ const Brands = () => {
   if (!brands || brands.length === 0) {
     return <CircularProgress />;
   }
-
   return (
     <div>
       {brands.map((brand) => (

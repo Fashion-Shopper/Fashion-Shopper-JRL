@@ -6,10 +6,9 @@ import ShopBrand from './ShopBrand'
 import { Slide } from '@mui/material'
 
 const Home = () => {
-
   return (
     <Slide direction="right" in={true} timeout={500}>
-      <Box sx={{ mb: 25 }}>
+      <Box sx={{ pb: 25 }}>
         <SlideShow />
         <NewArrivals title={"Featuring"} />
         <ShopBrand />

@@ -2,7 +2,7 @@ import { CssBaseline, ThemeProvider } from "@mui/material";
 import React, { useEffect } from "react";
 import { useDispatch } from "react-redux";
 
-import Navbar from "./components/Navbar";
+import Navbar from "./components/Navbar/Navbar";
 import Routes from "./Routes";
 import Footer from "./components/Footer";
 

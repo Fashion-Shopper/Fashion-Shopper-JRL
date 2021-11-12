@@ -51,7 +51,7 @@ const Success = () => {
     }
 
     return (
-        <Container component="main" maxWidth='md' sx={{ mb: 10 }}>
+        <Container component="main" maxWidth='md' sx={{ pb: 25 }}>
             <Paper variant="outlined" sx={{ my: { xs: 3, md: 6 }, p: { xs: 2, md: 3 }, textAlign: 'center' }}>
                 <Typography component="h1" variant="h4" align='center'>
                     Thank you for your order!

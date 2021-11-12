@@ -93,7 +93,7 @@ const ProductsTable = (props) => {
   /////////////////////
 
   return (
-    <Container sx={{ mt: 3, marginBottom: 25 }}>
+    <Container sx={{ mt: 3, pb: 25 }}>
       <Button variant="outlined" component={Link} to={`/admin/products/create`}>
         Create New Product
       </Button>
