@@ -10,10 +10,8 @@ const Category = (props) => {
   const productsOfCategory = products.filter(
     (product) => product.category === category
   );
-
-
   return (
-    <Container maxWidth="xl" sx={{ mb: 15 }}>
+    <Container maxWidth="xl" sx={{ pb: 10 }}>
       <Typography variant="h3" gutterBottom align="center" sx={{ mt: 5 }}>
         Product Category: {category}
       </Typography>

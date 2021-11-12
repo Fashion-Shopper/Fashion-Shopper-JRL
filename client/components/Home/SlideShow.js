@@ -30,14 +30,14 @@ const slides = [
 const SlideShow = () => {
 
     return (
-        <Carousel showThumbs={false} showStatus={false} infiniteLoop autoPlay stopOnHover={false} interval={3000}>
+        <Carousel showThumbs={false} showStatus={false} infiniteLoop autoPlay stopOnHover={false} showIndicators={false} interval={3000}>
             {slides.map((slide, idx) => (
                 <div key={idx}>
-                    <Box sx={{ display: 'flex', justifyContent: 'space-around', alignItems: 'center', bgcolor: 'rgba(0, 0, 0, 0.8)', height: 120, width: '100%', position: 'absolute', bottom: 0 }}>
-                        <Typography variant='h4' sx={{ zIndex: '2', color: 'white' }}>
+                    <Box sx={{ display: 'flex', justifyContent: 'space-around', alignItems: 'center', bgcolor: 'rgba(0, 0, 0, 0.7)', height: '35%', width: '100%', position: 'absolute', bottom: 0 }}>
+                        <Typography variant='h3' sx={{ zIndex: '2', color: 'white', '@media screen and (max-width: 600px)': { fontSize: 20 } }}>
                             {slide.description}
                         </Typography>
-                        <Button component={Link} to={slide.link} variant='contained' color='secondary' sx={{ width: '15%' }} >
+                        <Button component={Link} to={slide.link} variant='contained' color='secondary' sx={{ zIndex: '2', width: '15%', '@media screen and (max-width: 600px)': { width: 'auto' } }} >
                             Shop Now!
                         </Button>
                     </Box>

@@ -77,7 +77,7 @@ const Products = () => {
         mountOnEnter
         unmountOnExit
       >
-        <Grid container sx={{ mb: 15 }}>
+        <Grid container sx={{ pb: 10 }}>
           <Grid item xs={false} sm={2}>
             {/* <Typography align="center">Filters</Typography>
             <FilterForm

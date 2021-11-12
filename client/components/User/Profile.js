@@ -38,7 +38,7 @@ const Profile = (props) => {
         <>
             <Tooltip title="User profile">
                 <IconButton onClick={handleMenu}>
-                    <Avatar src={user.avatar}>{user.username.charAt(0).toUpperCase()}</Avatar>
+                    <Avatar sizes='small' src={user.avatar}>{user.username.charAt(0).toUpperCase()}</Avatar>
                     <ArrowDropDownIcon size='small' color="primary" />
                 </IconButton>
             </Tooltip>

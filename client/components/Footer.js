@@ -15,11 +15,11 @@ const Copyright = () => {
 }
 const Footer = () => {
     return (
-        <Paper square sx={{
+        <Paper square elevation={0} sx={{
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center',
-            position: 'fixed',
+            position: 'absolute',
             left: "0",
             bottom: "0",
             width: "100%",
@@ -34,7 +34,7 @@ const Footer = () => {
             <Typography sx={{ mt: 1 }}>
                 Developed By: Riviere, Luna & Jonathan
             </Typography>
-            <Typography color='text.secondary' align='center'>
+            <Typography component='div' color='text.secondary' align='center'>
                 <Copyright />
                 Fullstack Academy
             </Typography>

@@ -37,15 +37,14 @@ const Cart = () => {
 
     if (userCart.orderitems && userCart.orderitems.length === 0) {
         return (
-            <>
+            <Container maxWidth="xl" sx={{ pb: 25 }}>
                 <Typography variant='h3' gutterBottom align='center' sx={{ mt: 5 }}>
                     Cart <ShoppingCartIcon fontSize="large" />
                 </Typography>
                 <Grid container
                     direction='column'
                     justifyContent="center"
-                    alignItems="center"
-                    sx={{ mt: 20 }}>
+                    alignItems="center">
                     <Grid item xs={6}>
                         <Typography variant='h5' gutterBottom component='div'>
                             Your Cart is Empty!
@@ -57,7 +56,7 @@ const Cart = () => {
                         </Button>
                     </Grid>
                 </Grid>
-            </>
+            </Container>
         )
     }
 
@@ -72,13 +71,13 @@ const Cart = () => {
 
     return (
         <Slide direction="right" in={true} timeout={500}>
-            <Container maxWidth="xl">
+            <Container maxWidth="xl" sx={{ pb: 25 }}>
                 <Typography variant='h3' gutterBottom align='center' sx={{ mt: 5 }}>
                     Cart <ShoppingCartIcon fontSize="large" />
                 </Typography>
-                <Grid container sx={{ pb: 12, mb: 15, '@media screen and (max-width: 600px)': { flexDirection: 'column-reverse' } }}>
+                <Grid container sx={{ '@media screen and (max-width: 600px)': { flexDirection: 'column-reverse' } }}>
                     <Grid container item xs={12} sm={8} md={8}>
-                        <TableContainer sx={{ p: 8 }}>
+                        <TableContainer>
                             <Table>
                                 <TableHead>
                                     <TableRow>
@@ -111,7 +110,7 @@ const Cart = () => {
                                                             </Typography>
                                                         </Box>
                                                         <Box>
-                                                            <FormControl sx={{ width: 150, pb: 2 }} >
+                                                            <FormControl sx={{ width: 150, my: 2 }} >
                                                                 <InputLabel>QTY</InputLabel>
                                                                 <Select
                                                                     label="QTY"

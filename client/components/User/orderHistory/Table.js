@@ -33,7 +33,7 @@ const PastOrders = () => {
     }
 
     return (
-        <Container sx={{ mt: 3, mb: 30 }}>
+        <Container sx={{ mt: 3, pb: 30 }}>
             <Typography variant='h3' gutterBottom align='center' sx={{ mt: 5 }}>
                 <History fontSize="large" /> Order History
             </Typography>

@@ -59,7 +59,7 @@ class Settings extends Component {
         const { save_avatar, save_name, onChange } = this;
         console.log(this.props)
         return (
-            <div style={{ textAlign: "center", marginBottom: 250 }} >
+            <div style={{ textAlign: "center", paddingBottom: 250 }} >
                 <h3> Profile Picture </h3>
                 <form>
                     {!!auth.avatar && <img src={auth.avatar} width='100px' />}
